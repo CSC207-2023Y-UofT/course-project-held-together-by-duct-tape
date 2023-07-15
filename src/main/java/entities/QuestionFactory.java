@@ -1,5 +1,4 @@
 package entities;
-import java.util.List;
 
 /**
  * Factory for creating Questions.

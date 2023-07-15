@@ -54,10 +54,4 @@ public class Student {
     public CGPA getCgpa() {
         return this.cgpa;
     }
-
-//    public void addCourses(List<Course> courses, List<Integer> grades) {
-//        for (int j = 0; j < courses.size(); j++) {
-//            this.addCourse(courses.get(j), grades.get(j));
-//        }
-//    }
 }

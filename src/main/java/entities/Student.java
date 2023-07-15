@@ -1,5 +1,4 @@
 package entities;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Map;
 public class Student {
     private final String studentId;
     private final Map<Course, Integer> courses;
-    private CGPA cgpa;
+//    private CGPA cgpa;
 
     /**
      * Construct a Student with studentId of ID, as well as their courses
@@ -35,6 +34,7 @@ public class Student {
         this.courses.put(course, gpa);
     }
 
+    // possible this doesn't belong here ?
     public int calculateCGPA() {
         int total = 0;
         for (int grade : this.courses.values()) {
@@ -51,7 +51,7 @@ public class Student {
         return this.courses;
     }
 
-    public CGPA getCgpa() {
-        return this.cgpa;
-    }
+//    public CGPA getCgpa() {
+//        return this.cgpa;
+//    }
 }

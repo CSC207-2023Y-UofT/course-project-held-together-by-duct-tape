@@ -19,16 +19,6 @@ public class Prerequisite {
         this.gpa = gpa;
     }
 
-    /**
-     * Construct a prerequisite wiht the course id. Overloaded constructor
-     * since if no grade is specified the gpa is defaulted to zero.
-     *
-     * @param course the course prerequisite.
-     */
-    public Prerequisite(String course) {
-        this(course, 0);
-    }
-
     public String getCourse() {
         return this.course;
     }

@@ -24,18 +24,6 @@ public class Student {
         // this.cgpa = this.calculateCGPA();
     }
 
-    public String getStudentId() {
-        return this.studentId;
-    }
-
-    public Map<Course, Integer> getCourses() {
-        return this.courses;
-    }
-
-    public CGPA getCgpa() {
-        return this.cgpa;
-    }
-
     /**
      * Add a new course that this student has successfully completed with their
      * respective grade.
@@ -53,6 +41,18 @@ public class Student {
             total += grade;
         }
         return (total / this.courses.size());
+    }
+
+    public String getStudentId() {
+        return this.studentId;
+    }
+
+    public Map<Course, Integer> getCourses() {
+        return this.courses;
+    }
+
+    public CGPA getCgpa() {
+        return this.cgpa;
     }
 
 //    public void addCourses(List<Course> courses, List<Integer> grades) {

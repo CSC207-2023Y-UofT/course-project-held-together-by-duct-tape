@@ -8,7 +8,6 @@ import java.util.Map;
 public class Student {
     private final String studentId;
     private final Map<Course, Integer> courses;
-//    private CGPA cgpa;
 
     /**
      * Construct a Student with studentId of ID, as well as their courses
@@ -20,7 +19,6 @@ public class Student {
     public Student(String Id, Map<Course, Integer> courses) {
         this.studentId = Id;
         this.courses = courses;
-        // this.cgpa = this.calculateCGPA();
     }
 
     /**
@@ -34,15 +32,6 @@ public class Student {
         this.courses.put(course, gpa);
     }
 
-    // possible this doesn't belong here ?
-    public int calculateCGPA() {
-        int total = 0;
-        for (int grade : this.courses.values()) {
-            total += grade;
-        }
-        return (total / this.courses.size());
-    }
-
     public String getStudentId() {
         return this.studentId;
     }
@@ -50,8 +39,4 @@ public class Student {
     public Map<Course, Integer> getCourses() {
         return this.courses;
     }
-
-//    public CGPA getCgpa() {
-//        return this.cgpa;
-//    }
 }

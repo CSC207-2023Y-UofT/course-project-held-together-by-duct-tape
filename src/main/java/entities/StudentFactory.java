@@ -1,4 +1,6 @@
 package entities;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StudentFactory {
@@ -11,7 +13,11 @@ public class StudentFactory {
      * @param courses the courses dictionary with courseId, grade as key, value pair.
      * @return Student object.
      */
-    public Student create(String studentId, Map<Course, Integer> courses) {
-        return new Student(studentId, courses);
+    public Student create(String studentId, List<String> courses, List<Integer> grades) {
+        Map<String, Integer> courseMap = new HashMap<>();
+        for (int j = 0; j < courses.size(); j++) {
+            courseMap.put(courses.get(j), grades.get(j));
+        }
+        return new Student(studentId, courseMap);
     }
 }

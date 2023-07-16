@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public class Student {
     private final String studentId;
-    private final Map<Course, Integer> courses;
+    private final Map<String, Integer> courses;
 
     /**
      * Construct a Student with studentId of ID, as well as their courses
@@ -16,7 +16,7 @@ public class Student {
      * @param Id the unique student Id.
      * @param courses the courses the student has completed with grades.
      */
-    public Student(String Id, Map<Course, Integer> courses) {
+    public Student(String Id, Map<String, Integer> courses) {
         this.studentId = Id;
         this.courses = courses;
     }
@@ -28,7 +28,7 @@ public class Student {
      * @param course the new course the student has completed.
      * @param gpa the grade that is associated with this course.
      */
-    public void addCourse(Course course, Integer gpa) {
+    public void addCourse(String course, Integer gpa) {
         this.courses.put(course, gpa);
     }
 
@@ -36,7 +36,7 @@ public class Student {
         return this.studentId;
     }
 
-    public Map<Course, Integer> getCourses() {
+    public Map<String, Integer> getCourses() {
         return this.courses;
     }
 }

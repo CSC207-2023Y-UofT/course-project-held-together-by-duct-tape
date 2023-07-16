@@ -50,6 +50,22 @@ public class CourseFactory {
                          List<String> answers, List<Integer> points) {
         return CourseFactory.create(courseId, coursePreReq, 50, questions, answers, points);
     }
+
+    /**
+     * Builds a new Course from course id, as well as three lists of questions, answers,
+     * and points. For each list, the ith element are related as the ith question, ith
+     * answer, and ith points for that question. This course has no prerequisite, thus it is
+     * an empty string with 0 course grade to signify an empty prerequisite.
+     *
+     * @param courseId the unique course id.
+     * @param questions list of questions associated with this course.
+     * @param answers list of answers associated with each question.
+     * @param points list of points associated with each question.
+     * @return Course object
+     */
+    public static Course create(String courseId, List<String> questions, List<String> answers, List<Integer> points) {
+        return CourseFactory.create(courseId, "", 0, questions, answers, points);
+    }
 }
 
 

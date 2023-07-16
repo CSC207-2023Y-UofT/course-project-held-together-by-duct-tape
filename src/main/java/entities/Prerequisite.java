@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Objects;
+
 /**
  * A prerequisite that is required for a student to complete before being
  * able to enroll in a course.
@@ -17,6 +19,10 @@ public class Prerequisite {
     public Prerequisite(String course, int gpa) {
         this.course = course;
         this.gpa = gpa;
+    }
+
+    public boolean isEmpty() {
+        return Objects.equals(this.course, "");
     }
 
     public String getCourse() {

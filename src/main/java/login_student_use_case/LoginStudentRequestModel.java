@@ -1,5 +1,10 @@
 package login_student_use_case;
 
+/**
+ * Data structure that packages the input to the interactor such that the interactor does
+ * not interact with raw data. The username and repeatUsername are the two things that
+ * the student requires to log in.
+ */
 public class LoginStudentRequestModel {
     private String username;
     private String repeatUsername;

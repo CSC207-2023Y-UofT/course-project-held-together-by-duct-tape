@@ -1,4 +1,4 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Interface that the loginPresenter must implement so the interactor can interact with the

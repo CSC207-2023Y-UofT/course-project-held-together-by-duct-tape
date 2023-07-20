@@ -1,4 +1,4 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Use Case Interactor, this is the object that runs the use case for attempting to log
@@ -37,10 +37,8 @@ public class LoginStudentInteractor implements LoginStudentInputBoundary {
         }
 
         LoginStudentDbRequestModel dbRequestModel = new LoginStudentDbRequestModel(requestModel.getUsername());
-        LoginStudentDbResponseModel dbResponseModel = studentDbGateway.getUser(dbRequestModel);
-
-        // LoginStudentDbRequestModel dbRequestModel = new LoginStudentDbRequestModel(requestModel.getUsername(), requestModel.getCourses());
-        // sessionDbGateway.save(dbRequestModel);
+        studentDbGateway.getUser(dbRequestModel);
+        sessionDbGateway.save(dbRequestModel);
 
         LoginStudentResponseModel responseModel = new LoginStudentResponseModel(requestModel.getUsername());
         return loginPresenter.prepareSuccessView(responseModel);

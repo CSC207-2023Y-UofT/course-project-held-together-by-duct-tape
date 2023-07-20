@@ -1,4 +1,4 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Interface that the studentDbGateway must implement for the LoginStudentInteractor to
@@ -12,4 +12,11 @@ public interface LoginStudentDataAccess {
      * @return boolean that indicates if the username exists.
      */
     boolean usernameExists(String username);
+
+    /**
+     * Method that adds the student courses to the request model.
+     *
+     * @param dbRequestModel request model that is updated with the students courses.
+     */
+    void getUser(LoginStudentDbRequestModel dbRequestModel);
 }

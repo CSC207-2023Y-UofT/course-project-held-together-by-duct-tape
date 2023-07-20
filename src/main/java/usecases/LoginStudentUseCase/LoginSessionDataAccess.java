@@ -1,8 +1,8 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Interface that the sessionDbGateway must implement for the LoginInteractor to
- *  * ensure clean architecture and call on its methods.
+ * ensure clean architecture and call on its methods.
  */
 public interface LoginSessionDataAccess {
     /**

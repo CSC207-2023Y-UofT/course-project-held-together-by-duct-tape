@@ -11,5 +11,5 @@ public interface LoginSessionDataAccess {
      *
      * @param requestModel student username.
      */
-    void save(LoginStudentDbRequestModel requestModel);
+    void saveUser(LoginStudentDbRequestModel requestModel);
 }

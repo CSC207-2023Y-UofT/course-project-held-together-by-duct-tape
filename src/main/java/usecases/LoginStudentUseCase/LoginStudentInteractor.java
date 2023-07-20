@@ -38,7 +38,7 @@ public class LoginStudentInteractor implements LoginStudentInputBoundary {
 
         LoginStudentDbRequestModel dbRequestModel = new LoginStudentDbRequestModel(requestModel.getUsername());
         studentDbGateway.getUser(dbRequestModel);
-        sessionDbGateway.save(dbRequestModel);
+        sessionDbGateway.saveUser(dbRequestModel);
 
         LoginStudentResponseModel responseModel = new LoginStudentResponseModel(requestModel.getUsername());
         return loginPresenter.prepareSuccessView(responseModel);

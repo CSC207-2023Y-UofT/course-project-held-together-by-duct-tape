@@ -1,4 +1,4 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Data structure that packages the input to the interactor such that the interactor does

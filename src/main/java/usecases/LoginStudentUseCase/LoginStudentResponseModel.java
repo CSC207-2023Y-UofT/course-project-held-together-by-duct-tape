@@ -1,4 +1,4 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
 
 /**
  * Data structure that packages the output from the interactor to the output boundary

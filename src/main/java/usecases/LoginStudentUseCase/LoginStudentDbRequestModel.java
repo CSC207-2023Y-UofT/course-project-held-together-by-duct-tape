@@ -1,4 +1,6 @@
-package login_student_use_case;
+package usecases.LoginStudentUseCase;
+
+import java.util.Map;
 
 /**
  * Data structure that packages the necessary information from the interactor for the gateway
@@ -8,6 +10,7 @@ package login_student_use_case;
  */
 public class LoginStudentDbRequestModel {
     private String username;
+    private Map<String, Integer> courses;
 
     public LoginStudentDbRequestModel(String username) {
         this.username = username;
@@ -17,7 +20,15 @@ public class LoginStudentDbRequestModel {
         return this.username;
     }
 
+    public Map<String, Integer> getCourses() {
+        return this.courses;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setCourses(Map<String, Integer> courses) {
+        this.courses = courses;
     }
 }

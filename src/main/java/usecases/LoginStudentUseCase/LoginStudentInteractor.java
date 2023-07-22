@@ -30,10 +30,12 @@ public class LoginStudentInteractor implements LoginStudentInputBoundary {
      */
     @Override
     public LoginStudentResponseModel login(LoginStudentRequestModel requestModel) {
-        if (!studentDbGateway.usernameExists(requestModel.getUsername())) {
-            return loginPresenter.prepareFailView("Username does not exist.");
+        if (requestModel.getUsername().equals("")) {
+            return loginPresenter.prepareFailView("Empty username is invalid.");
         } else if (!requestModel.getUsername().equals(requestModel.getRepeatUsername())) {
             return loginPresenter.prepareFailView("Usernames don't match.");
+        } else if (!studentDbGateway.usernameExists(requestModel.getUsername())) {
+            return loginPresenter.prepareFailView("Username does not exist.");
         }
 
         LoginStudentDbRequestModel dbRequestModel = new LoginStudentDbRequestModel(requestModel.getUsername());

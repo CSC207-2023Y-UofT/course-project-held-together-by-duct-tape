@@ -1,8 +1,8 @@
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 import interfaceadapters.CourseEnrollmentScreen;
-import interfaceadapters.LoginStudent.LoginStudentPresenter;
-import interfaceadapters.LoginStudent.LoginStudentScreen;
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
 import interfaceadapters.MainScreen;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 

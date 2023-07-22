@@ -1,6 +1,7 @@
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 import interfaceadapters.CourseEnrollmentScreen;
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
 import interfaceadapters.MainScreen;
@@ -24,12 +25,13 @@ public class Main {
         SessionDbGateway sessionDbGateway = new SessionDbGateway();
 
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
-        // No controller for now
+
+        LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
         // Plug-in screens
 
         MainScreen mainScreen = new MainScreen(screens, cards);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginInteractor);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginController);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(screens, cards);
 
         screens.add(mainScreen, "main");

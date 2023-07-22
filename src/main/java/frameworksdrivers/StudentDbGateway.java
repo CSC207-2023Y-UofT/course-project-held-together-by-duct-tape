@@ -5,12 +5,14 @@ import java.util.HashMap;
 
 import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
+import usecases.CreateStudentUsecase.CreateStudentDsModel;
+import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 
 /**
  * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
  * its function. Once the databases are chosen, the gateway will be modified.
  */
-public class StudentDbGateway implements LoginStudentDataAccess {
+public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
     /**
      * Method returns a boolean whether a username exists in the student database.
      *
@@ -31,5 +33,19 @@ public class StudentDbGateway implements LoginStudentDataAccess {
         Map<String, Integer> courses = new HashMap<String, Integer>();
         courses.put("csc148", 90);
         dbRequestModel.setCourses(courses);
+
+    }
+
+    @Override
+    /** Method returns whether the username is unique meaning that it's not already present in the database
+     * @param username is the username that is checked for whether it is unique*/
+    public boolean isUnique(String username) {
+        return true;
+    }
+    /** Method saves the user info stored in "student" to the database
+     *@param student this a model that stores what will be saved onto the database*/
+    @Override
+    public void save(CreateStudentDsModel student) { System.out.println("It saved!");
+
     }
 }

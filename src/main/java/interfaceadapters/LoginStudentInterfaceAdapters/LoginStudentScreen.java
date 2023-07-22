@@ -1,4 +1,4 @@
-package interfaceadapters.LoginStudent;
+package interfaceadapters.LoginStudentInterfaceAdapters;
 
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;

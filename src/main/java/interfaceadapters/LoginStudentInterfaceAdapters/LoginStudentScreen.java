@@ -1,23 +1,19 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
-import usecases.LoginStudentUseCase.LoginStudentInteractor;
-import usecases.LoginStudentUseCase.LoginStudentRequestModel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.Objects;
 
 public class LoginStudentScreen extends JPanel implements ActionListener {
-    private JTextField username = new JTextField(10);
-    private JTextField repeatUsername = new JTextField(10);
-    private final LoginStudentInteractor interactor;
-    private JPanel screens;
-    private CardLayout cards;
+    private final JTextField username = new JTextField(10);
+    private final JTextField repeatUsername = new JTextField(10);
+    private final LoginStudentController controller;
+    private final JPanel screens;
+    private final CardLayout cards;
 
-    public LoginStudentScreen(JPanel screens, CardLayout cards, LoginStudentInteractor loginInteractor) {
-        this.interactor = loginInteractor;
+    public LoginStudentScreen(JPanel screens, CardLayout cards, LoginStudentController loginController) {
+        this.controller = loginController;
         this.screens = screens;
         this.cards = cards;
 
@@ -52,20 +48,19 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
 
-        LoginStudentRequestModel requestModel = new LoginStudentRequestModel(username.getText(), repeatUsername.getText());
+        if (command.equals("Cancel")) {
+            cards.show(screens, "main");
+            return ;
+        }
 
         try {
-            if (Objects.equals(command, "Login")) {
-                interactor.login(requestModel);
-                JOptionPane.showMessageDialog(this, username.getText() + " successful login");
-                clearFields();
-                cards.show(screens, "enrollment");
-            } else {
-                clearFields();
-                cards.show(screens, "main");
-            }
+           controller.login(username.getText(), repeatUsername.getText());
+           JOptionPane.showMessageDialog(this, username.getText() + " successful login");
+           cards.show(screens, "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        } finally {
+            clearFields();
         }
     }
 

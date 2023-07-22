@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 
 public class CreateStudentDsModel {
     private String Student;

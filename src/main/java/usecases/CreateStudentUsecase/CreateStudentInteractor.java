@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 
 public class CreateStudentInteractor implements CreateStudentInputBoundary{
     final CreateStudentDataAccess dataAccess;

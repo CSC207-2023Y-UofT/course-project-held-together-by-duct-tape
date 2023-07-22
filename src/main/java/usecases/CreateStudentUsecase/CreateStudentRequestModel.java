@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 /**This class packages the user input required for creating a student */
 public class CreateStudentRequestModel {
     private String username;

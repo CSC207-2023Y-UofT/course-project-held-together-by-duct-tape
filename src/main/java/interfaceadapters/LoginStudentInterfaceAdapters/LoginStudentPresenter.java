@@ -3,6 +3,10 @@ package interfaceadapters.LoginStudentInterfaceAdapters;
 import usecases.LoginStudentUseCase.LoginStudentOutputBoundary;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 
+/**
+ * Presenter for the login use case. This class prepares a success view by preparing the response model.
+ * In the fail view, it throws exceptions that must be handled.
+ */
 public class LoginStudentPresenter implements LoginStudentOutputBoundary {
     /**
      * Presenter must prepare a success view since the use case has run successfully.

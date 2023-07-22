@@ -8,11 +8,11 @@ public class CreateStudentInteractor implements CreateStudentInputBoundary{
         this.dataAccess = dataAccess;
         this.presenter = presenter;}
 
-    public void createStudent(CreateStudentRequestModel request) {
+    public String createStudent(CreateStudentRequestModel request) {
         CreateStudentResponseModel response = new CreateStudentResponseModel(request.getUsername());
-        boolean unique = dataAccess.isUnique(request.getUsername());
+        boolean unique = dataAccess.isUnique(request.getUsername()) & request.getUsername() != null;
         boolean same = request.getRepeat() == request.getUsername();
         if (unique & same) {CreateStudentDsModel save = new CreateStudentDsModel(request.getUsername());
             dataAccess.save(save);;
-            presenter.getSuccessMessage(response);}
-        else{presenter.getFailMessage();}}}
+            return presenter.getSuccessMessage(response);}
+        else{return presenter.getFailMessage();}}}

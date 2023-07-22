@@ -1,5 +1,5 @@
 package CreateStudentUsecase;
 
 public interface CreateStudentInputBoundary {
-    void createStudent(CreateStudentRequestModel request);
+   String createStudent(CreateStudentRequestModel request);
 }

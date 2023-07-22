@@ -9,6 +9,7 @@ import mocks.DummyDataGateway;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class RegisterTest {// this is just to see if my layout is working
 
     public static void main(String[] args) throws Exception{

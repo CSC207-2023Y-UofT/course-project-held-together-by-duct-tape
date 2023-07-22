@@ -1,17 +1,30 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
+import usecases.LoginStudentUseCase.LoginStudentInputBoundary;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 
+/**
+ * Controller for the login use case. The controller calls the interactor to run the use case after preparing
+ * a request model with the necessary information.
+ */
 public class LoginStudentController {
 
-    private final LoginStudentInteractor interactor;
+    private final LoginStudentInputBoundary interactor;
 
-    public LoginStudentController(LoginStudentInteractor interactor) {
+    public LoginStudentController(LoginStudentInputBoundary interactor) {
         this.interactor = interactor;
     }
 
+    /**
+     * Builds the request model by inputting the username and repeatUsername into a data structure. It
+     * calls the interactor to run the login use case with the request model.
+     *
+     * @param username inputted by the user.
+     * @param repeatUsername inputted by the user.
+     * @return ResponseModel with the username.
+     */
     public LoginStudentResponseModel login(String username, String repeatUsername) {
         LoginStudentRequestModel requestModel = new LoginStudentRequestModel(username, repeatUsername);
         return interactor.login(requestModel);

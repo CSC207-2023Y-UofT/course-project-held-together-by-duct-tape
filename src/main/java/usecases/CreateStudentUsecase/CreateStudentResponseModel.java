@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 /**packages what is necesarry to present the success message*/
 public class CreateStudentResponseModel {
    private String username;

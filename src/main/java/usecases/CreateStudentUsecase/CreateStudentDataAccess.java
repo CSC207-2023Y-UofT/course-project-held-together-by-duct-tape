@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 
 public interface CreateStudentDataAccess {
     boolean isUnique(String username);

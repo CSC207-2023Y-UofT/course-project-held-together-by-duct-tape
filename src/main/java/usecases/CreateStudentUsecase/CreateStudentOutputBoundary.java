@@ -1,4 +1,4 @@
-package CreateStudentUsecase;
+package usecases.CreateStudentUsecase;
 
 public interface CreateStudentOutputBoundary {
     String getSuccessMessage(CreateStudentResponseModel responseModel);

@@ -4,7 +4,7 @@ import interfaceadapters.CourseEnrollmentScreen;
 import interfaceadapters.CreateStudent.CreateStudentController;
 import interfaceadapters.CreateStudent.CreateStudentPresenter;
 import interfaceadapters.CreateStudent.CreateStudentScreen;
-import interfaceadapters.CreateStudent.StudentModeScreen;
+import interfaceadapters.StudentModeScreen;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;

@@ -47,7 +47,7 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
 
 
         if(e.getSource() == create){
-            String student = username.getName();
-            String repeated = repeat.getName();
+            String student = username.getText();
+            String repeated = repeat.getText();
             JOptionPane.showMessageDialog(this, controller.create(student, repeated));}
     }}

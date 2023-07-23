@@ -1,11 +1,10 @@
-
+package interfaceadapters.CreateStudent;
 
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentOutputBoundary;
 import frameworksdrivers.StudentDbGateway;
-import interfaceadapters.CreateStudent.*;
 
 import javax.swing.*;
 import java.awt.*;

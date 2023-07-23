@@ -16,5 +16,5 @@ class PrerequisiteFactoryTest {
         Prerequisite prerequisite2 = factory.create("", 0);
         assertEquals("Csc207", prerequisite.getCourse() );
         assertEquals(85, prerequisite.getGpa() );
-        assertEquals(true, prerequisite.isEmpty() );}}
+        assertEquals(true, prerequisite2.isEmpty() );}}
 

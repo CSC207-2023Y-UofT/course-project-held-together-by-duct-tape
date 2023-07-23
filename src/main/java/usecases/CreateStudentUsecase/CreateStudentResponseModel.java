@@ -1,5 +1,5 @@
 package usecases.CreateStudentUsecase;
-/**packages what is necesarry to present the success message*/
+/**packages what is necessary to present the success message which in this case is the username chosen*/
 public class CreateStudentResponseModel {
    private String username;
     public CreateStudentResponseModel(String username){ this.username = username;}

@@ -35,7 +35,7 @@ public class MainScreen extends JPanel implements ActionListener {
         System.out.println("Event: " + event.getActionCommand());
 
         if (event.getActionCommand().equals("Student Mode")) {
-            cards.show(screens, "login");
+            cards.show(screens, "student");
         }
     }
 }

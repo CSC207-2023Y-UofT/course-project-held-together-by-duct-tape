@@ -1,18 +1,16 @@
 package interfaceadapters.CreateStudent;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.LabelUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
-
-import interfaceadapters.CreateStudent.CreateStudentController;
 
 public class CreateStudentScreen extends JPanel implements ActionListener{
     JTextField username = new JTextField(15);
     JTextField repeat = new JTextField(15);
     JButton create = new JButton("Create");
+
+    JButton cancel = new JButton(("Cancel"));
 
     /**This is the create student screen that is displayed when a user wants to create a new student*/
     private CreateStudentController controller;
@@ -24,7 +22,6 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel user = new JLabel("Enter Student name");
         JLabel rep = new JLabel("Reenter Student name");
-        JButton cancel = new JButton("Cancel");
         JPanel buttons = new JPanel();
         buttons.add(create);
         buttons.add(cancel);
@@ -44,8 +41,6 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-
-
         if(e.getSource() == create){
             String student = username.getText();
             String repeated = repeat.getText();

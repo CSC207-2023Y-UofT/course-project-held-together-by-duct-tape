@@ -5,5 +5,6 @@ public interface CreateStudentOutputBoundary {
      * @param responseModel is a response model that contains what is needed to format the success message */
     String getSuccessMessage(CreateStudentResponseModel responseModel);
     /**This method formats and returns the message that is shown upon failure of creating a new student user*/
-    String getFailMessage();
-}
+    String getFailMessage();}
+
+

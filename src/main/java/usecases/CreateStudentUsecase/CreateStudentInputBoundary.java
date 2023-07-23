@@ -6,5 +6,4 @@ public interface CreateStudentInputBoundary {
     * if the user is successfully saved to the database a success message is shown otherwise a fail message
     * will be shown.
     * @param request contains the necessary information that is needed to create a profile in the Student Database*/
-   String createStudent(CreateStudentRequestModel request);
-}
+   String createStudent(CreateStudentRequestModel request);}

@@ -6,5 +6,4 @@ public class CreateStudentDsModel {
     public CreateStudentDsModel(String username){
         this.Student = username;
     }
-    public String getUsername(){ return Student;}
-}
+    public String getUsername(){ return Student;}}

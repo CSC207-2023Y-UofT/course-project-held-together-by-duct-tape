@@ -49,7 +49,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         String command = event.getActionCommand();
 
         if (command.equals("Cancel")) {
-            cards.show(screens, "main");
+            cards.show(screens, "student");
             return ;
         }
 

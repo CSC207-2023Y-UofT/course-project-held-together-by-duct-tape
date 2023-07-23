@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 public class CreateStudentScreen extends JPanel implements ActionListener{
-    JTextField username = new JTextField(15);
-    JTextField repeat = new JTextField(15);
+    JTextField username = new JTextField(10);
+    JTextField repeat = new JTextField(10);
     JButton create = new JButton("Create");
 
     JButton cancel = new JButton(("Cancel"));
@@ -25,8 +25,12 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         this.controller = controller;
         JLabel title = new JLabel("Create Student");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel user = new JLabel("Enter Student name");
-        JLabel rep = new JLabel("Reenter Student name");
+        JPanel usernamePanel = new JPanel();
+        usernamePanel.add(new JLabel("Enter Username"));
+        usernamePanel.add(username);
+        JPanel repeatUsernamePanel = new JPanel();
+        repeatUsernamePanel.add(new JLabel("Reenter Username"));
+        repeatUsernamePanel.add(repeat);
         JPanel buttons = new JPanel();
         buttons.add(create);
         buttons.add(cancel);
@@ -34,10 +38,8 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         cancel.addActionListener(this);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
-        this.add(user);
-        this.add(username);
-        this.add(rep);
-        this.add(repeat);
+        this.add(usernamePanel);
+        this.add(repeatUsernamePanel);
         this.add(buttons);
     }
 

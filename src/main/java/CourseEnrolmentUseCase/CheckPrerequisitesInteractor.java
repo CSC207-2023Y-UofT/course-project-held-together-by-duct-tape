@@ -1,26 +1,21 @@
-package UseCases;
+package CourseEnrolmentUseCase;
 
 import entities.Course;
-import entities.CourseModified;
-import entities.Prerequisite;
-import entities.Student;
+
 
 public class CheckPrerequisitesInteractor {
-    private Student student;
-    private Prerequisite prerequisite;
-    private EnrolmentDbResponseModel course;
-    //private CourseModified courseM;
-    public boolean checkPrerequisite(EnrolmentDbResponseModel course) { //if one prerequisite
-        return student.getCourses().containsKey(prerequisite.getCourse()) &&
-                student.getCourses().get(prerequisite.getCourse()) >= course.getCourse().getPrerequisite().getGpa();
+    private EnrolmentDataAccess sessionDbGateway;
+
+    /**
+     * Check whether student has completed the prerequisite for the course in which they enrol.
+     * @param studentId the student's id
+     * @param course the course in which the student attempts to enrol.
+     * @return true iff student has the prerequisite for the course
+     */
+    public boolean checkPrerequisite(String studentId, EnrolmentDbResponseModel course) {
+        boolean completed = sessionDbGateway.hasCompletedCourse(studentId, course.getPrerequisite().getCourse());
+        int grade = sessionDbGateway.getCourseGPA(studentId, course.getPrerequisite().getCourse());
+        return completed && grade >= course.getPrerequisite().getGpa();
     }
-    /*public boolean checkPrerequisites(EnrolmentDbResponseModel courseM) { //if multiple prerequisites for a course
-        for (Prerequisite p : courseM.getPrerequisites()) {
-            if (!(student.getCourses().containsKey(p.getCourse()) &&
-                    student.getCourses().get(p.getCourse()) >= p.getGpa())) {
-                return false;
-            }
-        }
-        return true;
-    }*/
 }
+// add a data structure storing the prerequisite for the course!!!

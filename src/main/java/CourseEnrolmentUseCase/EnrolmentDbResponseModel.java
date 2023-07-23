@@ -1,18 +1,30 @@
-package UseCases;
+package CourseEnrolmentUseCase;
 
 import entities.Course;
+import entities.Prerequisite;
+import entities.Question;
+
+import java.util.List;
 
 public class EnrolmentDbResponseModel {
-    private Course course;
-    public EnrolmentDbResponseModel(Course course) {
-        this.course = course;
+    private String courseId;
+    private List<Question> questions;
+    private Prerequisite prerequisite;
+    public EnrolmentDbResponseModel(String courseId, List<Question> questions, Prerequisite prerequisite) {
+        this.courseId = courseId;
+        this.questions = questions;
+        this.prerequisite = prerequisite;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public Prerequisite getPrerequisite() {
+        return prerequisite;
     }
 }

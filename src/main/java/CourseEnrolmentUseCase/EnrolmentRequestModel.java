@@ -1,4 +1,4 @@
-package UseCases;
+package CourseEnrolmentUseCase;
 
 public class EnrolmentRequestModel {
     private final String studentId;
@@ -11,7 +11,9 @@ public class EnrolmentRequestModel {
     public String getStudentId() {
         return studentId;
     }
-
+    public Student getStudent(String id) {
+        //retrieve student with this id
+    }
     public String getCourseId() {
         return courseId;
     }

@@ -1,4 +1,4 @@
-package UseCases;
+package CourseEnrolmentUseCase;
 
 public class EnrolmentDbRequestModel {
     private final String courseId;

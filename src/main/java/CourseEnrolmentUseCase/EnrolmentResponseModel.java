@@ -1,18 +1,24 @@
-package UseCases;
+package CourseEnrolmentUseCase;
 
 import entities.Question;
 
 import java.util.List;
-
+/**
+ * Data structure which packages the course ID and the questions to be displayed on the screen.
+ */
 public class EnrolmentResponseModel {
-    private EnrolmentDbResponseModel course;
-    public EnrolmentResponseModel(EnrolmentDbResponseModel course) {
-        this.course = course;
+    private String courseId;
+    private List<Question> questions;
+    public EnrolmentResponseModel(String courseId, List<Question> questions) {
+        this.courseId = courseId;
+        this.questions =  questions;
     }
-    public List<Question> getQuestions() {
-        return course.getCourse().getQuestions();
-    }
+
     public String getCourseId() {
-        return course.getCourse().getCourseId();
+        return courseId;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
     }
 }

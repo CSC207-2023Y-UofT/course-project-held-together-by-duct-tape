@@ -1,4 +1,4 @@
-package interfaceadapters.CreateStudent;
+package interfaceadapters;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;

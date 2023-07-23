@@ -15,8 +15,8 @@ public class CreateStudentInteractor implements CreateStudentInputBoundary{
      * @param request contains the necessary information that is needed to create a profile in the Student Database*/
     public String createStudent(CreateStudentRequestModel request) {
         CreateStudentResponseModel response = new CreateStudentResponseModel(request.getUsername());
-        boolean unique = dataAccess.isUnique(request.getUsername()) & request.getUsername() != null;
-        boolean same = request.getRepeat().equals(request.getUsername());
+        boolean unique = dataAccess.isUnique(request.getUsername()) & !request.getUsername().equals("");
+        boolean same = request.getRepeat().equals(request.getUsername()) & !request.getRepeat().equals("");
         if (unique & same) {CreateStudentDsModel save = new CreateStudentDsModel(request.getUsername());
             dataAccess.save(save);;
             return presenter.getSuccessMessage(response);}

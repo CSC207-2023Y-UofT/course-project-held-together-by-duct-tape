@@ -11,13 +11,18 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
     JButton create = new JButton("Create");
 
     JButton cancel = new JButton(("Cancel"));
+    JPanel screens;
+    CardLayout cards;
 
     /**This is the create student screen that is displayed when a user wants to create a new student*/
     private CreateStudentController controller;
     // for the following code I used this
     // link: https://www.geeksforgeeks.org/java-swing-simple-user-registration-form/ to figure out how to make
     // the visual aspect of the screen as well as how the actionListener should work.
-    public CreateStudentScreen(CreateStudentController controller){ this.controller = controller;
+    public CreateStudentScreen(JPanel screens, CardLayout cards, CreateStudentController controller){
+        this.cards = cards;
+        this.screens = screens;
+        this.controller = controller;
         JLabel title = new JLabel("Create Student");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel user = new JLabel("Enter Student name");
@@ -45,4 +50,7 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
             String student = username.getText();
             String repeated = repeat.getText();
             JOptionPane.showMessageDialog(this, controller.create(student, repeated));}
+        if (e.getSource() == cancel){
+            cards.show(screens, "student");
+        }
     }}

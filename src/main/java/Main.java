@@ -1,6 +1,7 @@
-import frameworksdrivers.DbConnection;
+import frameworksdrivers.CourseDbGateway;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
+
 import interfaceadapters.CourseEnrollmentScreen;
 import interfaceadapters.CreateStudent.CreateStudentController;
 import interfaceadapters.CreateStudent.CreateStudentPresenter;
@@ -10,22 +11,15 @@ import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
 import interfaceadapters.MainScreen;
+
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        DbConnection db = new DbConnection();
-        System.out.println("Database connected!");
 
         // Application set-up
         JFrame application = new JFrame();
@@ -34,13 +28,12 @@ public class Main {
         application.add(screens);
 
         // Components
-
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
         StudentDbGateway studentDbGateway = new StudentDbGateway();
         SessionDbGateway sessionDbGateway = new SessionDbGateway();
+        CourseDbGateway courseDbGateway = new CourseDbGateway();
 
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
-
         LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();

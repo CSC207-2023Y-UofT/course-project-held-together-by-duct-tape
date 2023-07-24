@@ -3,6 +3,11 @@ package frameworksdrivers;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * Sets up the Database connection with MySQL. Contains the necessary information to connect to the database. All
+ * gateways are children of this class so that they are all able to access the connection. This class is abstract
+ * since itself is not used for anything except connecting to the database.
+ */
 abstract class DbConnection {
 
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
@@ -18,6 +23,12 @@ abstract class DbConnection {
         this.connection = connect();
     }
 
+    /**
+     * Gets the necessary properties that will be used to connect to the database. In this case only the
+     * username and password.
+     *
+     * @return Properties with the username and password of the database.
+     */
     public Properties getProperties() {
         if (properties == null) {
             properties = new Properties();
@@ -27,6 +38,12 @@ abstract class DbConnection {
         return properties;
     }
 
+    /**
+     * Returns the connection to the database if successful. Uses the properties to attempt to connect to the
+     * database.
+     *
+     * @return Connection to the database.
+     */
     public Connection connect() {
         if (connection == null) {
             try {

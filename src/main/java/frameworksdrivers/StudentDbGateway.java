@@ -3,7 +3,6 @@ package frameworksdrivers;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -42,6 +41,7 @@ public class StudentDbGateway extends DbConnection implements LoginStudentDataAc
      *
      * @param dbRequestModel request model that is updated with the students courses.
      */
+    @Override
     public void getUser(LoginStudentDbRequestModel dbRequestModel) {
         Map<String, Integer> courses = new HashMap<String, Integer>();
         courses.put("csc148", 90);
@@ -49,16 +49,24 @@ public class StudentDbGateway extends DbConnection implements LoginStudentDataAc
 
     }
 
+    /**
+     * Method returns whether the username is unique meaning that it's not already present in the database.
+     *
+     * @param username is the username that is checked.
+     * @return boolean that indicates if username is unique.
+     */
     @Override
-    /** Method returns whether the username is unique meaning that it's not already present in the database
-     * @param username is the username that is checked for whether it is unique*/
     public boolean isUnique(String username) {
         return true;
     }
-    /** Method saves the user info stored in "student" to the database
-     *@param student this a model that stores what will be saved onto the database*/
-    @Override
-    public void save(CreateStudentDsModel student) { System.out.println("It saved!");
 
+    /**
+     * Method saves the user info stored in "student" to the database.
+     *
+     * @param student model that stores what will be saved onto the database.
+     */
+    @Override
+    public void save(CreateStudentDsModel student) {
+        System.out.println("It saved!");
     }
 }

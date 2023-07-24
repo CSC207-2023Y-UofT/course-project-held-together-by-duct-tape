@@ -3,7 +3,7 @@ package frameworksdrivers;
 import java.sql.*;
 import java.util.Properties;
 
-public class DbConnection {
+abstract class DbConnection {
 
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/course_simulator";
@@ -31,6 +31,7 @@ public class DbConnection {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(DATABASE_URL, getProperties());
+                System.out.println("Database connection successful.");
             } catch (SQLException e) {
                 System.out.println("Cannot connect to database.");
                 e.printStackTrace();

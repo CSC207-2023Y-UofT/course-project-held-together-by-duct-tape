@@ -32,22 +32,24 @@ public class Main {
         SessionDbGateway sessionDbGateway = new SessionDbGateway();
         CourseDbGateway courseDbGateway = new CourseDbGateway();
 
+        // CreateStudent Use Case
+        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
+        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway, createStudentPresenter);
+        CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
+
+        // LoginStudent Use Case
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
         LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
-        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway,createStudentPresenter);
-        CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
-
-
         // Plug-in screens
-
         MainScreen mainScreen = new MainScreen(screens, cards);
+        StudentModeScreen studentModeScreen = new StudentModeScreen(screens, cards);
+
+        // Use Case Screens
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(screens, cards, createStudentController);
         LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginController);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(screens, cards);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(screens, cards, createStudentController);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(screens, cards);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");

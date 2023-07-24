@@ -13,8 +13,9 @@ import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 
 /**
- * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
- * its function. Once the databases are chosen, the gateway will be modified.
+ * Gateway that accesses and interacts with the Student Database. It is a child class of DbConnection since it
+ * must have a reference to the database connection. Implements the various interfaces so that interactors are
+ * able to access information from the database.
  */
 public class StudentDbGateway extends DbConnection implements LoginStudentDataAccess, CreateStudentDataAccess {
     /**
@@ -43,10 +44,21 @@ public class StudentDbGateway extends DbConnection implements LoginStudentDataAc
      */
     @Override
     public void getUser(LoginStudentDbRequestModel dbRequestModel) {
-        Map<String, Integer> courses = new HashMap<String, Integer>();
-        courses.put("csc148", 90);
-        dbRequestModel.setCourses(courses);
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            statement.setString(1, dbRequestModel.getUsername());
+            ResultSet resultSet = statement.executeQuery();
 
+            Map<String, Integer> courses = new HashMap<String, Integer>();
+            while (resultSet.next()) {
+                // CourseID, CourseGrade
+                courses.put(resultSet.getString(2), resultSet.getInt(3));
+            }
+
+            dbRequestModel.setCourses(courses);
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
     }
 
     /**

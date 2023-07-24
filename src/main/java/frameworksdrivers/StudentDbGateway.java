@@ -1,5 +1,10 @@
 package frameworksdrivers;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -12,7 +17,7 @@ import usecases.CreateStudentUsecase.CreateStudentDataAccess;
  * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
  * its function. Once the databases are chosen, the gateway will be modified.
  */
-public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
+public class StudentDbGateway extends DbConnection implements LoginStudentDataAccess, CreateStudentDataAccess {
     /**
      * Method returns a boolean whether a username exists in the student database.
      *
@@ -21,7 +26,15 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
      */
     @Override
     public boolean usernameExists(String username) {
-        return true;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
+        return false;
     }
 
     /**

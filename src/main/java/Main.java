@@ -1,3 +1,4 @@
+import frameworksdrivers.DbConnection;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 import interfaceadapters.CourseEnrollmentScreen;
@@ -12,11 +13,24 @@ import interfaceadapters.MainScreen;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        DbConnection db = new DbConnection();
+        //db.connect();
+        System.out.println("Database connected!");
+
+        //StudentDbGateway studentDbGateway = new StudentDbGateway();
+        //System.out.println(studentDbGateway.usernameExists("hello"));
+
         // Application set-up
         JFrame application = new JFrame();
         CardLayout cards = new CardLayout();
@@ -56,6 +70,5 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
-
     }
 }

@@ -2,15 +2,13 @@ import frameworksdrivers.CourseDbGateway;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 
-import interfaceadapters.CourseEnrollmentScreen;
+import interfaceadapters.*;
 import interfaceadapters.CreateStudent.CreateStudentController;
 import interfaceadapters.CreateStudent.CreateStudentPresenter;
 import interfaceadapters.CreateStudent.CreateStudentScreen;
-import interfaceadapters.StudentModeScreen;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
-import interfaceadapters.MainScreen;
 
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
@@ -43,13 +41,15 @@ public class Main {
         LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
         // Plug-in screens
-        MainScreen mainScreen = new MainScreen(screens, cards);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(screens, cards);
+        GenericProperties genericProperties = new GenericProperties(screens, cards);
+
+        UserModeScreen mainScreen = new UserModeScreen(genericProperties);
+        StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
 
         // Use Case Screens
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(screens, cards, createStudentController);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginController);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(screens, cards);
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentController);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginController);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");

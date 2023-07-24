@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainScreen extends JPanel implements ActionListener {
-    private CardLayout cards;
-    private JPanel screens;
-    public MainScreen(JPanel screens, CardLayout cards) {
-        this.cards = cards;
-        this.screens = screens;
+public class UserModeScreen extends JPanel implements ActionListener {
+    private final GenericProperties genericProperties;
+
+    public UserModeScreen(GenericProperties genericProperties) {
+        this.genericProperties = genericProperties;
 
         JLabel title = new JLabel("User Mode Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -35,7 +34,10 @@ public class MainScreen extends JPanel implements ActionListener {
         System.out.println("Event: " + event.getActionCommand());
 
         if (event.getActionCommand().equals("Student Mode")) {
-            cards.show(screens, "student");
+            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+        } else if (event.getActionCommand().equals("Instructor Mode")) {
+            // GO TO INSTRUCTOR SCREEN
+            return ;
         }
     }
 }

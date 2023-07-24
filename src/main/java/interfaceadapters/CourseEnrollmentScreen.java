@@ -6,13 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CourseEnrollmentScreen extends JPanel implements ActionListener {
+    private final GenericProperties genericProperties;
 
-    private JPanel screens;
-    private CardLayout cards;
-
-    public CourseEnrollmentScreen(JPanel screens, CardLayout cards) {
-        this.screens = screens;
-        this.cards = cards;
+    public CourseEnrollmentScreen(GenericProperties genericProperties) {
+        this.genericProperties = genericProperties;
 
         JLabel title = new JLabel("Course Enrollment Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -46,7 +43,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         System.out.println("Event " + event.getActionCommand());
 
         if (event.getActionCommand().equals("Logout")) {
-            cards.show(screens, "login");
+            genericProperties.getCards().show(genericProperties.getScreens(), "login");
         }
     }
 }

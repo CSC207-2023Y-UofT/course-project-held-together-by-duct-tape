@@ -1,4 +1,4 @@
-package interfaceadapters.CreateStudent;
+package interfaceadapters.CreateStudentInterfaceAdapters;
 import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentRequestModel;
 public class CreateStudentController {

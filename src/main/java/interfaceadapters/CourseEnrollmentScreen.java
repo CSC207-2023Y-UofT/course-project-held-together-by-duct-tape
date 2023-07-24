@@ -43,7 +43,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         System.out.println("Event " + event.getActionCommand());
 
         if (event.getActionCommand().equals("Logout")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "login");
+            genericProperties.getCards().show(genericProperties.getScreens(), "student");
         }
     }
 }

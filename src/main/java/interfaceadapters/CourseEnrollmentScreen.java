@@ -17,6 +17,13 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Course Enrollment Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        JRadioButton radio1 = new JRadioButton("CSC148");
+        JRadioButton radio2 = new JRadioButton("CSC207");
+
+        ButtonGroup radioGroup = new ButtonGroup();
+        radioGroup.add(radio1);
+        radioGroup.add(radio2);
+
         JButton enroll = new JButton("Enroll");
         JButton logout = new JButton("Logout");
 
@@ -30,6 +37,8 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(radio1);
+        this.add(radio2);
         this.add(buttons);
     }
 

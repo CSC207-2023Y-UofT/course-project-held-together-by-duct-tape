@@ -25,11 +25,7 @@ public class Main {
     public static void main(String[] args) {
 
         DbConnection db = new DbConnection();
-        //db.connect();
         System.out.println("Database connected!");
-
-        //StudentDbGateway studentDbGateway = new StudentDbGateway();
-        //System.out.println(studentDbGateway.usernameExists("hello"));
 
         // Application set-up
         JFrame application = new JFrame();
@@ -68,6 +64,7 @@ public class Main {
 
         cards.show(screens, "main");
 
+        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.pack();
         application.setVisible(true);
     }

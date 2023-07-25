@@ -40,6 +40,8 @@ public class Main {
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
         LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
+        CourseEnrollmentPresenter courseEnrollmentPresenter = new CourseEnrollmentPresenter(courseDbGateway);
+
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
 
@@ -49,7 +51,8 @@ public class Main {
         // Use Case Screens
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentController);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginController);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties);
+
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseEnrollmentPresenter);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");

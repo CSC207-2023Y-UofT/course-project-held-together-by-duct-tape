@@ -1,4 +1,4 @@
-package entities;
+package csc207.entities;
 
 /**
  * A question for a course. It has a text for the question, answer, and has

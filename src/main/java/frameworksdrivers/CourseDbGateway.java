@@ -1,5 +1,6 @@
 package frameworksdrivers;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,13 @@ import java.util.List;
  * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
  * its function. Once the databases are chosen, the gateway will be modified.
  */
-public class CourseDbGateway extends DbConnection {
+public class CourseDbGateway {
+    private final Connection connection;
+
+    public CourseDbGateway(DbConnection dbConnection) {
+        this.connection = dbConnection.connect();
+    }
+
     /**
      * Method that returns a list of all the courses offered.
      *

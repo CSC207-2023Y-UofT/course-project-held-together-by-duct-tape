@@ -5,10 +5,10 @@ import java.util.Properties;
 
 /**
  * Sets up the Database connection with MySQL. Contains the necessary information to connect to the database. All
- * gateways are children of this class so that they are all able to access the connection. This class is abstract
- * since itself is not used for anything except connecting to the database.
+ * the gateways will get the connection from the connection instance attribute so that they all have the same
+ * connection to the database.
  */
-abstract class DbConnection {
+public class DbConnection {
 
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/course_simulator";
@@ -16,7 +16,7 @@ abstract class DbConnection {
     private static final String PASSWORD = "coursesimgroup";
 
     private Properties properties;
-    protected Connection connection;
+    private Connection connection;
 
     public DbConnection() {
         this.properties = getProperties();

@@ -1,5 +1,6 @@
 package frameworksdrivers;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,13 @@ import usecases.CreateStudentUsecase.CreateStudentDataAccess;
  * must have a reference to the database connection. Implements the various interfaces so that interactors are
  * able to access information from the database.
  */
-public class StudentDbGateway extends DbConnection implements LoginStudentDataAccess, CreateStudentDataAccess {
+public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
+    private final Connection connection;
+
+    public StudentDbGateway(DbConnection dbConnection) {
+        this.connection = dbConnection.connect();
+    }
+
     /**
      * Method returns a boolean whether a username exists in the student database.
      *

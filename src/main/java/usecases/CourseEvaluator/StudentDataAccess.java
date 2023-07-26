@@ -1,6 +1,4 @@
-package courseEvaluator.UseCases;
-
-import courseEvaluator.UseCases.EvaluatorDbRequestModel;
+package usecases.CourseEvaluator;
 
 public interface StudentDataAccess {
 

@@ -1,12 +1,12 @@
-package courseEvaluator.UseCases;
+package usecases.CourseEvaluator;
 
 public class EvaluatorDbRequestModel {
-    private int StudentId;
+    private String studentId;
     private final String CourseId;
     private  int grade;
 
-    public EvaluatorDbRequestModel(String CourseId) {
-        this.StudentId = StudentId;
+    public EvaluatorDbRequestModel(String studentId, String CourseId, int grade) {
+        this.studentId = studentId;
         this.CourseId = CourseId;
         this.grade = grade;
 
@@ -14,8 +14,8 @@ public class EvaluatorDbRequestModel {
     } public String getCourseId() {
         return CourseId;
 
-    }public int getStudentId() {
-        return StudentId;
+    }public String getStudentId() {
+        return studentId;
 
     }public int getGrade() {
         return grade;

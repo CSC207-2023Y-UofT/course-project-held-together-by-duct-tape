@@ -6,8 +6,8 @@ import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import java.sql.Connection;
 
 /**
- * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
- * its function. Once the databases are chosen, the gateway will be modified.
+ * Gateway that accesses and interacts with the Session Database. It has a reference to the connection obtained from
+ * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
 public class SessionDbGateway implements LoginSessionDataAccess {
     private final Connection connection;

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
- * its function. Once the databases are chosen, the gateway will be modified.
+ * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
+ * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
 public class CourseDbGateway {
     private final Connection connection;

@@ -14,9 +14,8 @@ import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 
 /**
- * Gateway that accesses and interacts with the Student Database. It is a child class of DbConnection since it
- * must have a reference to the database connection. Implements the various interfaces so that interactors are
- * able to access information from the database.
+ * Gateway that accesses and interacts with the Student Database. It has a reference to the connection obtained from
+ * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
 public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
     private final Connection connection;

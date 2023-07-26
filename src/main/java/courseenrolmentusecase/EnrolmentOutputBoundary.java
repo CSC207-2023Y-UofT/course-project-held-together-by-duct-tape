@@ -1,4 +1,4 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
 public interface EnrolmentOutputBoundary {
     EnrolmentResponseModel prepareSuccessView(EnrolmentResponseModel course);

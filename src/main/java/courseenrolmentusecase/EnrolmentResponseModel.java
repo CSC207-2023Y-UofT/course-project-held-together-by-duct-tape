@@ -1,4 +1,4 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
 import entities.Question;
 
@@ -9,6 +9,7 @@ import java.util.List;
 public class EnrolmentResponseModel {
     private String courseId;
     private List<Question> questions;
+
     public EnrolmentResponseModel(String courseId, List<Question> questions) {
         this.courseId = courseId;
         this.questions =  questions;

@@ -1,6 +1,5 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
-import entities.Course;
 import entities.Prerequisite;
 import entities.Question;
 

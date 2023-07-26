@@ -1,4 +1,4 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
 public class EnrolmentRequestModel {
     private final String studentId;

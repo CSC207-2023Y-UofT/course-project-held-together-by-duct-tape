@@ -1,4 +1,4 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
 public interface EnrolmentCourseDataAccess {
     public boolean existsByCourseId(String courseId);

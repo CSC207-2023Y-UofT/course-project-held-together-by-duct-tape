@@ -1,4 +1,4 @@
-package CourseEnrolmentUseCase;
+package courseenrolmentusecase;
 
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private CheckPrerequisitesInteractor completedPrerequisite;
@@ -47,7 +47,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         // student in Session database
         //beginCourse.runCourse(); //calls to run course
         EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId(),
-                dbResponseModel.getQuestions());
+                        dbResponseModel.getQuestions());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel); //displays questions on screen
     }
 

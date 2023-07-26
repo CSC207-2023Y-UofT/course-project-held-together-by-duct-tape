@@ -1,7 +1,4 @@
-package CourseEnrolmentUseCase;
-
-import entities.Course;
-import entities.Prerequisite;
+package courseenrolmentusecase;
 
 
 public interface EnrolmentDataAccess {

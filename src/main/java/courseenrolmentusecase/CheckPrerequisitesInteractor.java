@@ -1,10 +1,12 @@
-package CourseEnrolmentUseCase;
-
-import entities.Course;
+package courseenrolmentusecase;
 
 
 public class CheckPrerequisitesInteractor {
     private EnrolmentDataAccess sessionDbGateway;
+
+    public CheckPrerequisitesInteractor(EnrolmentDataAccess sessionDbGateway) {
+        this.sessionDbGateway = sessionDbGateway;
+    }
 
     /**
      * Check whether student has completed the prerequisite for the course in which they enrol.

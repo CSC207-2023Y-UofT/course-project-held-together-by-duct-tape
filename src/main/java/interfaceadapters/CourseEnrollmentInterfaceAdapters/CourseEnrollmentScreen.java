@@ -1,6 +1,7 @@
-package interfaceadapters;
+package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
-import frameworksdrivers.CourseDbGateway;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentPresenter;
+import interfaceadapters.GenericProperties;
 
 import java.util.ArrayList;
 import java.util.List;

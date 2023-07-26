@@ -1,4 +1,4 @@
-package interfaceadapters;
+package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import frameworksdrivers.CourseDbGateway;
 

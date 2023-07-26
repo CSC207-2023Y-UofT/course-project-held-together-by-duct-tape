@@ -1,4 +1,5 @@
 import frameworksdrivers.CourseDbGateway;
+import frameworksdrivers.DbConnection;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 
@@ -26,9 +27,10 @@ public class Main {
         application.add(screens);
 
         // Components
-        StudentDbGateway studentDbGateway = new StudentDbGateway();
-        SessionDbGateway sessionDbGateway = new SessionDbGateway();
-        CourseDbGateway courseDbGateway = new CourseDbGateway();
+        DbConnection dbConnection = new DbConnection();
+        StudentDbGateway studentDbGateway = new StudentDbGateway(dbConnection);
+        SessionDbGateway sessionDbGateway = new SessionDbGateway(dbConnection);
+        CourseDbGateway courseDbGateway = new CourseDbGateway(dbConnection);
 
         // CreateStudent Use Case
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();

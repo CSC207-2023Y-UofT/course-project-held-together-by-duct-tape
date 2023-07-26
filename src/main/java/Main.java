@@ -4,6 +4,8 @@ import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 
 import interfaceadapters.*;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentPresenter;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentScreen;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentScreen;

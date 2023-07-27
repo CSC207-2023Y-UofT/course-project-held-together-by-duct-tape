@@ -1,13 +1,13 @@
 package usecases.CourseEnrollmentUseCase;
 
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
-    private CheckPrerequisitesInteractor completedPrerequisite;
-    private EnrolmentDataAccess sessionDbGateway;
-    private EnrolmentCourseDataAccess courseDbGateway;
-    private EnrolmentOutputBoundary enrolmentPresenter;
+    private final CheckPrerequisitesInteractor completedPrerequisite;
+    private final EnrolmentSessionDataAccess sessionDbGateway;
+    private final EnrolmentCourseDataAccess courseDbGateway;
+    private final EnrolmentOutputBoundary enrolmentPresenter;
 
     public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway, CheckPrerequisitesInteractor
-            completedPrerequisite, EnrolmentDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
+            completedPrerequisite, EnrolmentSessionDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
         this.courseDbGateway = courseDbGateway;
         this.completedPrerequisite = completedPrerequisite;
         this.sessionDbGateway = sessionDbGateway;
@@ -16,15 +16,13 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
 
     /**
      * calls CourseDbGateway to load course from Course Database
-     * @return the course packaged in a response model.
      */
-    public EnrolmentDbResponseModel callToRetrieveCourse(EnrolmentRequestModel requestModel) {
-        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
-        return courseDbGateway.retrieveCourse(dbRequestModel.getCourseId());
+    public void callToRetrieveCourse(EnrolmentDbRequestModel dbRequestModel) {
+        courseDbGateway.retrieveCourse(dbRequestModel);
     }
 
     /**
-     * if enrolment was successful (i.e., if course Id exists, and student has completed all prerequisites): enrol
+     * if enrolment was successful (i.e., if course ID exists, and student has completed all prerequisites): enrol
      * student in course (call to run course and save student and course Ids in Session Database).
      * Prepares fail message to be presented on the screen, if courseId doesn't exist, or if student doesn't have
      * the prerequisites.
@@ -35,13 +33,19 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         if (!courseDbGateway.existsByCourseId(requestModel.getCourseId())) {
             return enrolmentPresenter.prepareFailView("Course does not exist in Database!");
         }
-        EnrolmentDbResponseModel dbResponseModel = callToRetrieveCourse(requestModel);
-        if (!completedPrerequisite.checkPrerequisite(requestModel.getStudentId(), dbResponseModel)) {
+
+        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
+        // we might no longer need the method below since it is only one function call
+        callToRetrieveCourse(dbRequestModel);
+
+        if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");
         }
-        sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions());
-        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId());
+
+        sessionDbGateway.saveCourse(dbRequestModel);
+
+        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(requestModel.getCourseId());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel);
     }
 

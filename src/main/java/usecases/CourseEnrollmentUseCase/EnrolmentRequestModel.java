@@ -1,16 +1,12 @@
 package usecases.CourseEnrollmentUseCase;
 
 public class EnrolmentRequestModel {
-    private final String studentId;
     private String courseId;
-    public EnrolmentRequestModel(String studentId, String courseId) {
-        this.studentId = studentId;
+
+    public EnrolmentRequestModel(String courseId) {
         this.courseId = courseId;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
     public String getCourseId() {
         return courseId;
     }

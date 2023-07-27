@@ -1,14 +1,21 @@
+import frameworksdrivers.CourseDbGateway;
+import frameworksdrivers.DbConnection;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
-import interfaceadapters.CourseEnrollmentScreen;
-import interfaceadapters.CreateStudent.CreateStudentController;
-import interfaceadapters.CreateStudent.CreateStudentPresenter;
-import interfaceadapters.CreateStudent.CreateStudentScreen;
-import interfaceadapters.StudentModeScreen;
+
+import interfaceadapters.*;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentScreen;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
+import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
+import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
+import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentScreen;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
-import interfaceadapters.MainScreen;
+
+import usecases.CourseEnrollmentUseCase.CheckPrerequisitesInteractor;
+import usecases.CourseEnrollmentUseCase.CourseEnrolmentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 
@@ -17,6 +24,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+
         // Application set-up
         JFrame application = new JFrame();
         CardLayout cards = new CardLayout();
@@ -24,27 +32,37 @@ public class Main {
         application.add(screens);
 
         // Components
+        DbConnection dbConnection = new DbConnection();
+        StudentDbGateway studentDbGateway = new StudentDbGateway(dbConnection);
+        SessionDbGateway sessionDbGateway = new SessionDbGateway(dbConnection);
+        CourseDbGateway courseDbGateway = new CourseDbGateway(dbConnection);
 
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
-        StudentDbGateway studentDbGateway = new StudentDbGateway();
-        SessionDbGateway sessionDbGateway = new SessionDbGateway();
-
-        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
-
-        LoginStudentController loginController = new LoginStudentController(loginInteractor);
-
+        // CreateStudent Use Case
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway,createStudentPresenter);
+        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway, createStudentPresenter);
         CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
 
+        // LoginStudent Use Case
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
+        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
+        LoginStudentController loginController = new LoginStudentController(loginInteractor);
+
+        // CourseEnrollment Use Case
+        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(courseDbGateway);
+        CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
+        CourseEnrolmentInteractor enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway, prerequisitesInteractor, sessionDbGateway, enrolmentPresenter);
+        EnrolmentController enrolmentController = new EnrolmentController(enrolmentInteractor);
 
         // Plug-in screens
+        GenericProperties genericProperties = new GenericProperties(screens, cards);
 
-        MainScreen mainScreen = new MainScreen(screens, cards);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginController);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(screens, cards);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(screens, cards, createStudentController);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(screens, cards);
+        UserModeScreen mainScreen = new UserModeScreen(genericProperties);
+        StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
+
+        // Use Case Screens
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentController);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginController);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, enrolmentController);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");
@@ -54,8 +72,8 @@ public class Main {
 
         cards.show(screens, "main");
 
+        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.pack();
         application.setVisible(true);
-
     }
 }

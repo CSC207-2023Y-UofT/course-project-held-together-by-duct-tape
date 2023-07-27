@@ -11,12 +11,12 @@ public interface CreateStudentDataAccess {
      * @param username is the username that is checked.
      * @return boolean that indicates if username is unique.
      */
-    boolean isUnique(String username);
+     boolean usernameExists(String username);
 
     /**
      * Method saves the user info stored in "student" to the database.
      *
      * @param student model that stores what will be saved onto the database.
      */
-    void save(CreateStudentDsModel student);
+    void saveUser(CreateStudentDsModel student);
 }

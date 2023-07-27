@@ -1,3 +1,4 @@
+import entities.StudentFactory;
 import frameworksdrivers.CourseDbGateway;
 import frameworksdrivers.DbConnection;
 import frameworksdrivers.SessionDbGateway;
@@ -38,8 +39,9 @@ public class Main {
         CourseDbGateway courseDbGateway = new CourseDbGateway(dbConnection);
 
         // CreateStudent Use Case
+        StudentFactory studentFactory = new StudentFactory();
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway, createStudentPresenter);
+        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway, createStudentPresenter, courseDbGateway, studentFactory);
         CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
 
         // LoginStudent Use Case

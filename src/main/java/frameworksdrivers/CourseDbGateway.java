@@ -9,13 +9,14 @@ import java.util.List;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CreateStudentUsecase.CreateStudentCourseDataAccess;
 import entities.Prerequisite;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
  * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
-public class CourseDbGateway implements EnrolmentCourseDataAccess {
+public class CourseDbGateway implements EnrolmentCourseDataAccess, CreateStudentCourseDataAccess {
     private final Connection connection;
 
     public CourseDbGateway(DbConnection dbConnection) {
@@ -55,7 +56,7 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess {
 
     /**
      * Retrieves course from Course Database.
-     * @param courseId the course ID
+     * @param requestModel the course ID
      * @return a response model containing the course.
      */
     @Override

@@ -21,4 +21,3 @@ public class CheckPrerequisitesInteractor {
         return completed && grade >= course.getPrerequisite().getGpa();
     }
 }
-// add a data structure storing the prerequisite for the course!!!

@@ -10,10 +10,7 @@ public class EvaluatorPresenter implements EvaluatorOutputBoundary {
         return "You got " + grade.getPercentage() + "%" + " in " + grade.getCourseId();
     }
 
-    @Override
-    public String prepareFailView() {
-        return "Not found in database";
-    }
+
 
 
 }

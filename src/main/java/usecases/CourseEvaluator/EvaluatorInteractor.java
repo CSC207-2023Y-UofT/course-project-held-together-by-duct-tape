@@ -29,7 +29,7 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
     }
 
     /**
-     * Use case for checking if a course exists, saving and evaluating  a students grade in percentages. If the course
+     * Use case for saving and evaluating  a students grade in percentages. If the course
      * does not exist, an error is thrown, that informs students that the course does not exist.
      * if course exists in database
      * the student grade is saved to the Student data access.
@@ -42,14 +42,11 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
 
     public String evaluate(EvaluatorRequestModel requestModel) {
 
-        if (!sessionDataAccess.courseExists(requestModel.getCourseId())) {
-            return presenter.prepareFailView();
-        }
         // creates response model for student and course and creates a course for each of them as well
 
-        EvaluatorDbResponseModel studentResponseModel = sessionDataAccess.retrieveCourse(requestModel.getCourseId());
+        EvaluatorDbResponseModel studentResponseModel = sessionDataAccess.retrieveCourse(requestModel);
 
-        EvaluatorDbResponseModel courseResponseModel = courseDbGateway.findCourse(requestModel.getCourseId());
+        EvaluatorDbResponseModel courseResponseModel = courseDbGateway.findCourse(requestModel);
 
         Course studentsCourse = courseFactory.create(studentResponseModel.getCourseId(), studentResponseModel.getQuestions(),
                 studentResponseModel.getAnswers(), studentResponseModel.getPoints());

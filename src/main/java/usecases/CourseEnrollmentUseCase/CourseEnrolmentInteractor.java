@@ -6,9 +6,6 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private EnrolmentCourseDataAccess courseDbGateway;
     private EnrolmentOutputBoundary enrolmentPresenter;
 
-    //private RunCourseInteractor runCourse;
-
-
     public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway, CheckPrerequisitesInteractor
             completedPrerequisite, EnrolmentDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
         this.courseDbGateway = courseDbGateway;
@@ -43,11 +40,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");
         }
-        // deleted student id
-        sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions()); //
-        // sessionDbGateway.saveCourse(requestModel.getStudentId(), requestModel.getCourseId()); //saves course NOT with
-        // student in Session database
-        //beginCourse.runCourse(); //calls to run course
+        sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions());
         EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId(),
                         dbResponseModel.getQuestions());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel); //displays questions on screen

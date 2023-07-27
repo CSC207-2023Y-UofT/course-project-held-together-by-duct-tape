@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
-import usecases.CourseEnrollmentUseCase.EnrolmentDbResponseModel;
+import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import entities.Prerequisite;
 
 /**
@@ -59,7 +59,8 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess {
      * @return a response model containing the course.
      */
     @Override
-    public EnrolmentDbResponseModel retrieveCourse(String courseId) {
-        return new EnrolmentDbResponseModel(courseId, new ArrayList<>(), new Prerequisite("CSC108", 50));
+    public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
+        requestModel.setQuestions(new ArrayList<>());
+        requestModel.setPrerequisite(new Prerequisite("CSC108", 50));
     }
 }

@@ -1,18 +1,17 @@
 package frameworksdrivers;
 
-import entities.Question;
-import usecases.CourseEnrollmentUseCase.EnrolmentDataAccess;
+import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
 import usecases.LoginStudentUseCase.LoginSessionDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 
 import java.sql.Connection;
-import java.util.List;
 
 /**
  * Gateway that accesses and interacts with the Session Database. It has a reference to the connection obtained from
  * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
-public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentDataAccess {
+public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessionDataAccess {
     private final Connection connection;
 
     public SessionDbGateway(DbConnection dbConnection) {
@@ -22,32 +21,31 @@ public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentDataAc
     /**
      * Checks if student has completed the course in Session Database.
      *
-     * @param courseId the course ID
+     * @param requestModel the course ID
      * @return true if student has completed the course, false if not.
      */
     @Override
-    public boolean hasCompletedCourse(String courseId) {
+    public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel) {
         return true;
     }
 
     /**
      * Retrieves the grade for a completed course, from the Session Database.
      *
-     * @param courseId the course Id
+     * @param requestModel the course Id
      * @return the numeric grade for this course.
      */
     @Override
-    public int getCourseGPA(String courseId) {
+    public int getPrerequisiteCourseGPA(EnrolmentDbRequestModel requestModel) {
         return 80;
     }
 
     /**
      * Saves course in Session Database.
-     * @param courseId the course ID
-     * @param questions the course's questions
+     * @param requestModel the course ID
      */
     @Override
-    public void saveCourse(String courseId, List<Question> questions) {}
+    public void saveCourse(EnrolmentDbRequestModel requestModel) {}
 
     /**
      * Save the student's information to the session database such that the student

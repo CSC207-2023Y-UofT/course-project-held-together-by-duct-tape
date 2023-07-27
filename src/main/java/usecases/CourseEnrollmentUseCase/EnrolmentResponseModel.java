@@ -1,6 +1,5 @@
 package usecases.CourseEnrollmentUseCase;
 
-import java.util.List;
 /**
  * Data structure which packages the course ID and the questions to be displayed on the screen.
  */

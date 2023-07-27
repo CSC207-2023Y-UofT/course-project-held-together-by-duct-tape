@@ -2,7 +2,7 @@ package usecases.CourseEvaluator;
 
 public interface EvaluatorSessionDataAccess {
 
-    boolean CourseExists (String CourseID);
+    boolean courseExists (String courseID);
 
     EvaluatorDbResponseModel retrieveCourse(String courseId);
 

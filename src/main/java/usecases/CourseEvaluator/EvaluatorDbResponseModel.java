@@ -1,7 +1,5 @@
 package usecases.CourseEvaluator;
 
-import entities.CourseFactory;
-import entities.Question;
 
 import java.util.List;
 
@@ -11,9 +9,6 @@ public class EvaluatorDbResponseModel {
     private List<String> answers;
 
     private List<Integer> points;
-
-
-
 
 
 

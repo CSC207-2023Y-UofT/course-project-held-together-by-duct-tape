@@ -1,5 +1,7 @@
 package usecases.CourseEvaluator;
 
+// question do i need a db request model, i dont use is ?
+//not useful since i dont use it anywhere
 public class EvaluatorDbRequestModel {
     private String studentId;
     private final String CourseId;

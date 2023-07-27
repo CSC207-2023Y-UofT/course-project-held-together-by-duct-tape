@@ -10,52 +10,67 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
 
    private CourseDataAccess courseDbGateway;
 
-   private EvaluatorSessionDataAccess DataAccess;
+   private EvaluatorSessionDataAccess sessionDataAccess;
 
    private CourseFactory courseFactory;
 
    private CheckAnswer grade;
 
 
-
    public EvaluatorInteractor(EvaluatorOutputBoundary presenter, CourseDataAccess courseDbGateway,
-                              EvaluatorSessionDataAccess dataAccess, CourseFactory courseFactory,
+                              EvaluatorSessionDataAccess sessionDataAccess, CourseFactory courseFactory,
                               StudentDataAccess studentDataAccess, CheckAnswer grade) {
         this.presenter = presenter;
         this.courseDbGateway = courseDbGateway;
-        this.DataAccess = dataAccess;
+        this.sessionDataAccess = sessionDataAccess;
         this.courseFactory = courseFactory;
         this.studentDataAccess = studentDataAccess;
         this.grade = grade;
     }
-   // -checks if it is a valid course (correct answers must not be empty)
 
-
+    /**
+     * Use case for checking if a course exists, saving and evaluating  a students grade in percentages. If the course
+     * does not exist, an error is thrown, that informs students that the course does not exist.
+     * if course exists in database
+     * the student grade is saved to the Student data access.
+     * Then the presenter prepares success/fail views depending on each case.
+     *
+     * @param requestModel data structure packaging the courseId.
+     * @return String prepare success and fail view.
+     */
 
 
     public String evaluate(EvaluatorRequestModel requestModel) {
 
-        if (!DataAccess.CourseExists(requestModel.getCourseId())) {
+        if (!sessionDataAccess.courseExists(requestModel.getCourseId())) {
             return presenter.prepareFailView();
         }
-        EvaluatorDbResponseModel ResponseModel = DataAccess.retrieveCourse(requestModel.getCourseId());
+        // creates response model for student and course and creates a course for each of them as well
 
+        EvaluatorDbResponseModel studentResponseModel = sessionDataAccess.retrieveCourse(requestModel.getCourseId());
 
-        Course studentsCourse = courseFactory.create(ResponseModel.getCourseId(), ResponseModel.getQuestions(),
-                ResponseModel.getAnswers(), ResponseModel.getPoints()); // no get course in factory
+        EvaluatorDbResponseModel courseResponseModel = courseDbGateway.findCourse(requestModel.getCourseId());
 
-        EvaluatorDbResponseModel ogCourse = courseDbGateway.findCourse(requestModel.getCourseId());
+        Course studentsCourse = courseFactory.create(studentResponseModel.getCourseId(), studentResponseModel.getQuestions(),
+                studentResponseModel.getAnswers(), studentResponseModel.getPoints());
 
-        Course orginalCourse = courseFactory.create(ogCourse.getCourseId(), ogCourse.getQuestions(),
-               ogCourse.getAnswers(), ogCourse.getPoints());
+        Course originalCourse = courseFactory.create(courseResponseModel.getCourseId(), courseResponseModel.getQuestions(),
+               courseResponseModel.getAnswers(), courseResponseModel.getPoints());
 
-       int percentage =  grade.compare(studentsCourse, orginalCourse);
+        // calls compare from check answer to get a percentage
 
-        EvaluatorResponseModel EvaluatorResponseModel = new EvaluatorResponseModel(ResponseModel.getCourseId(),
+        int percentage =  grade.compare(studentsCourse, originalCourse);
+
+        // saves gpa in student data access
+
+        studentDataAccess.saveGPA(new EvaluatorDbRequestModel(sessionDataAccess.retrieveStudentId(),
+                requestModel.getCourseId(), percentage));
+
+        //prepares response model to return
+
+        EvaluatorResponseModel EvaluatorResponseModel = new EvaluatorResponseModel(studentResponseModel.getCourseId(),
                 percentage);
 
-        studentDataAccess.saveGPA(new EvaluatorDbRequestModel(DataAccess.retrieveStudentId(), requestModel.getCourseId()
-                , percentage));
 
         return presenter.prepareSuccessView(EvaluatorResponseModel);
     }

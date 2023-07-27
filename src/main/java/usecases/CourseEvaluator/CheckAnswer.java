@@ -1,13 +1,7 @@
 package usecases.CourseEvaluator;
 import entities.Course;
 
-import entities.Question;
 
-//-compares the answers from original course to the student course
-//-generates a GPA
-//interacts with
-//EvaluatorInteractor
-//GPAFactory?? non exsitant
 public class CheckAnswer {
 
     public int compare(Course student, Course original) {
@@ -24,8 +18,6 @@ public class CheckAnswer {
     }
 
 
-        // how is questions set up ?? {(question, answer), .... )} ??
-        //String orgialAnswers = Answers.getAnswer();
 
 
 }

@@ -20,6 +20,7 @@ public class CourseEnrolmentInteractorTest {
         CourseEnrolmentInteractor interactor = new CourseEnrolmentInteractor(courseGateway,
                 completedPrerequisites, sessionGateway, presenter);
 
-        assertEquals(interactor.enrol(requestModel), responseModel.getCourseId());
+        assertEquals(interactor.enrol(requestModel), "You've successfully enrolled in course " +
+                responseModel.getCourseId());
     }
 }

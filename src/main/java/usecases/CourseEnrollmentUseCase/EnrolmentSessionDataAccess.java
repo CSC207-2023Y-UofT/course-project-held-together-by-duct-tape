@@ -5,8 +5,8 @@ import entities.Question;
 
 import java.util.List;
 
-public interface EnrolmentDataAccess {
-    public boolean hasCompletedCourse(String courseId);
-    public int getCourseGPA(String courseId);
-    public void saveCourse(String courseId, List<Question> questions);
+public interface EnrolmentSessionDataAccess {
+    public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel);
+    public int getPrerequisiteCourseGPA(EnrolmentDbRequestModel requestModel);
+    public void saveCourse(EnrolmentDbRequestModel requestModel);
 }

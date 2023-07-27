@@ -1,13 +1,13 @@
 package usecases.CourseEnrollmentUseCase;
 
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
-    private CheckPrerequisitesInteractor completedPrerequisite;
-    private EnrolmentDataAccess sessionDbGateway;
-    private EnrolmentCourseDataAccess courseDbGateway;
-    private EnrolmentOutputBoundary enrolmentPresenter;
+    private final CheckPrerequisitesInteractor completedPrerequisite;
+    private final EnrolmentSessionDataAccess sessionDbGateway;
+    private final EnrolmentCourseDataAccess courseDbGateway;
+    private final EnrolmentOutputBoundary enrolmentPresenter;
 
     public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway, CheckPrerequisitesInteractor
-            completedPrerequisite, EnrolmentDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
+            completedPrerequisite, EnrolmentSessionDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
         this.courseDbGateway = courseDbGateway;
         this.completedPrerequisite = completedPrerequisite;
         this.sessionDbGateway = sessionDbGateway;
@@ -16,11 +16,9 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
 
     /**
      * calls CourseDbGateway to load course from Course Database
-     * @return the course packaged in a response model.
      */
-    public EnrolmentDbResponseModel callToRetrieveCourse(EnrolmentRequestModel requestModel) {
-        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
-        return courseDbGateway.retrieveCourse(dbRequestModel.getCourseId());
+    public void retrieveCourse(EnrolmentDbRequestModel dbRequestModel) {
+        courseDbGateway.retrieveCourse(dbRequestModel);
     }
 
     /**
@@ -36,15 +34,17 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
             return enrolmentPresenter.prepareFailView("Course does not exist in Database!");
         }
 
-        EnrolmentDbResponseModel dbResponseModel = callToRetrieveCourse(requestModel);
+        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
+        retrieveCourse(dbRequestModel);
 
-        if (!completedPrerequisite.checkPrerequisite(dbResponseModel)) {
+        if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");
         }
 
-        sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions());
-        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId());
+        sessionDbGateway.saveCourse(dbRequestModel);
+
+        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(requestModel.getCourseId());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel);
     }
 

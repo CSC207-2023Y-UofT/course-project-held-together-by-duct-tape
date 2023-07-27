@@ -24,7 +24,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     }
 
     /**
-     * if enrolment was successful (i.e., if course Id exists, and student has completed all prerequisites): enrol
+     * if enrolment was successful (i.e., if course ID exists, and student has completed all prerequisites): enrol
      * student in course (call to run course and save student and course Ids in Session Database).
      * Prepares fail message to be presented on the screen, if courseId doesn't exist, or if student doesn't have
      * the prerequisites.
@@ -35,11 +35,14 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         if (!courseDbGateway.existsByCourseId(requestModel.getCourseId())) {
             return enrolmentPresenter.prepareFailView("Course does not exist in Database!");
         }
+
         EnrolmentDbResponseModel dbResponseModel = callToRetrieveCourse(requestModel);
-        if (!completedPrerequisite.checkPrerequisite(requestModel.getStudentId(), dbResponseModel)) {
+
+        if (!completedPrerequisite.checkPrerequisite(dbResponseModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");
         }
+
         sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions());
         EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel);

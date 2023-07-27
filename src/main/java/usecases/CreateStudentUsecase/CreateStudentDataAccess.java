@@ -1,11 +1,22 @@
 package usecases.CreateStudentUsecase;
-/** This interface must be implemented by the StudentDbGateway to ensure a seperation of concerns and
- * to adhere to clean architecture*/
+
+/**
+ * Interface that studentDbGateway must implement for the CreateStudentInteractor to
+ * ensure clean architecture and call on its methods.
+ */
 public interface CreateStudentDataAccess {
-    /** Method returns whether the username is unique meaning that it's not already present in the database
-     * @param username is the username that is checked for whether it is unique*/
+    /**
+     * Method returns whether the username is unique meaning that it's not already present in the database.
+     *
+     * @param username is the username that is checked.
+     * @return boolean that indicates if username is unique.
+     */
     boolean isUnique(String username);
-    /** Method saves the user info stored in "student" to the database
-     *@param student this a model that stores what will be saved onto the database*/
+
+    /**
+     * Method saves the user info stored in "student" to the database.
+     *
+     * @param student model that stores what will be saved onto the database.
+     */
     void save(CreateStudentDsModel student);
 }

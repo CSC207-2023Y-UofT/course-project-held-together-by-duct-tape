@@ -1,21 +1,25 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
+import interfaceadapters.GenericProperties;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Screen that handles logging an existing student. The screen has two text fields, one for the username, and another
+ * for the repeatUsername.
+ */
 public class LoginStudentScreen extends JPanel implements ActionListener {
     private final JTextField username = new JTextField(10);
     private final JTextField repeatUsername = new JTextField(10);
+    private final GenericProperties genericProperties;
     private final LoginStudentController controller;
-    private final JPanel screens;
-    private final CardLayout cards;
 
-    public LoginStudentScreen(JPanel screens, CardLayout cards, LoginStudentController loginController) {
+    public LoginStudentScreen(GenericProperties genericProperties, LoginStudentController loginController) {
+        this.genericProperties = genericProperties;
         this.controller = loginController;
-        this.screens = screens;
-        this.cards = cards;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -49,14 +53,14 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         String command = event.getActionCommand();
 
         if (command.equals("Cancel")) {
-            cards.show(screens, "student");
+            genericProperties.getCards().show(genericProperties.getScreens(), "student");
             return ;
         }
 
         try {
            controller.login(username.getText(), repeatUsername.getText());
            JOptionPane.showMessageDialog(this, username.getText() + " successful login");
-           cards.show(screens, "enrollment");
+            genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } finally {

@@ -9,7 +9,8 @@ public class CheckAnswer {
         int counter = 0;
 
         for (int i = 0; i < student.getQuestions().size(); i++){
-            if (student.getQuestionAt(i).getAnswer().equals(original.getQuestionAt(i).getAnswer())){
+            if ((student.getQuestionAt(i).getAnswer()).equalsIgnoreCase
+                    ((original.getQuestionAt(i).getAnswer()))){
                 counter += original.getQuestionAt(i).getPoints();
             }
 

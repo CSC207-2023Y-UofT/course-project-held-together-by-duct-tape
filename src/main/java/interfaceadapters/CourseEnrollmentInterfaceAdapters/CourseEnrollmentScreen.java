@@ -1,6 +1,5 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentPresenter;
 import interfaceadapters.GenericProperties;
 
 import java.util.ArrayList;
@@ -13,12 +12,14 @@ import java.awt.event.ActionListener;
 
 public class CourseEnrollmentScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
-    private final CourseEnrollmentPresenter courseEnrollmentPresenter;
+    private final EnrolmentPresenter enrollmentPresenter;
+    private final EnrolmentController enrollmentController;
     private String courseSelected;
 
-    public CourseEnrollmentScreen(GenericProperties genericProperties, CourseEnrollmentPresenter courseEnrollmentPresenter) {
+    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, EnrolmentController controller) {
         this.genericProperties = genericProperties;
-        this.courseEnrollmentPresenter = courseEnrollmentPresenter;
+        this.enrollmentPresenter = presenter;
+        this.enrollmentController = controller;
 
         JLabel title = new JLabel("Course Enrollment Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -26,13 +27,11 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
 
         ButtonGroup radioGroup = new ButtonGroup();
 
-        List<String> courses = courseEnrollmentPresenter.getCourseIDs();
+        List<String> courses = enrollmentPresenter.getCourseIDs();
 
-        List<JRadioButton> radioButtons = new ArrayList<JRadioButton>();
         for (String course : courses) {
             JRadioButton radio = new JRadioButton(course);
             radio.addActionListener(this);
-            radioButtons.add(radio);
             radioGroup.add(radio);
             this.add(radio);
         }
@@ -63,9 +62,14 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         if (event.getActionCommand().equals("Logout")) {
             // logout use case (delete information from session database)
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            return ;
         }
 
-        // try catch
-        // courseEnrollmentController.enroll(courseSelected);
+        try {
+             enrollmentController.enrol(courseSelected);
+             JOptionPane.showMessageDialog(this, "Successful enroll in " + courseSelected);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 }

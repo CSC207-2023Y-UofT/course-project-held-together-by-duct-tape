@@ -4,8 +4,9 @@ import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 
 import interfaceadapters.*;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentPresenter;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentScreen;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentScreen;
@@ -13,6 +14,8 @@ import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
 
+import usecases.CourseEnrollmentUseCase.CheckPrerequisitesInteractor;
+import usecases.CourseEnrollmentUseCase.CourseEnrolmentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 
@@ -44,7 +47,11 @@ public class Main {
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
         LoginStudentController loginController = new LoginStudentController(loginInteractor);
 
-        CourseEnrollmentPresenter courseEnrollmentPresenter = new CourseEnrollmentPresenter(courseDbGateway);
+        // CourseEnrollment Use Case
+        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(courseDbGateway);
+        CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
+        CourseEnrolmentInteractor enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway, prerequisitesInteractor, sessionDbGateway, enrolmentPresenter);
+        EnrolmentController enrolmentController = new EnrolmentController(enrolmentInteractor);
 
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
@@ -55,8 +62,7 @@ public class Main {
         // Use Case Screens
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentController);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginController);
-
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseEnrollmentPresenter);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, enrolmentController);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");

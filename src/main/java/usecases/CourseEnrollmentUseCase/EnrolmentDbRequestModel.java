@@ -5,7 +5,6 @@ public class EnrolmentDbRequestModel {
     public EnrolmentDbRequestModel(String courseId) {
         this.courseId = courseId;
     }
-
     public String getCourseId() {
         return courseId;
     }

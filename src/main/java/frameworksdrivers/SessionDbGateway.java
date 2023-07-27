@@ -16,19 +16,36 @@ import java.util.List;
  */
 public class SessionDbGateway implements EnrolmentDataAccess, LoginSessionDataAccess {
 
+    /**
+     * Checks if student has completed the course in Session Database.
+     * @param studentId the student's Id
+     * @param courseId the course Id
+     * @return true if student has completed the course, false if not.
+     */
     @Override
     public boolean hasCompletedCourse(String studentId, String courseId) {
         return true;
     }
 
+    /**
+     * Retrieves the grade for a completed course, from the Session Database.
+     * @param studentId the student's Id
+     * @param courseId the course Id
+     * @return the numeric grade for this course.
+     */
     @Override
     public int getCourseGPA(String studentId, String courseId) {
         return 80;
     }
 
+    /**
+     * Saves course in Session Database.
+     * @param courseId the course Id
+     * @param questions the course's questions
+     * @return
+     */
     @Override
-    public void saveCourse(String studentId, List<Question> questions) {
-
+    public void saveCourse(String courseId, List<Question> questions) {
     }
 
     /**

@@ -31,7 +31,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
      * @param requestModel stores the courseId, and studentId
      * @return the requested course or a fail message
      */
-    public EnrolmentResponseModel enrol(EnrolmentRequestModel requestModel) {
+    public String enrol(EnrolmentRequestModel requestModel) {
         if (!courseDbGateway.existsByCourseId(requestModel.getCourseId())) {
             return enrolmentPresenter.prepareFailView("Course does not exist in Database!");
         }
@@ -41,9 +41,8 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
                         "for the course");
         }
         sessionDbGateway.saveCourse(dbResponseModel.getCourseId(), dbResponseModel.getQuestions());
-        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId(),
-                        dbResponseModel.getQuestions());
-        return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel); //displays questions on screen
+        EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(dbResponseModel.getCourseId());
+        return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel);
     }
 
 }

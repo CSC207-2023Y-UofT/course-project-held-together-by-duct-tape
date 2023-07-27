@@ -1,7 +1,6 @@
 package usecases.CourseEnrollmentUseCase;
 
 public class SessionDbResponseModel {
-
     private String courseId;
     private int courseGrade;
 

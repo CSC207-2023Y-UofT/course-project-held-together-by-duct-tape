@@ -11,11 +11,22 @@ import java.util.ArrayList;
  * its function. Once the databases are chosen, the gateway will be modified.
  */
 public class CourseDbGateway implements EnrolmentCourseDataAccess {
+
+    /**
+     * Checks if Id exists in Course Database.
+     * @param courseId the course Id
+     * @return true if the course is in Course Database, false if not.
+     */
     @Override
     public boolean existsByCourseId(String courseId) {
         return true;
     }
 
+    /**
+     * Retrieves course from Course Database.
+     * @param courseId the course Id
+     * @return a response model containing the course.
+     */
     @Override
     public EnrolmentDbResponseModel retrieveCourse(String courseId) {
         return new EnrolmentDbResponseModel(courseId, new ArrayList<>(),

@@ -1,6 +1,6 @@
 package usecases.CourseEnrollmentUseCase;
 
 public interface EnrolmentOutputBoundary {
-    EnrolmentResponseModel prepareSuccessView(EnrolmentResponseModel course);
-    EnrolmentResponseModel prepareFailView(String failMessage);
+    String prepareSuccessView(EnrolmentResponseModel course);
+    String prepareFailView(String failMessage);
 }

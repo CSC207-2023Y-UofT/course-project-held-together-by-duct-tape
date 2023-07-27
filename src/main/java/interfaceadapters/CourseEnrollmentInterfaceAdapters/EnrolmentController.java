@@ -17,7 +17,7 @@ public class EnrolmentController {
      * @param courseId the id of the course in which the student enrolls.
      * @return responseModel containing the course ID and the course's questions.
      */
-    public EnrolmentResponseModel enrol(String studentId, String courseId) {
+    public String enrol(String studentId, String courseId) {
         EnrolmentRequestModel requestModel = new EnrolmentRequestModel(studentId, courseId);
         return enrolmentInteractor.enrol(requestModel);
     }

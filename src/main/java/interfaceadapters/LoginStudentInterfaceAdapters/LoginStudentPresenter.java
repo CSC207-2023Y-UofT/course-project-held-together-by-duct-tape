@@ -27,6 +27,6 @@ public class LoginStudentPresenter implements LoginStudentOutputBoundary {
      * @param error message that will be thrown.
      */
     public LoginStudentResponseModel prepareFailView(String error) {
-        throw new RuntimeException(error);
+        throw new LoginUserFailed(error);
     }
 }

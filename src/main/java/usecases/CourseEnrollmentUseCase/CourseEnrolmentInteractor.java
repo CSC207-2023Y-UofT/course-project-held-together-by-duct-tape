@@ -17,7 +17,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     /**
      * calls CourseDbGateway to load course from Course Database
      */
-    public void retrieveCourse(EnrolmentDbRequestModel dbRequestModel) {
+    public void callToRetrieveCourse(EnrolmentDbRequestModel dbRequestModel) {
         courseDbGateway.retrieveCourse(dbRequestModel);
     }
 
@@ -35,7 +35,8 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         }
 
         EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
-        retrieveCourse(dbRequestModel);
+        // we might no longer need the method below since it is only one function call
+        callToRetrieveCourse(dbRequestModel);
 
         if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +

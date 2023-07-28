@@ -14,4 +14,4 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary{
     /**This method formats and returns the message that is shown upon failure of creating a new student user*/
     @Override
     public String getFailMessage() {
-        return "Sorry it appears that either the Username already exists or you provided two different usernames";}}
+        return "Sorry it appears that either the Username already exists, or your passwords don't match!";}}

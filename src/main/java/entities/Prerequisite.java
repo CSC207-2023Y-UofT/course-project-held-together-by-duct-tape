@@ -18,7 +18,7 @@ public class Prerequisite {
      */
     public Prerequisite(String course, int gpa) {
         this.course = course;
-        this.gpa = gpa;
+        this.gpa = gpa; //do we want to make the default be 0?
     }
 
     public boolean isEmpty() {
@@ -30,6 +30,5 @@ public class Prerequisite {
     }
 
     public int getGpa() {
-        return this.gpa;
-    }
+        return this.gpa;}
 }

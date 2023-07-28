@@ -1,4 +1,4 @@
-package interfaceadapters;
+package userinterface;
 
 import javax.swing.*;
 import java.awt.*;

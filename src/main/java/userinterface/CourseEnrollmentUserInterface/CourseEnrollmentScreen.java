@@ -1,8 +1,9 @@
-package interfaceadapters.CourseEnrollmentInterfaceAdapters;
+package userinterface.CourseEnrollmentUserInterface;
 
-import interfaceadapters.GenericProperties;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
+import userinterface.GenericProperties;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;

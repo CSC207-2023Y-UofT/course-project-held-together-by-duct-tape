@@ -1,6 +1,7 @@
-package interfaceadapters.LoginStudentInterfaceAdapters;
+package userinterface.LoginStudentUserInterface;
 
-import interfaceadapters.GenericProperties;
+import userinterface.GenericProperties;
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 
 import javax.swing.*;
 import java.awt.*;

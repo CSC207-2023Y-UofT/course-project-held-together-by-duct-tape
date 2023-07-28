@@ -1,10 +1,9 @@
 package usecases.CreateStudentUsecase;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import frameworksdrivers.StudentDbGatewayMock;
-
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +30,9 @@ class CreateStudentInteractorTest {
 
     @Test
     public void CreateStudentTestFail(){
-        assertEquals("Sorry it appears that either the Username already exists or you provided two different " +
+        Assertions.assertEquals("Sorry it appears that either the Username already exists or you provided two different " +
                 "usernames", interactor.createStudent(requestModels[1]));
-        assertEquals("Sorry it appears that either the Username already exists or you provided two different " +
+        Assertions.assertEquals("Sorry it appears that either the Username already exists or you provided two different " +
                 "usernames", interactor.createStudent(requestModels[2]));
     }
 }

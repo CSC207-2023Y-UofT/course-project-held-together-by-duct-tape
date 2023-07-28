@@ -3,21 +3,23 @@ import frameworksdrivers.DbConnection;
 import frameworksdrivers.SessionDbGateway;
 import frameworksdrivers.StudentDbGateway;
 
-import interfaceadapters.*;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentScreen;
+import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentScreen;
+import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
+import userinterface.GenericProperties;
+import userinterface.LoginStudentUserInterface.LoginStudentScreen;
 
 import usecases.CourseEnrollmentUseCase.CheckPrerequisitesInteractor;
 import usecases.CourseEnrollmentUseCase.CourseEnrolmentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
+import userinterface.StudentModeScreen;
+import userinterface.UserModeScreen;
 
 import javax.swing.*;
 import java.awt.*;

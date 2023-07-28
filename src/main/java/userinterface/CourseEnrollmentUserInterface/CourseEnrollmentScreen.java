@@ -3,6 +3,7 @@ package userinterface.CourseEnrollmentUserInterface;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 import userinterface.GenericProperties;
+import userinterface.RunCourseUserInterface.RunCourseScreen;
 
 import java.util.List;
 
@@ -15,12 +16,14 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
     private final EnrolmentPresenter enrollmentPresenter;
     private final EnrolmentController enrollmentController;
+    private final RunCourseScreen courseScreen;
     private String courseSelected;
 
-    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, EnrolmentController controller) {
+    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, EnrolmentController controller, RunCourseScreen courseScreen) {
         this.genericProperties = genericProperties;
         this.enrollmentPresenter = presenter;
         this.enrollmentController = controller;
+        this.courseScreen = courseScreen;
 
         JLabel title = new JLabel("Course Enrollment Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -69,8 +72,11 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         try {
              enrollmentController.enrol(courseSelected);
              JOptionPane.showMessageDialog(this, "Successful enroll in " + courseSelected);
+             courseScreen.renderQuestions();
+             genericProperties.getCards().show(genericProperties.getScreens(), "course");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+            enrollmentPresenter.deleteCourseSession();
         }
     }
 }

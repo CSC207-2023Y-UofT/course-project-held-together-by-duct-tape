@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 
 public class CreateStudentScreen extends JPanel implements ActionListener{
     JTextField username = new JTextField(10);
-    JTextField repeat = new JTextField(10);
-    JTextField password = new JTextField(10);
+    JPasswordField password = new JPasswordField(10);
+    JPasswordField repeat = new JPasswordField(10);
     JButton create = new JButton("Create");
     JButton cancel = new JButton(("Cancel"));
     private final GenericProperties genericProperties;
@@ -35,7 +35,7 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         passwordPanel.add(new JLabel("Enter Password"));
         passwordPanel.add(password);
         JPanel repeatPasswordPanel = new JPanel();
-        repeatPasswordPanel.add(new JLabel("Reenter Username"));
+        repeatPasswordPanel.add(new JLabel("Re-enter Password"));
         repeatPasswordPanel.add(repeat);
         JPanel buttons = new JPanel();
         buttons.add(create);
@@ -54,8 +54,9 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getActionCommand().equals("Create")) {
             String student = username.getText();
-            String repeated = repeat.getText();
-            String pass = password.getText();
+            String pass = new String(password.getPassword());
+            String repeated = new String(repeat.getPassword());
+
             JOptionPane.showMessageDialog(this, controller.create(student,repeated, pass));
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
         } else if (e.getActionCommand().equals("Cancel")) {

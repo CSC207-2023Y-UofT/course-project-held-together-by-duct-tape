@@ -60,8 +60,8 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
 
         try {
             String passcode = new String(password.getPassword());
-           controller.login(username.getText(), passcode);
-           JOptionPane.showMessageDialog(this, username.getText() + " successful login");
+            controller.login(username.getText(), passcode);
+            JOptionPane.showMessageDialog(this, username.getText() + " successful login");
             genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

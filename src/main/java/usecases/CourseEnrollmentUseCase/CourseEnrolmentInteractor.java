@@ -1,5 +1,8 @@
 package usecases.CourseEnrollmentUseCase;
 
+import entities.Course;
+import entities.CourseFactory;
+
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private final CheckPrerequisitesInteractor completedPrerequisite;
     private final EnrolmentSessionDataAccess sessionDbGateway;
@@ -38,7 +41,10 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         // we might no longer need the method below since it is only one function call
         callToRetrieveCourse(dbRequestModel);
 
-        if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
+        Course course = CourseFactory.create(dbRequestModel.getCourseID(), dbRequestModel.getPrerequisiteID(),
+                dbRequestModel.getPrerequisiteGrade(), dbRequestModel.getQuestions(), null, dbRequestModel.getPoints());
+
+        if (!completedPrerequisite.checkPrerequisite(course)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");
         }

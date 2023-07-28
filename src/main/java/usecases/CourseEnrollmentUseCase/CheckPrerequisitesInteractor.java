@@ -1,6 +1,8 @@
 package usecases.CourseEnrollmentUseCase;
 
 
+import entities.Course;
+
 public class CheckPrerequisitesInteractor {
     private final EnrolmentSessionDataAccess sessionDbGateway;
 
@@ -11,16 +13,17 @@ public class CheckPrerequisitesInteractor {
     /**
      * Check whether student has completed the prerequisite for the course in which they enrol.
      *
-     * @param requestModel the course in which the student attempts to enrol.
+     * @param course the course in which the student attempts to enrol.
      * @return true iff student has the prerequisite for the course
      */
-    public boolean checkPrerequisite(EnrolmentDbRequestModel requestModel) {
-        if (requestModel.getPrerequisite().isEmpty()) {
+    public boolean checkPrerequisite(Course course) {
+        if (course.getPrerequisite().isEmpty()) {
             return true;
         }
 
-        boolean completed = sessionDbGateway.hasCompletedCourse(requestModel);
-        int grade = sessionDbGateway.getPrerequisiteCourseGPA(requestModel);
-        return completed && grade >= requestModel.getPrerequisite().getGpa();
+        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(course.getCourseId());
+        boolean completed = sessionDbGateway.hasCompletedCourse(dbRequestModel);
+        int grade = sessionDbGateway.getPrerequisiteCourseGPA(dbRequestModel);
+        return completed && grade >= course.getPrerequisite().getGpa();
     }
 }

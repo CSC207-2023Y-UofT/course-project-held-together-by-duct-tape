@@ -9,10 +9,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Test class for the loginStudent interactor. This tests whether a student is able to log in successfully, if they
+ * have a username that exists, and the correct password.
+ */
 class LoginStudentInteractorTest {
     private LoginStudentInteractor loginInteractor;
 
+    /**
+     * Initializes the interactor before each test such that we can reuse it.
+     */
     @BeforeEach
     public void init() {
         StudentDbGatewayMock studentDbGateway = new StudentDbGatewayMock();

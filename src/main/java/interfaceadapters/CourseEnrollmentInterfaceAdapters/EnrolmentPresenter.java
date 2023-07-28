@@ -1,17 +1,21 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import frameworksdrivers.CourseDbGateway;
+import frameworksdrivers.SessionDbGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEnrollmentUseCase.EnrolmentOutputBoundary;
 import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
+import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
 
 import java.util.List;
 
 public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     private final EnrolmentCourseDataAccess courseDbGateway;
+    private final EnrolmentSessionDataAccess sessionDbGateway;
 
-    public EnrolmentPresenter(EnrolmentCourseDataAccess courseDbGateway) {
+    public EnrolmentPresenter(EnrolmentCourseDataAccess courseDbGateway, EnrolmentSessionDataAccess sessionDbGateway) {
         this.courseDbGateway = courseDbGateway;
+        this.sessionDbGateway = sessionDbGateway;
     }
 
     /**
@@ -34,6 +38,10 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     @Override
     public String prepareFailView(String failMessage) {
         throw new RuntimeException(failMessage);
+    }
+
+    public void deleteCourseSession() {
+        sessionDbGateway.deleteCourseSession();
     }
 
     /**

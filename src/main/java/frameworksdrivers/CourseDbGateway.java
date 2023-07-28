@@ -32,7 +32,7 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess, CreateStudent
     public List<String> getCourseIDs() {
         List<String> courses = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT CourseID FROM " + DATABASE_NAME);
+            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT CourseID FROM " + DATABASE_NAME);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -62,7 +62,28 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess, CreateStudent
      */
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
-        requestModel.setQuestions(new ArrayList<>());
-        // requestModel.setPrerequisite(new Prerequisite("CSC108", 50));
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            statement.setString(1, requestModel.getCourseID());
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.next();
+
+            requestModel.setPrerequisiteID(resultSet.getString(2));
+            requestModel.setPrerequisiteGrade(resultSet.getInt(3));
+
+            List<String> questions = new ArrayList<String>();
+            List<Integer> points = new ArrayList<>();
+            do {
+                questions.add(resultSet.getString(4));
+                points.add(resultSet.getInt( 6));
+            } while (resultSet.next());
+
+            requestModel.setQuestions(questions);
+            requestModel.setPoints(points);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error with the database!");
+        }
     }
 }

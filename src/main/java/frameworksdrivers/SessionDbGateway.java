@@ -6,6 +6,11 @@ import usecases.LoginStudentUseCase.LoginSessionDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.ResultSet;
 
 /**
  * Gateway that accesses and interacts with the Session Database. It has a reference to the connection obtained from
@@ -47,7 +52,24 @@ public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessio
      * @param requestModel the course ID
      */
     @Override
-    public void saveCourse(EnrolmentDbRequestModel requestModel) {}
+    public void saveCourse(EnrolmentDbRequestModel requestModel) {
+        try {
+            List<String> questions = requestModel.getQuestions();
+            List<Integer> points = requestModel.getPoints();
+
+            for (int j = 0; j < questions.size(); j++) {
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO " + DATABASE_NAME_COURSE + " (CourseID, Question, Answer, Points) VALUES (?, ?, ?, ?)");
+                statement.setString(1, requestModel.getCourseID());
+                statement.setString(2, questions.get(j));
+                statement.setString(3, "");
+                statement.setString(4, points.get(j).toString());
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
+    }
 
     /**
      * Save the student's information to the session database such that the student
@@ -57,4 +79,27 @@ public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessio
      */
     public void saveUser(LoginStudentDbRequestModel requestModel) {}
 
+    public List<String> getCourseQuestions() {
+        List<String> questions = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME_COURSE);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                questions.add(resultSet.getString(2));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
+        return questions;
+    }
+
+    public void deleteCourseSession() {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM " + DATABASE_NAME_COURSE);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
+    }
 }

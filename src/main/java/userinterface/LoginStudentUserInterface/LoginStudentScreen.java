@@ -1,5 +1,6 @@
 package userinterface.LoginStudentUserInterface;
 
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import userinterface.GenericProperties;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 
@@ -18,9 +19,9 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
     private final LoginStudentController controller;
 
-    public LoginStudentScreen(GenericProperties genericProperties, LoginStudentController loginController) {
+    public LoginStudentScreen(GenericProperties genericProperties, LoginStudentPresenter loginPresenter) {
         this.genericProperties = genericProperties;
-        this.controller = loginController;
+        this.controller = loginPresenter.getLoginController();
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

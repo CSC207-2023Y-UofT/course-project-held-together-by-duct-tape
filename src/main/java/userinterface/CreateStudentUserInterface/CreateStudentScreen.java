@@ -1,6 +1,7 @@
 package userinterface.CreateStudentUserInterface;
 
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
+import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import userinterface.GenericProperties;
 
 import java.awt.*;
@@ -22,10 +23,10 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
     // for the following code I used this
     // link: https://www.geeksforgeeks.org/java-swing-simple-user-registration-form/ to figure out how to make
     // the visual aspect of the screen as well as how the actionListener should work.
-    public CreateStudentScreen(GenericProperties genericProperties, CreateStudentController controller){
+    public CreateStudentScreen(GenericProperties genericProperties, CreateStudentPresenter presenter){
         this.genericProperties = genericProperties;
 
-        this.controller = controller;
+        this.controller = presenter.getCreateStudentController();
         JLabel title = new JLabel("Create Student");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         JPanel usernamePanel = new JPanel();

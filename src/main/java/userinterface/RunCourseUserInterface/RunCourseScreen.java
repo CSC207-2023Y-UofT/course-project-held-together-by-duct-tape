@@ -20,9 +20,9 @@ public class RunCourseScreen extends JPanel implements ActionListener {
     private final RunCourseController controller;
     private final RunCoursePresenter presenter;
 
-    public RunCourseScreen(GenericProperties genericProperties, RunCourseController courseController, RunCoursePresenter presenter) {
+    public RunCourseScreen(GenericProperties genericProperties, RunCoursePresenter presenter) {
         this.genericProperties = genericProperties;
-        this.controller = courseController;
+        this.controller = presenter.getCourseController();
         this.presenter = presenter;
 
         JLabel title = new JLabel("Course Screen");

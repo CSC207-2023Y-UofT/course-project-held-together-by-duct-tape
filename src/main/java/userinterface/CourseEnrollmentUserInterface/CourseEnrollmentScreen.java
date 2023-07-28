@@ -19,10 +19,10 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
     private final RunCourseScreen courseScreen;
     private String courseSelected;
 
-    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, EnrolmentController controller, RunCourseScreen courseScreen) {
+    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, RunCourseScreen courseScreen) {
         this.genericProperties = genericProperties;
         this.enrollmentPresenter = presenter;
-        this.enrollmentController = controller;
+        this.enrollmentController = presenter.getEnrolmentController();
         this.courseScreen = courseScreen;
 
         JLabel title = new JLabel("Course Enrollment Screen");

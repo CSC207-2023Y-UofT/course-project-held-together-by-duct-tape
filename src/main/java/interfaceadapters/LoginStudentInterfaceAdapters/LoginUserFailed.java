@@ -1,4 +1,4 @@
-package userinterface.LoginStudentUserInterface;
+package interfaceadapters.LoginStudentInterfaceAdapters;
 
 /**
  * Exception raised when there is an error in logging in a student.

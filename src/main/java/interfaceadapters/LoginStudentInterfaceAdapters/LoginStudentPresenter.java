@@ -1,7 +1,7 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
-import frameworksdrivers.SessionDbGateway;
-import frameworksdrivers.StudentDbGateway;
+import frameworksdrivers.DatabaseDriver;
+
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentOutputBoundary;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
@@ -11,11 +11,16 @@ import usecases.LoginStudentUseCase.LoginStudentResponseModel;
  * In the fail view, it throws exceptions that must be handled.
  */
 public class LoginStudentPresenter implements LoginStudentOutputBoundary {
+    private final LoginStudentController loginController;
 
-//    public LoginStudentPresenter(StudentDbGateway studentDbGateway, SessionDbGateway sessionDbGateway) {
-//        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, this);
-//        LoginStudentController loginController = new LoginStudentController(loginInteractor);
-//    }
+    public LoginStudentPresenter(DatabaseDriver databaseDriver) {
+        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGateway(), databaseDriver.getSessionDbGateway(), this);
+        this.loginController = new LoginStudentController(loginInteractor);
+    }
+
+    public LoginStudentController getLoginController() {
+        return loginController;
+    }
 
     /**
      * Presenter must prepare a success view since the use case has run successfully.

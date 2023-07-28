@@ -1,9 +1,24 @@
 package interfaceadapters.CreateStudentInterfaceAdapters;
+import entities.StudentFactory;
+import frameworksdrivers.CourseDbGateway;
+import frameworksdrivers.DatabaseDriver;
+import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentOutputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentResponseModel;
 
 /**This class implements the CreateStudent output boundary and formats the success and fail messages*/
-public class CreateStudentPresenter implements CreateStudentOutputBoundary{
+public class CreateStudentPresenter implements CreateStudentOutputBoundary {
+    private final CreateStudentController createStudentController;
+
+    public CreateStudentPresenter(DatabaseDriver databaseDriver) {
+        StudentFactory studentFactory = new StudentFactory();
+        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway(), studentFactory);
+        createStudentController = new CreateStudentController(createStudentInteractor);
+    }
+
+    public CreateStudentController getCreateStudentController() {
+        return createStudentController;
+    }
 
     /**This method formats and returns a success message based on the response model passed
      * @param responseModel is a response model that contains what is needed to format the success message */
@@ -14,4 +29,6 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary{
     /**This method formats and returns the message that is shown upon failure of creating a new student user*/
     @Override
     public String getFailMessage() {
-        return "Sorry it appears that either the Username already exists, or your passwords don't match!";}}
+        return "Sorry it appears that either the Username already exists, or your passwords don't match!";
+    }
+}

@@ -1,21 +1,29 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import frameworksdrivers.CourseDbGateway;
+import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.SessionDbGateway;
-import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
-import usecases.CourseEnrollmentUseCase.EnrolmentOutputBoundary;
-import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
-import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
+import usecases.CourseEnrollmentUseCase.*;
 
 import java.util.List;
 
 public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     private final EnrolmentCourseDataAccess courseDbGateway;
     private final EnrolmentSessionDataAccess sessionDbGateway;
+    private final EnrolmentController enrolmentController;
 
-    public EnrolmentPresenter(EnrolmentCourseDataAccess courseDbGateway, EnrolmentSessionDataAccess sessionDbGateway) {
-        this.courseDbGateway = courseDbGateway;
-        this.sessionDbGateway = sessionDbGateway;
+    public EnrolmentPresenter(DatabaseDriver databaseDriver) {
+        this.courseDbGateway = databaseDriver.getCourseDbGateway();
+        this.sessionDbGateway = databaseDriver.getSessionDbGateway();
+
+        CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
+        CourseEnrolmentInteractor enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway, prerequisitesInteractor, sessionDbGateway, this);
+
+        enrolmentController = new EnrolmentController(enrolmentInteractor);
+    }
+
+    public EnrolmentController getEnrolmentController() {
+        return enrolmentController;
     }
 
     /**

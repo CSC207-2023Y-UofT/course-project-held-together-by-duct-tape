@@ -37,9 +37,9 @@ public class CreateStudentInteractor implements CreateStudentInputBoundary{
      * that's the case
      * @param request this is the request model that is storing the passwords
      * @return boolean that reflects if they are the same and aren't empty*/
-    public boolean isSame(CreateStudentRequestModel request){return request.getRepeat().equals(request.getPassword()) &
+    public boolean isSame(CreateStudentRequestModel request)
+    {return request.getRepeat().equals(request.getPassword()) &
             !request.getRepeat().equals("") & !request.getPassword().equals("");}
-
 }
 
 

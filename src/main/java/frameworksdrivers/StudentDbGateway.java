@@ -60,7 +60,7 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
             Map<String, Integer> courses = new HashMap<String, Integer>();
             while (resultSet.next()) {
                 // CourseID, CourseGrade
-                courses.put(resultSet.getString(2), resultSet.getInt(3));
+                courses.put(resultSet.getString(3), resultSet.getInt(4));
             }
 
             dbRequestModel.setCourses(courses);

@@ -62,6 +62,6 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess {
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
         requestModel.setQuestions(new ArrayList<>());
-        requestModel.setPrerequisite(new Prerequisite("CSC108", 50));
+        // requestModel.setPrerequisite(new Prerequisite("CSC108", 50));
     }
 }

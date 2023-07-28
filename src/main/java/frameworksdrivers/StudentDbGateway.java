@@ -12,6 +12,7 @@ import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
+import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Student Database. It has a reference to the connection obtained from
@@ -19,6 +20,7 @@ import usecases.CreateStudentUsecase.CreateStudentDataAccess;
  */
 public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
     private final Connection connection;
+    private final String DATABASE_NAME = "students";
 
     public StudentDbGateway(DbConnection dbConnection) {
         this.connection = dbConnection.connect();
@@ -33,7 +35,7 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
     @Override
     public boolean usernameExists(String username) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE StudentID = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
@@ -65,6 +67,22 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
         } catch (SQLException e) {
             System.out.println("Error with database!");
         }
+    }
+
+    @Override
+    public boolean checkPassword(LoginStudentRequestModel requestModel) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            statement.setString(1, requestModel.getUsername());
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.next();
+            return resultSet.getString(2).equals(requestModel.getPassword());
+            // return resultSet.getString(2).equals(requestModel.getPassword());
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
+        return false;
     }
 
     /**

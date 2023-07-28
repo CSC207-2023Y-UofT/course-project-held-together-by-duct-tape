@@ -17,6 +17,7 @@ import entities.Prerequisite;
  */
 public class CourseDbGateway implements EnrolmentCourseDataAccess {
     private final Connection connection;
+    private final String DATABASE_NAME = "courses";
 
     public CourseDbGateway(DbConnection dbConnection) {
         this.connection = dbConnection.connect();
@@ -30,7 +31,7 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess {
     public List<String> getCourseIDs() {
         List<String> courses = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT CourseID FROM courses");
+            PreparedStatement statement = connection.prepareStatement("SELECT CourseID FROM " + DATABASE_NAME);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

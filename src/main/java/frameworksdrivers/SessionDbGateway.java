@@ -13,6 +13,8 @@ import java.sql.Connection;
  */
 public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessionDataAccess {
     private final Connection connection;
+    private final String DATABASE_NAME_STUDENT = "sessionStudent";
+    private final String DATABASE_NAME_COURSE = "sessionCourse";
 
     public SessionDbGateway(DbConnection dbConnection) {
         this.connection = dbConnection.connect();

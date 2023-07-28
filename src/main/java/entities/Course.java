@@ -40,6 +40,13 @@ public class Course implements Iterable<Question>{
         return this.questions.get(i);
     }
 
+    public int getAllPoints(){
+        int all_points = 0;
+        for (Question question: questions){
+            all_points += question.getPoints();
+        }return all_points;
+    }
+
     @Override
     public Iterator<Question> iterator() {
         return this.questions.iterator();

@@ -1,15 +1,16 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import frameworksdrivers.CourseDbGateway;
+import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEnrollmentUseCase.EnrolmentOutputBoundary;
 import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
 
 import java.util.List;
 
 public class EnrolmentPresenter implements EnrolmentOutputBoundary {
-    private final CourseDbGateway courseDbGateway;
+    private final EnrolmentCourseDataAccess courseDbGateway;
 
-    public EnrolmentPresenter(CourseDbGateway courseDbGateway) {
+    public EnrolmentPresenter(EnrolmentCourseDataAccess courseDbGateway) {
         this.courseDbGateway = courseDbGateway;
     }
 

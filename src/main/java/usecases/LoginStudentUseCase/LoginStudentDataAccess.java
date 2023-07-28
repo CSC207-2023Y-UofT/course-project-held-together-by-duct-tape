@@ -19,4 +19,6 @@ public interface LoginStudentDataAccess {
      * @param dbRequestModel request model that is updated with the students courses.
      */
     void getUser(LoginStudentDbRequestModel dbRequestModel);
+
+    boolean checkPassword(LoginStudentRequestModel requestModel);
 }

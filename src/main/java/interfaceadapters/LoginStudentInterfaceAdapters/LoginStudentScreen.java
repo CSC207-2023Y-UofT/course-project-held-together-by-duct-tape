@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
  */
 public class LoginStudentScreen extends JPanel implements ActionListener {
     private final JTextField username = new JTextField(10);
-    private final JTextField repeatUsername = new JTextField(10);
+    private final JPasswordField password = new JPasswordField(10);
     private final GenericProperties genericProperties;
     private final LoginStudentController controller;
 
@@ -28,8 +28,8 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         usernamePanel.add(new JLabel("Username"));
         usernamePanel.add(username);
         JPanel repeatUsernamePanel = new JPanel();
-        repeatUsernamePanel.add(new JLabel("Repeat Username"));
-        repeatUsernamePanel.add(repeatUsername);
+        repeatUsernamePanel.add(new JLabel("Password"));
+        repeatUsernamePanel.add(password);
 
         JButton login = new JButton("Login");
         JButton cancel = new JButton("Cancel");
@@ -58,7 +58,8 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         }
 
         try {
-           controller.login(username.getText(), repeatUsername.getText());
+            String passcode = new String(password.getPassword());
+           controller.login(username.getText(), passcode);
            JOptionPane.showMessageDialog(this, username.getText() + " successful login");
             genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
         } catch (Exception e) {
@@ -70,6 +71,6 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
 
     public void clearFields() {
         username.setText(null);
-        repeatUsername.setText(null);
+        password.setText(null);
     }
 }

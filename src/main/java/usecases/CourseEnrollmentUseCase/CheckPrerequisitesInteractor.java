@@ -16,14 +16,15 @@ public class CheckPrerequisitesInteractor {
      * @param course the course in which the student attempts to enrol.
      * @return true iff student has the prerequisite for the course
      */
-    public boolean checkPrerequisite(Course course) {
-        if (course.getPrerequisite().isEmpty()) {
+    public boolean checkPrerequisite(EnrolmentDbRequestModel requestModel) {
+        // Empty prerequisite returns true
+        if (requestModel.getPrerequisiteID().equals("")) {
             return true;
         }
 
-        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(course.getCourseId());
+        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseID());
         boolean completed = sessionDbGateway.hasCompletedCourse(dbRequestModel);
         int grade = sessionDbGateway.getPrerequisiteCourseGPA(dbRequestModel);
-        return completed && grade >= course.getPrerequisite().getGpa();
+        return completed && grade >= requestModel.getPrerequisiteGrade();
     }
 }

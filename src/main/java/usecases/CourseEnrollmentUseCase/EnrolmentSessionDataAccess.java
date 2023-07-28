@@ -9,4 +9,5 @@ public interface EnrolmentSessionDataAccess {
     public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel);
     public int getPrerequisiteCourseGPA(EnrolmentDbRequestModel requestModel);
     public void saveCourse(EnrolmentDbRequestModel requestModel);
+    public void deleteCourseSession();
 }

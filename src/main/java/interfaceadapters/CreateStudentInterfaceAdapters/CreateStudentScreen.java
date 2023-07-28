@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class CreateStudentScreen extends JPanel implements ActionListener{
     JTextField username = new JTextField(10);
     JTextField repeat = new JTextField(10);
+    JTextField password = new JTextField(10);
     JButton create = new JButton("Create");
     JButton cancel = new JButton(("Cancel"));
     private final GenericProperties genericProperties;
@@ -29,9 +30,12 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         JPanel usernamePanel = new JPanel();
         usernamePanel.add(new JLabel("Enter Username"));
         usernamePanel.add(username);
-        JPanel repeatUsernamePanel = new JPanel();
-        repeatUsernamePanel.add(new JLabel("Reenter Username"));
-        repeatUsernamePanel.add(repeat);
+        JPanel passwordPanel = new JPanel();
+        passwordPanel.add(new JLabel("Enter Password"));
+        passwordPanel.add(password);
+        JPanel repeatPasswordPanel = new JPanel();
+        repeatPasswordPanel.add(new JLabel("Reenter Username"));
+        repeatPasswordPanel.add(repeat);
         JPanel buttons = new JPanel();
         buttons.add(create);
         buttons.add(cancel);
@@ -40,7 +44,8 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(usernamePanel);
-        this.add(repeatUsernamePanel);
+        this.add(passwordPanel);
+        this.add(repeatPasswordPanel);
         this.add(buttons);
     }
 
@@ -49,7 +54,8 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         if (e.getActionCommand().equals("Create")) {
             String student = username.getText();
             String repeated = repeat.getText();
-            JOptionPane.showMessageDialog(this, controller.create(student, repeated));
+            String pass = password.getText();
+            JOptionPane.showMessageDialog(this, controller.create(student,repeated, pass));
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
         } else if (e.getActionCommand().equals("Cancel")) {
             genericProperties.getCards().show(genericProperties.getScreens(), "student");

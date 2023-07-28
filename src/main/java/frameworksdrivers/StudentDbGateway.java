@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
 import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
@@ -68,23 +68,22 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
     }
 
     /**
-     * Method returns whether the username is unique meaning that it's not already present in the database.
-     *
-     * @param username is the username that is checked.
-     * @return boolean that indicates if username is unique.
-     */
-    @Override
-    public boolean isUnique(String username) {
-        return true;
-    }
-
-    /**
      * Method saves the user info stored in "student" to the database.
      *
      * @param student model that stores what will be saved onto the database.
      */
     @Override
-    public void save(CreateStudentDsModel student) {
-        System.out.println("It saved!");
+    public void saveUser(CreateStudentDsModel student) {
+        try{
+        Map<String, Integer> courses = student.getCourseList();
+        List<String> courseNames = (List<String>) courses.keySet();
+        for(String course: courseNames){
+            courses.get(course);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO student (StudentID, Password," +
+                    " CourseID, CourseGrade) Values (" +student.getUsername() +", " + student.getPassword() +", "+
+                    course +", "+ courses.get(course)+")");
+            statement.executeQuery();}
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
     }
-}
+}}

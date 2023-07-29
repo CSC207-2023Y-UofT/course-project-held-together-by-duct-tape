@@ -24,7 +24,7 @@ public class RunCourseInteractor {
             return presenter.failView("Answers can not be empty.");
         }
 
-        RunCourseDbRequestModel dbRequestModel = new RunCourseDbRequestModel(requestModel.getAnswers());
+        RunCourseDbRequestModel dbRequestModel = new RunCourseDbRequestModel(requestModel.getQuestions(), requestModel.getAnswers());
         sessionDbGateway.saveAnswers(dbRequestModel);
 
         return presenter.successView("Course Completed.");

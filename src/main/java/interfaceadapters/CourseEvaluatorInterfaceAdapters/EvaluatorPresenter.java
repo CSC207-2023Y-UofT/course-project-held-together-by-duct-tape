@@ -1,11 +1,8 @@
-package interfaceadapters.CourseEvaluator;
+package interfaceadapters.CourseEvaluatorInterfaceAdapters;
 
 import entities.CourseFactory;
-import frameworksdrivers.CourseDbGateway;
 import frameworksdrivers.Driver;
-import frameworksdrivers.SessionDbGateway;
-import frameworksdrivers.StudentDbGateway;
-import usecases.CourseEvaluator.*;
+import usecases.CourseEvaluatorUseCase.*;
 
 public class EvaluatorPresenter implements EvaluatorOutputBoundary {
     private final EvaluatorSessionDataAccess sessionDbGateway;

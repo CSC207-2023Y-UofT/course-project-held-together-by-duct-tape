@@ -1,5 +1,7 @@
 package userinterface.RunCourseUserInterface;
 
+import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorController;
+import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCourseController;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.GenericProperties;
@@ -18,11 +20,13 @@ public class RunCourseScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
     private final RunCourseController controller;
     private final RunCoursePresenter presenter;
+    private final EvaluatorController evaluatorController;
 
-    public RunCourseScreen(GenericProperties genericProperties, RunCoursePresenter presenter) {
+    public RunCourseScreen(GenericProperties genericProperties, RunCoursePresenter presenter, EvaluatorPresenter evaluatorPresenter) {
         this.genericProperties = genericProperties;
         this.controller = presenter.getCourseController();
         this.presenter = presenter;
+        this.evaluatorController = evaluatorPresenter.getEvaluatorController();
 
         JLabel title = new JLabel("Course Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -74,6 +78,7 @@ public class RunCourseScreen extends JPanel implements ActionListener {
         if (event.getActionCommand().equals("Evaluate Course")) {
             List<String> answersCourse = formatAnswers();
             JOptionPane.showMessageDialog(this, controller.runCourse(answersCourse));
+            JOptionPane.showMessageDialog(this, evaluatorController.evaluateCourse());
         } else if (event.getActionCommand().equals("Unenroll")) {
             presenter.deleteCourseSession();
         }

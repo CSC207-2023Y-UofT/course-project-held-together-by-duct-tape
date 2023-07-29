@@ -1,5 +1,5 @@
 package usecases.RunCourseUseCase;
 
 public interface RunCourseSessionDataAccess {
-    void save(RunCourseDbRequestModel requestModel);
+    void saveAnswers(RunCourseDbRequestModel requestModel);
 }

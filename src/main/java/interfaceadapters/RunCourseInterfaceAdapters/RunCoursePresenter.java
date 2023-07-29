@@ -1,17 +1,21 @@
 package interfaceadapters.RunCourseInterfaceAdapters;
 
-import frameworksdrivers.DatabaseDriver;
+import frameworksdrivers.Driver;
 import frameworksdrivers.SessionDbGateway;
+import usecases.RunCourseUseCase.RunCourseInteractor;
+import usecases.RunCourseUseCase.RunCourseOutputBoundary;
+import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
 
 import java.util.List;
 
-public class RunCoursePresenter {
+public class RunCoursePresenter implements RunCourseOutputBoundary{
     private final SessionDbGateway sessionDbGateway;
     private final RunCourseController courseController;
 
-    public RunCoursePresenter(DatabaseDriver databaseDriver) {
+    public RunCoursePresenter(Driver databaseDriver) {
         this.sessionDbGateway = databaseDriver.getSessionDbGateway();
-        courseController = new RunCourseController();
+        RunCourseInteractor interactor = new RunCourseInteractor((RunCourseSessionDataAccess) sessionDbGateway, (RunCourseOutputBoundary) this);
+        courseController = new RunCourseController(interactor);
     }
 
     public RunCourseController getCourseController() {
@@ -24,5 +28,15 @@ public class RunCoursePresenter {
 
     public void deleteCourseSession() {
         sessionDbGateway.deleteCourseSession();
+    }
+
+    @Override
+    public String failView(String message) {
+        return message;
+    }
+
+    @Override
+    public String successView(String message) {
+        return message;
     }
 }

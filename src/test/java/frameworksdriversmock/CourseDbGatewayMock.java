@@ -1,9 +1,8 @@
 package frameworksdriversmock;
 
-import frameworksdrivers.CourseGateway;
+import frameworksdrivers.Gateways.CourseGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
-import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +42,6 @@ public class CourseDbGatewayMock implements CourseGateway {
 
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
-//        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseID());
-
         int courseIndex = courseIDs.indexOf(requestModel.getCourseID());
         requestModel.setPrerequisiteID(prerequisiteIDs.get(courseIndex));
         requestModel.setPrerequisiteGrade(prerequisiteGrades.get(courseIndex));
@@ -58,7 +55,10 @@ public class CourseDbGatewayMock implements CourseGateway {
     }
 
     @Override
-    public EvaluatorDbResponseModel findCourse(EvaluatorRequestModel requestModel) {
-        return null;
+    public void findCourse(EvaluatorDbResponseModel responseModel) {
+        int courseIndex = courseIDs.indexOf(responseModel.getCourseId());
+        responseModel.setQuestions(allQuestions.get(courseIndex));
+        responseModel.setAnswers(allAnswers.get(courseIndex));
+        responseModel.setPoints(allPoints.get(courseIndex));
     }
 }

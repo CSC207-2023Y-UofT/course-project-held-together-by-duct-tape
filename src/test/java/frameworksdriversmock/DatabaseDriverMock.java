@@ -1,7 +1,16 @@
 package frameworksdriversmock;
 
 import frameworksdrivers.Driver;
+import frameworksdrivers.Gateways.CourseDbGateway;
+import frameworksdrivers.Gateways.SessionDbGateway;
+import frameworksdrivers.Gateways.StudentDbGateway;
 
+/**
+ * Mock driver created to ensure the tests run with mock methods and do not connect to the database.
+ * The override methods are there so that DatabaseDriverMock can implement the Driver interface and thus
+ * could be passed in to the various elements of the program. The overridden methods must not be called since
+ * these return null values. Instead, to get the testing gateways, call the methods with Mock at the end.
+ */
 public class DatabaseDriverMock implements Driver {
     private final StudentDbGatewayMock studentDbGateway;
     private final SessionDbGatewayMock sessionDbGateway;
@@ -26,17 +35,17 @@ public class DatabaseDriverMock implements Driver {
     }
 
     @Override
-    public frameworksdrivers.StudentDbGateway getStudentDbGateway() {
+    public StudentDbGateway getStudentDbGateway() {
         return null;
     }
 
     @Override
-    public frameworksdrivers.SessionDbGateway getSessionDbGateway() {
+    public SessionDbGateway getSessionDbGateway() {
         return null;
     }
 
     @Override
-    public frameworksdrivers.CourseDbGateway getCourseDbGateway() {
+    public CourseDbGateway getCourseDbGateway() {
         return null;
     }
 }

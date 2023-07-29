@@ -12,8 +12,8 @@ public class RunCourseController {
         this.interactor = interactor;
     }
 
-    public String runCourse(List<String> answers) {
-        RunCourseRequestModel requestModel = new RunCourseRequestModel(answers);
+    public String runCourse(List<String> questions, List<String> answers) {
+        RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
         return interactor.runCourse(requestModel);
     }
 }

@@ -2,8 +2,8 @@ package frameworksdriversmock;
 
 import frameworksdrivers.CourseGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CourseEvaluator.EvaluatorDbResponseModel;
-import usecases.CourseEvaluator.EvaluatorRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;

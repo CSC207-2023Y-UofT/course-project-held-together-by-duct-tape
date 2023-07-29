@@ -2,7 +2,7 @@ package frameworksdriversmock;
 
 import frameworksdrivers.StudentGateway;
 
-import usecases.CourseEvaluator.EvaluatorDbRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;

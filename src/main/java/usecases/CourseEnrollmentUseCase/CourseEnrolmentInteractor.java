@@ -44,10 +44,6 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         // we might no longer need the method below since it is only one function call
         callToRetrieveCourse(dbRequestModel);
 
-//        List<String> answers = new ArrayList<>();
-//        Course course = CourseFactory.create(dbRequestModel.getCourseID(), dbRequestModel.getPrerequisiteID(),
-//                dbRequestModel.getPrerequisiteGrade(), dbRequestModel.getQuestions(), answers, dbRequestModel.getPoints());
-
         if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
                         "for the course");

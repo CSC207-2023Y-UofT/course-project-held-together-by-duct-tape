@@ -50,6 +50,10 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
         sessionDbGateway.deleteCourseSession();
     }
 
+    public void deleteStudentSession() {
+        sessionDbGateway.deleteStudentSession();
+    }
+
     /**
      * Get a list of the course IDs offered. This method will call the course gateway to access the database to
      * retrieve the course IDs.

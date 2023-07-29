@@ -22,9 +22,7 @@ public class CheckPrerequisitesInteractor {
             return true;
         }
 
-        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseID());
-        boolean completed = sessionDbGateway.hasCompletedCourse(dbRequestModel);
-        int grade = sessionDbGateway.getPrerequisiteCourseGPA(dbRequestModel);
-        return completed && grade >= requestModel.getPrerequisiteGrade();
+        // sessionDbGateway.hasCompletedCourse(requestModel);
+        return sessionDbGateway.hasCompletedCourse(requestModel);
     }
 }

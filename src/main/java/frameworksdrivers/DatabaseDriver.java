@@ -1,5 +1,9 @@
 package frameworksdrivers;
 
+import frameworksdrivers.Gateways.CourseDbGateway;
+import frameworksdrivers.Gateways.SessionDbGateway;
+import frameworksdrivers.Gateways.StudentDbGateway;
+
 public class DatabaseDriver implements Driver {
     private final StudentDbGateway studentDbGateway;
     private final SessionDbGateway sessionDbGateway;

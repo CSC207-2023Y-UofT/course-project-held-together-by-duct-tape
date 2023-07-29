@@ -10,4 +10,5 @@ public interface EnrolmentSessionDataAccess {
     public int getPrerequisiteCourseGPA(EnrolmentDbRequestModel requestModel);
     public void saveCourse(EnrolmentDbRequestModel requestModel);
     public void deleteCourseSession();
+    public void deleteStudentSession();
 }

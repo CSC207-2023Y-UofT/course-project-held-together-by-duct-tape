@@ -1,23 +1,17 @@
 package interfaceadapters.CourseEvaluatorInterfaceAdapters;
 
-import entities.CourseFactory;
 import frameworksdrivers.Driver;
 import usecases.CourseEvaluatorUseCase.*;
 
 public class EvaluatorPresenter implements EvaluatorOutputBoundary {
-    private final EvaluatorSessionDataAccess sessionDbGateway;
-    private final CourseDataAccess courseDbGateway;
-    private final StudentDataAccess studentDbGateway;
     private final EvaluatorController evaluatorController;
 
     public EvaluatorPresenter(Driver databaseDriver) {
-        this.sessionDbGateway = databaseDriver.getSessionDbGateway();
-        this.courseDbGateway = databaseDriver.getCourseDbGateway();
-        this.studentDbGateway = databaseDriver.getStudentDbGateway();
+        EvaluatorSessionDataAccess sessionDbGateway = databaseDriver.getSessionDbGateway();
+        CourseDataAccess courseDbGateway = databaseDriver.getCourseDbGateway();
+        StudentDataAccess studentDbGateway = databaseDriver.getStudentDbGateway();
 
-        CourseFactory courseFactory = new CourseFactory();
-        CheckAnswer checkAnswer = new CheckAnswer();
-        EvaluatorInteractor interactor = new EvaluatorInteractor(this, courseDbGateway, sessionDbGateway, courseFactory, studentDbGateway, checkAnswer);
+        EvaluatorInteractor interactor = new EvaluatorInteractor(this, courseDbGateway, sessionDbGateway, studentDbGateway);
         evaluatorController = new EvaluatorController(interactor);
     }
 

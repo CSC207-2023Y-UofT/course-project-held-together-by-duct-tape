@@ -1,0 +1,9 @@
+package frameworksdrivers;
+
+import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
+import usecases.CourseEvaluator.EvaluatorSessionDataAccess;
+import usecases.LoginStudentUseCase.LoginSessionDataAccess;
+import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
+
+public interface SessionGateway extends LoginSessionDataAccess, EnrolmentSessionDataAccess, RunCourseSessionDataAccess, EvaluatorSessionDataAccess {
+}

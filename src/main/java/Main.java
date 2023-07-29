@@ -1,5 +1,6 @@
 import frameworksdrivers.DatabaseDriver;
 
+import interfaceadapters.CourseEvaluator.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
@@ -32,6 +33,7 @@ public class Main {
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
+        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
 
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
@@ -39,7 +41,7 @@ public class Main {
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter);
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
 
         screens.add(mainScreen, "main");

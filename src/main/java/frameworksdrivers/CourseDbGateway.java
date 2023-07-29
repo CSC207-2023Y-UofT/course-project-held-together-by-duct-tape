@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CreateStudentUsecase.CreateStudentCourseDataAccess;
+import usecases.CourseEvaluator.EvaluatorDbResponseModel;
+import usecases.CourseEvaluator.EvaluatorRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
  * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
-public class CourseDbGateway implements EnrolmentCourseDataAccess, CreateStudentCourseDataAccess {
+public class CourseDbGateway implements CourseGateway {
     private final Connection connection;
     private final String DATABASE_NAME = "courses";
 
@@ -84,5 +84,10 @@ public class CourseDbGateway implements EnrolmentCourseDataAccess, CreateStudent
             e.printStackTrace();
             System.out.println("Error with the database!");
         }
+    }
+
+    @Override
+    public EvaluatorDbResponseModel findCourse(EvaluatorRequestModel requestModel) {
+        return null;
     }
 }

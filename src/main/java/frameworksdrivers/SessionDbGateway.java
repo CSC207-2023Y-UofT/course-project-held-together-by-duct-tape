@@ -1,11 +1,9 @@
 package frameworksdrivers;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
-import usecases.LoginStudentUseCase.LoginSessionDataAccess;
+import usecases.CourseEvaluator.EvaluatorDbResponseModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.RunCourseUseCase.RunCourseDbRequestModel;
-import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +16,7 @@ import java.sql.ResultSet;
  * Gateway that accesses and interacts with the Session Database. It has a reference to the connection obtained from
  * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
-public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessionDataAccess, RunCourseSessionDataAccess {
+public class SessionDbGateway implements SessionGateway {
     private final Connection connection;
     private final String DATABASE_NAME_STUDENT = "sessionStudent";
     private final String DATABASE_NAME_COURSE = "sessionCourse";
@@ -107,4 +105,14 @@ public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessio
 
     @Override
     public void saveAnswers(RunCourseDbRequestModel requestModel) {}
+
+    @Override
+    public EvaluatorDbResponseModel retrieveCourse() {
+        return null;
+    }
+
+    @Override
+    public String retrieveStudentId() {
+        return null;
+    }
 }

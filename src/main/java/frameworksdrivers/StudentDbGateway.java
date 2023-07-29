@@ -7,17 +7,17 @@ import java.sql.SQLException;
 
 import java.util.Map;
 import java.util.HashMap;
-import usecases.LoginStudentUseCase.LoginStudentDataAccess;
+
+import usecases.CourseEvaluator.*;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
-import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Student Database. It has a reference to the connection obtained from
  * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
-public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
+public class StudentDbGateway implements StudentGateway {
     private final Connection connection;
     private final String DATABASE_NAME = "students";
 
@@ -105,5 +105,10 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
         } catch (SQLException e) {
             System.out.println("Error with database!");
         }
+    }
+
+    @Override
+    public int saveGPA(EvaluatorDbRequestModel requestModel) {
+        return 0;
     }
 }

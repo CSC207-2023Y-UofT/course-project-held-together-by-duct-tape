@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CourseEvaluator.EvaluatorDbResponseModel;
-import usecases.CourseEvaluator.EvaluatorRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from

@@ -1,7 +1,7 @@
 package frameworksdrivers;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
-import usecases.CourseEvaluator.CourseDataAccess;
+import usecases.CourseEvaluatorUseCase.CourseDataAccess;
 import usecases.CreateStudentUsecase.CreateStudentCourseDataAccess;
 
 public interface CourseGateway extends EnrolmentCourseDataAccess, CreateStudentCourseDataAccess, CourseDataAccess {

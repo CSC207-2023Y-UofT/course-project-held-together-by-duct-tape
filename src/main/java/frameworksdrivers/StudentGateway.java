@@ -1,6 +1,6 @@
 package frameworksdrivers;
 
-import usecases.CourseEvaluator.StudentDataAccess;
+import usecases.CourseEvaluatorUseCase.StudentDataAccess;
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 

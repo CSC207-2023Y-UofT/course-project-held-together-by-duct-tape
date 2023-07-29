@@ -1,7 +1,7 @@
 package frameworksdrivers;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
-import usecases.CourseEvaluator.EvaluatorSessionDataAccess;
+import usecases.CourseEvaluatorUseCase.EvaluatorSessionDataAccess;
 import usecases.LoginStudentUseCase.LoginSessionDataAccess;
 import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
 

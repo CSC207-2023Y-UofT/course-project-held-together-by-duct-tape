@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.HashMap;
 
-import usecases.CourseEvaluator.*;
+import usecases.CourseEvaluatorUseCase.*;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;

@@ -1,7 +1,7 @@
 package frameworksdrivers;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CourseEvaluator.EvaluatorDbResponseModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.RunCourseUseCase.RunCourseDbRequestModel;
 

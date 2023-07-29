@@ -43,7 +43,8 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
         studentDataAccess.saveGPA(requestModel);
 
         //prepares response model to return
-        EvaluatorResponseModel EvaluatorResponseModel = new EvaluatorResponseModel(studentResponseModel.getCourseId(), percentage);
+        EvaluatorResponseModel EvaluatorResponseModel = new EvaluatorResponseModel(studentResponseModel.getCourseId(),
+                percentage);
         return presenter.prepareSuccessView(EvaluatorResponseModel);
     }
 }

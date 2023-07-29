@@ -10,8 +10,8 @@ public class CreateStudentController {
         this.interactor = interactor;
     }
 
-    public String create(String username, String repeat, String password){
-        CreateStudentRequestModel requestModel = new CreateStudentRequestModel(username, repeat, password);
+    public String create(String username, String password, String repeat){
+        CreateStudentRequestModel requestModel = new CreateStudentRequestModel(username, password, repeat);
         return interactor.createStudent(requestModel);
     }
 }

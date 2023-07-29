@@ -87,6 +87,7 @@ public class SessionDbGateway implements SessionGateway {
      *
      * @param requestModel student username.
      */
+    @Override
     public void saveUser(LoginStudentDbRequestModel requestModel) {
         try {
             Map<String, Integer> courses = requestModel.getCourses();
@@ -113,6 +114,7 @@ public class SessionDbGateway implements SessionGateway {
      *
      * @return List of Strings representing the courses questions.
      */
+    @Override
     public List<String> getCourseQuestions() {
         List<String> questions = new ArrayList<>();
         try {
@@ -136,6 +138,7 @@ public class SessionDbGateway implements SessionGateway {
      * incorrectly, there may be data in the session database at the start of the program which would need
      * to be deleted.
      */
+    @Override
     public void deleteStudentSession() {
         try {
             String SQL = "TRUNCATE " + DATABASE_NAME_STUDENT;
@@ -153,6 +156,7 @@ public class SessionDbGateway implements SessionGateway {
      * initialization of the databases: when the program shuts down or is exited incorrectly, there may be data in the
      * session database at the start of the program which would need to be deleted.
      */
+    @Override
     public void deleteCourseSession() {
         try {
             String SQL = "TRUNCATE " + DATABASE_NAME_COURSE;

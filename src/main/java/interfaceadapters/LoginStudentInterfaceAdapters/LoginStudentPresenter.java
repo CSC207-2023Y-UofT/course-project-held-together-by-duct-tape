@@ -13,6 +13,12 @@ import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 public class LoginStudentPresenter implements LoginStudentOutputBoundary {
     private final LoginStudentController loginController;
 
+    /**
+     * Creates an interactor with the necessary attributes. Obtains the necessary gateways from the database driver
+     * parameter. Constructs a controller which has a reference to the interactor.
+     *
+     * @param databaseDriver Driver object with reference to all of the gateways.
+     */
     public LoginStudentPresenter(Driver databaseDriver) {
         LoginStudentInputBoundary loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGateway(),
                 databaseDriver.getSessionDbGateway(), this);
@@ -40,8 +46,9 @@ public class LoginStudentPresenter implements LoginStudentOutputBoundary {
      * The interactor will pass an error message, which the Presenter will throw.
      *
      * @param error message that will be thrown.
+     * @throws LoginUserFailed exception.
      */
-    public LoginStudentResponseModel prepareFailView(String error) {
+    public LoginStudentResponseModel prepareFailView(String error) throws LoginUserFailed {
         throw new LoginUserFailed(error);
     }
 }

@@ -90,15 +90,15 @@ public class SessionDbGateway implements SessionGateway {
     @Override
     public void saveUser(LoginStudentDbRequestModel requestModel) {
         try {
-            Map<String, Integer> courses = requestModel.getCourses();
+            Map<String, Float> courses = requestModel.getCourses();
 
-            for (Map.Entry<String, Integer> course : courses.entrySet()) {
+            for (Map.Entry<String, Float> course : courses.entrySet()) {
                 String SQL = "INSERT INTO " + DATABASE_NAME_STUDENT +
                         " (StudentID, CourseID, CourseGrade) VALUES (?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, requestModel.getUsername());
                 statement.setString(2, course.getKey());
-                statement.setString(3, course.getValue().toString());
+                statement.setFloat(3, course.getValue());
                 statement.executeUpdate();
             }
         } catch (SQLException e) {

@@ -60,10 +60,10 @@ public class StudentDbGateway implements StudentGateway {
             statement.setString(1, dbRequestModel.getUsername());
             ResultSet resultSet = statement.executeQuery();
 
-            Map<String, Integer> courses = new HashMap<String, Integer>();
+            Map<String, Float> courses = new HashMap<String, Float>();
             while (resultSet.next()) {
                 // CourseID, CourseGrade
-                courses.put(resultSet.getString(3), resultSet.getInt(4));
+                courses.put(resultSet.getString(3), resultSet.getFloat(4));
             }
 
             dbRequestModel.setCourses(courses);
@@ -104,9 +104,9 @@ public class StudentDbGateway implements StudentGateway {
     @Override
     public void saveUser(CreateStudentDsModel student) {
         try{
-            Map<String, Integer> courses = student.getCourseList();
+            Map<String, Float> courses = student.getCourseList();
 
-            for (Map.Entry<String, Integer> course : courses.entrySet()) {
+            for (Map.Entry<String, Float> course : courses.entrySet()) {
                 String SQL = "INSERT INTO " + DATABASE_NAME +
                         " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(SQL);

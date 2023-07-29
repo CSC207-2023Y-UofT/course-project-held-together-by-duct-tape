@@ -84,7 +84,7 @@ public class CourseDbGateway implements CourseGateway {
             resultSet.next();
 
             requestModel.setPrerequisiteID(resultSet.getString(2));
-            requestModel.setPrerequisiteGrade(resultSet.getInt(3));
+            requestModel.setPrerequisiteGrade(resultSet.getFloat(3));
 
             List<String> questions = new ArrayList<String>();
             List<Integer> points = new ArrayList<>();

@@ -15,7 +15,8 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
         this.sessionDbGateway = databaseDriver.getSessionDbGateway();
 
         CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
-        CourseEnrolmentInteractor enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway, prerequisitesInteractor, sessionDbGateway, this);
+        EnrolmentInputBoundary enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway,
+                prerequisitesInteractor, sessionDbGateway, this);
 
         enrolmentController = new EnrolmentController(enrolmentInteractor);
     }

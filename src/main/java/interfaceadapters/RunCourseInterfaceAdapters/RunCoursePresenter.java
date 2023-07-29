@@ -2,6 +2,8 @@ package interfaceadapters.RunCourseInterfaceAdapters;
 
 import frameworksdrivers.Driver;
 import frameworksdrivers.Gateways.SessionDbGateway;
+import frameworksdrivers.Gateways.SessionGateway;
+import usecases.RunCourseUseCase.RunCourseInputBoundary;
 import usecases.RunCourseUseCase.RunCourseInteractor;
 import usecases.RunCourseUseCase.RunCourseOutputBoundary;
 import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
@@ -9,12 +11,12 @@ import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
 import java.util.List;
 
 public class RunCoursePresenter implements RunCourseOutputBoundary{
-    private final SessionDbGateway sessionDbGateway;
+    private final RunCourseSessionDataAccess sessionDbGateway;
     private final RunCourseController courseController;
 
     public RunCoursePresenter(Driver databaseDriver) {
         this.sessionDbGateway = databaseDriver.getSessionDbGateway();
-        RunCourseInteractor interactor = new RunCourseInteractor((RunCourseSessionDataAccess) sessionDbGateway, (RunCourseOutputBoundary) this);
+        RunCourseInputBoundary interactor = new RunCourseInteractor(sessionDbGateway, this);
         courseController = new RunCourseController(interactor);
     }
 

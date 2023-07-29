@@ -2,10 +2,10 @@ package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentInputBoundary;
 import usecases.CourseEnrollmentUseCase.EnrolmentRequestModel;
-import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
 
 public class EnrolmentController {
     private final EnrolmentInputBoundary enrolmentInteractor;
+
     public EnrolmentController(EnrolmentInputBoundary enrolmentInteractor) {
         this.enrolmentInteractor = enrolmentInteractor;
     }

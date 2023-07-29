@@ -1,14 +1,14 @@
 package interfaceadapters.RunCourseInterfaceAdapters;
 
-import usecases.RunCourseUseCase.RunCourseInteractor;
+import usecases.RunCourseUseCase.RunCourseInputBoundary;
 import usecases.RunCourseUseCase.RunCourseRequestModel;
 
 import java.util.List;
 
 public class RunCourseController {
-    private final RunCourseInteractor interactor;
+    private final RunCourseInputBoundary interactor;
 
-    public RunCourseController(RunCourseInteractor interactor) {
+    public RunCourseController(RunCourseInputBoundary interactor) {
         this.interactor = interactor;
     }
 

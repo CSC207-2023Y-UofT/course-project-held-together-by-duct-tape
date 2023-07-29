@@ -1,6 +1,7 @@
 package interfaceadapters.CreateStudentInterfaceAdapters;
 import entities.StudentFactory;
 import frameworksdrivers.Driver;
+import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentOutputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentResponseModel;
@@ -10,8 +11,8 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
 
     public CreateStudentPresenter(Driver databaseDriver) {
-        StudentFactory studentFactory = new StudentFactory();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway(), studentFactory);
+        CreateStudentInputBoundary createStudentInteractor = new CreateStudentInteractor(
+                databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);
     }
 
@@ -23,7 +24,8 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary {
      * @param responseModel is a response model that contains what is needed to format the success message */
     @Override
     public String getSuccessMessage(CreateStudentResponseModel responseModel) {
-        return "You have successfully created a New student! Welcome" + " " + responseModel.getUsername();}
+        return "You have successfully created a New student! Welcome" + " " + responseModel.getUsername();
+    }
 
     /**This method formats and returns the message that is shown upon failure of creating a new student user*/
     @Override

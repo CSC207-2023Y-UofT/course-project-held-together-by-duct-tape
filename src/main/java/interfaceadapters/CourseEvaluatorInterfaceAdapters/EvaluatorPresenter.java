@@ -8,10 +8,11 @@ public class EvaluatorPresenter implements EvaluatorOutputBoundary {
 
     public EvaluatorPresenter(Driver databaseDriver) {
         EvaluatorSessionDataAccess sessionDbGateway = databaseDriver.getSessionDbGateway();
-        CourseDataAccess courseDbGateway = databaseDriver.getCourseDbGateway();
-        StudentDataAccess studentDbGateway = databaseDriver.getStudentDbGateway();
+        EvaluatorCourseDataAccess courseDbGateway = databaseDriver.getCourseDbGateway();
+        EvaluatorStudentDataAccess studentDbGateway = databaseDriver.getStudentDbGateway();
 
-        EvaluatorInteractor interactor = new EvaluatorInteractor(this, courseDbGateway, sessionDbGateway, studentDbGateway);
+        EvaluatorInputBoundary interactor = new EvaluatorInteractor(this, courseDbGateway,
+                sessionDbGateway, studentDbGateway);
         evaluatorController = new EvaluatorController(interactor);
     }
 
@@ -23,5 +24,4 @@ public class EvaluatorPresenter implements EvaluatorOutputBoundary {
     public String  prepareSuccessView(EvaluatorResponseModel grade) {
         return "You got " + grade.getPercentage() + "%" + " in " + grade.getCourseId();
     }
-
 }

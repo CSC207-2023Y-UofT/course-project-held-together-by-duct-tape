@@ -1,7 +1,7 @@
-package interfaceadapters.CourseEvaluatorInterfaceAdapters;
+package interfaceadapters.CourseEvaluator;
 
-import usecases.CourseEvaluatorUseCase.EvaluatorInputBoundary;
-import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
+import usecases.CourseEvaluator.EvaluatorInputBoundary;
+import usecases.CourseEvaluator.EvaluatorRequestModel;
 
 public class EvaluatorController {
         private EvaluatorInputBoundary interactor;

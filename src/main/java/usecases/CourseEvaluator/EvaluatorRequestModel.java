@@ -1,7 +1,5 @@
 package usecases.CourseEvaluator;
 
-import entities.Student;
-
 public class EvaluatorRequestModel {
 
     private final String courseId;

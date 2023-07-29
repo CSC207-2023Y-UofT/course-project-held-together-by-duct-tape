@@ -3,8 +3,10 @@ package usecases.CourseEvaluatorUseCase;
 import entities.Course;
 import entities.CourseFactory;
 
+import java.text.DecimalFormat;
+
 public class CheckAnswer {
-    public static int compare(EvaluatorDbResponseModel studentResponseModel,
+    public static float compare(EvaluatorDbResponseModel studentResponseModel,
                               EvaluatorDbResponseModel courseResponseModel) {
         // Creates two course objects, original and the student
         Course student = CourseFactory.create(studentResponseModel.getCourseId(),
@@ -15,7 +17,7 @@ public class CheckAnswer {
                 courseResponseModel.getQuestions(), courseResponseModel.getAnswers(),
                 courseResponseModel.getPoints());
 
-        int counter = 0;
+        float counter = 0;
 
         for (int i = 0; i < student.getQuestions().size(); i++){
             if ((student.getQuestionAt(i).getAnswer()).equalsIgnoreCase
@@ -24,6 +26,9 @@ public class CheckAnswer {
             }
 
         }
-        return (counter / original.getAllPoints()) * 100;
+        float grade = (counter / original.getAllPoints()) * 100;
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        return Float.parseFloat(df.format(grade));
     }
 }

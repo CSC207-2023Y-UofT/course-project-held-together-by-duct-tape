@@ -3,10 +3,14 @@ package usecases.CourseEvaluatorUseCase;
 import java.util.List;
 
 public class EvaluatorDbResponseModel {
-    private final String courseId;
+    private String courseId;
     private List<String> questions;
     private List<String> answers;
     private List<Integer> points;
+
+    public EvaluatorDbResponseModel() {
+        super();
+    }
 
     public EvaluatorDbResponseModel(String courseId) {
         this.courseId = courseId;
@@ -26,6 +30,10 @@ public class EvaluatorDbResponseModel {
 
     public List<Integer> getPoints() {
         return points;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     public void setQuestions(List<String> questions) {

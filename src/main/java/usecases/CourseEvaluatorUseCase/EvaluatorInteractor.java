@@ -33,10 +33,10 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
 
         // Retrieves original course created
         EvaluatorDbResponseModel courseResponseModel = new EvaluatorDbResponseModel(studentResponseModel.getCourseId());
-        courseDbGateway.findCourse(studentResponseModel);
+        courseDbGateway.findCourse(courseResponseModel);
 
         // calls compare from check answer to get a percentage
-        int percentage =  CheckAnswer.compare(studentResponseModel, courseResponseModel);
+        float percentage =  CheckAnswer.compare(studentResponseModel, courseResponseModel);
 
         // saves gpa in student data access
         EvaluatorDbRequestModel requestModel = new EvaluatorDbRequestModel(studentID, courseID, percentage);

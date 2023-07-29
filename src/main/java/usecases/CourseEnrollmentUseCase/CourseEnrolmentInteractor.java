@@ -6,8 +6,10 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private final EnrolmentCourseDataAccess courseDbGateway;
     private final EnrolmentOutputBoundary enrolmentPresenter;
 
-    public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway, CheckPrerequisitesInteractor
-            completedPrerequisite, EnrolmentSessionDataAccess sessionDbGateway, EnrolmentOutputBoundary enrolmentPresenter) {
+    public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway,
+                                     CheckPrerequisitesInteractor completedPrerequisite,
+                                     EnrolmentSessionDataAccess sessionDbGateway,
+                                     EnrolmentOutputBoundary enrolmentPresenter) {
         this.courseDbGateway = courseDbGateway;
         this.completedPrerequisite = completedPrerequisite;
         this.sessionDbGateway = sessionDbGateway;
@@ -40,7 +42,8 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
 
         if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
-                        "for the course.\nPrerequisite: " + dbRequestModel.getPrerequisiteID() + " Grade: " + dbRequestModel.getPrerequisiteGrade());
+                        "for the course.\nPrerequisite: " + dbRequestModel.getPrerequisiteID() + " Grade: " +
+                    dbRequestModel.getPrerequisiteGrade());
         }
 
         sessionDbGateway.saveCourse(dbRequestModel);

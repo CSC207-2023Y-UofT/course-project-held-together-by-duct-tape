@@ -20,5 +20,12 @@ public interface LoginStudentDataAccess {
      */
     void getUser(LoginStudentDbRequestModel dbRequestModel);
 
+    /**
+     * Method that gives the database a request model with the username and password of the user trying to log in, and
+     * returns a boolean whether this user has the matching password.
+     *
+     * @param requestModel with the username and password.
+     * @return true if password matches, false otherwise.
+     */
     boolean checkPassword(LoginStudentRequestModel requestModel);
 }

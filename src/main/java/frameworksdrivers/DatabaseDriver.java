@@ -1,17 +1,15 @@
 package frameworksdrivers;
 
-import frameworksdrivers.Gateways.CourseDbGateway;
-import frameworksdrivers.Gateways.SessionDbGateway;
-import frameworksdrivers.Gateways.StudentDbGateway;
+import frameworksdrivers.Gateways.*;
 
 /**
  * Driver that connects to the databases and creates the gateways. Each gateway has a reference to the connection so
  * that they are all able to communicate with the database.
  */
 public class DatabaseDriver implements Driver {
-    private final StudentDbGateway studentDbGateway;
-    private final SessionDbGateway sessionDbGateway;
-    private final CourseDbGateway courseDbGateway;
+    private final StudentGateway studentDbGateway;
+    private final SessionGateway sessionDbGateway;
+    private final CourseGateway courseDbGateway;
 
     /**
      * Creates a new DbConnection (Database Connection) and creates the various gateways needed.
@@ -27,15 +25,15 @@ public class DatabaseDriver implements Driver {
         sessionDbGateway.deleteCourseSession();
     }
 
-    public StudentDbGateway getStudentDbGateway() {
+    public StudentGateway getStudentDbGateway() {
         return studentDbGateway;
     }
 
-    public SessionDbGateway getSessionDbGateway() {
+    public SessionGateway getSessionDbGateway() {
         return sessionDbGateway;
     }
 
-    public CourseDbGateway getCourseDbGateway() {
+    public CourseGateway getCourseDbGateway() {
         return courseDbGateway;
     }
 }

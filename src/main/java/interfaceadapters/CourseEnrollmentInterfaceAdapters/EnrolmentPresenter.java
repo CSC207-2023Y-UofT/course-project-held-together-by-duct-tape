@@ -1,8 +1,6 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
-import frameworksdrivers.CourseDbGateway;
-import frameworksdrivers.DatabaseDriver;
-import frameworksdrivers.SessionDbGateway;
+import frameworksdrivers.Driver;
 import usecases.CourseEnrollmentUseCase.*;
 
 import java.util.List;
@@ -12,7 +10,7 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     private final EnrolmentSessionDataAccess sessionDbGateway;
     private final EnrolmentController enrolmentController;
 
-    public EnrolmentPresenter(DatabaseDriver databaseDriver) {
+    public EnrolmentPresenter(Driver databaseDriver) {
         this.courseDbGateway = databaseDriver.getCourseDbGateway();
         this.sessionDbGateway = databaseDriver.getSessionDbGateway();
 

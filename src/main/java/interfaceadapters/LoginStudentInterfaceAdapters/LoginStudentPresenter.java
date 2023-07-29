@@ -1,7 +1,6 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
-import frameworksdrivers.DatabaseDriver;
-
+import frameworksdrivers.Driver;
 import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentOutputBoundary;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
@@ -13,7 +12,7 @@ import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 public class LoginStudentPresenter implements LoginStudentOutputBoundary {
     private final LoginStudentController loginController;
 
-    public LoginStudentPresenter(DatabaseDriver databaseDriver) {
+    public LoginStudentPresenter(Driver databaseDriver) {
         LoginStudentInteractor loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGateway(), databaseDriver.getSessionDbGateway(), this);
         this.loginController = new LoginStudentController(loginInteractor);
     }

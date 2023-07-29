@@ -54,5 +54,4 @@ public class SessionDbGateway implements LoginSessionDataAccess, EnrolmentSessio
      * @param requestModel student username.
      */
     public void saveUser(LoginStudentDbRequestModel requestModel) {}
-
 }

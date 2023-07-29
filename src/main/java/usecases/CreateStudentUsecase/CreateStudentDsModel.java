@@ -18,5 +18,3 @@ public class CreateStudentDsModel {
     public Map<String, Integer> getCourseList(){return student.getCourses();}
     public String getPassword(){return password;}
 }
-
-

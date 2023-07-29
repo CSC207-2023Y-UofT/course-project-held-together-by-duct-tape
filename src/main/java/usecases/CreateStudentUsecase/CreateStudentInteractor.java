@@ -1,9 +1,8 @@
 package usecases.CreateStudentUsecase;
-
 import entities.Student;
 import entities.StudentFactory;
 
-/** This is a use case interacter that runs the create student use case, and it has a reference to a Student database
+/** This is a use case interactor that runs the create student use case, and it has a reference to a Student database
  * gateway and a presenter for the create user screen and a presenter */
 public class CreateStudentInteractor implements CreateStudentInputBoundary{
     final CreateStudentDataAccess dataAccess;
@@ -16,7 +15,9 @@ public class CreateStudentInteractor implements CreateStudentInputBoundary{
         this.dataAccess = dataAccess;
         this.presenter = presenter;
         this.courseGateway = courseGateway;
-        this.factory = factory;}
+        this.factory = factory;
+    }
+
     /** This is a use case in which a user can create a new Student profile
      * a "request" is passed through and contains the necessary information to create the user
      * if the user is successfully saved to the database a success message is shown otherwise a fail message
@@ -41,7 +42,3 @@ public class CreateStudentInteractor implements CreateStudentInputBoundary{
             !request.getRepeat().equals("") & !request.getPassword().equals("");}
 
 }
-
-
-
-

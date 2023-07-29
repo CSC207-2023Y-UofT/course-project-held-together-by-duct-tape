@@ -79,11 +79,12 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
         List<String> courseNames = (List<String>) courses.keySet();
         for(String course: courseNames){
             courses.get(course);
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO student (StudentID, Password," +
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO students (StudentID, Password," +
                     " CourseID, CourseGrade) Values (" +student.getUsername() +", " + student.getPassword() +", "+
                     course +", "+ courses.get(course)+")");
             statement.executeQuery();}
         } catch (SQLException e) {
             System.out.println("Error with database!");
+        }
     }
-}}
+}

@@ -2,7 +2,7 @@ package usecases.RunCourseUseCase;
 
 import java.util.List;
 
-public class RunCourseInteractor {
+public class RunCourseInteractor implements RunCourseInputBoundary {
     private final RunCourseSessionDataAccess sessionDbGateway;
     private final RunCourseOutputBoundary presenter;
 
@@ -24,7 +24,8 @@ public class RunCourseInteractor {
             return presenter.failView("Answers can not be empty.");
         }
 
-        RunCourseDbRequestModel dbRequestModel = new RunCourseDbRequestModel(requestModel.getQuestions(), requestModel.getAnswers());
+        RunCourseDbRequestModel dbRequestModel = new RunCourseDbRequestModel(requestModel.getQuestions(),
+                requestModel.getAnswers());
         sessionDbGateway.saveAnswers(dbRequestModel);
 
         return presenter.successView("Course Completed.");

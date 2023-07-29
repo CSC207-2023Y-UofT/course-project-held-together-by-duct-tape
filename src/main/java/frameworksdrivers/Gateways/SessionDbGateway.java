@@ -28,15 +28,17 @@ public class SessionDbGateway implements SessionGateway {
     }
 
     /**
-     * Checks if student has completed the course in Session Database.
+     * Checks both if the student has completed the prerequisite course and if they have obtained the prerequisite
+     * grade..
      *
-     * @param requestModel the course ID
-     * @return true if student has completed the course, false if not.
+     * @param requestModel data structure model with the course ID, prerequisite course ID, and prerequisite grade.
+     * @return true if student has completed the course with the required grade, false otherwise.
      */
     @Override
     public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT CourseID, CourseGrade FROM " + DATABASE_NAME_STUDENT + " WHERE CourseID=?");
+            String SQL = "SELECT CourseID, CourseGrade FROM " + DATABASE_NAME_STUDENT + " WHERE CourseID=?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, requestModel.getPrerequisiteID());
             ResultSet resultSet = statement.executeQuery();
 
@@ -44,27 +46,18 @@ public class SessionDbGateway implements SessionGateway {
                 return false;
             }
 
-            return resultSet.getInt(2) == requestModel.getPrerequisiteGrade();
+            return resultSet.getInt(2) >= requestModel.getPrerequisiteGrade();
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
         return false;
     }
 
     /**
-     * Retrieves the grade for a completed course, from the Session Database.
-     *
-     * @param requestModel the course Id
-     * @return the numeric grade for this course.
-     */
-    @Override
-    public int getPrerequisiteCourseGPA(EnrolmentDbRequestModel requestModel) {
-        return 80;
-    }
-
-    /**
      * Saves course in Session Database.
-     * @param requestModel the course ID
+     *
+     * @param requestModel the model with all the information to be saved: the questions, answers.
      */
     @Override
     public void saveCourse(EnrolmentDbRequestModel requestModel) {
@@ -73,8 +66,9 @@ public class SessionDbGateway implements SessionGateway {
             List<Integer> points = requestModel.getPoints();
 
             for (int j = 0; j < questions.size(); j++) {
-                PreparedStatement statement = connection.prepareStatement(
-                        "INSERT INTO " + DATABASE_NAME_COURSE + " (CourseID, Question, Answer, Points) VALUES (?, ?, ?, ?)");
+                String SQL = "INSERT INTO " + DATABASE_NAME_COURSE +
+                        " (CourseID, Question, Answer, Points) VALUES (?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, requestModel.getCourseID());
                 statement.setString(2, questions.get(j));
                 statement.setString(3, "");
@@ -83,6 +77,7 @@ public class SessionDbGateway implements SessionGateway {
             }
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
     }
 
@@ -97,7 +92,9 @@ public class SessionDbGateway implements SessionGateway {
             Map<String, Integer> courses = requestModel.getCourses();
 
             for (Map.Entry<String, Integer> course : courses.entrySet()) {
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO " + DATABASE_NAME_STUDENT + " (StudentID, CourseID, CourseGrade) VALUES (?, ?, ?)");
+                String SQL = "INSERT INTO " + DATABASE_NAME_STUDENT +
+                        " (StudentID, CourseID, CourseGrade) VALUES (?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, requestModel.getUsername());
                 statement.setString(2, course.getKey());
                 statement.setString(3, course.getValue().toString());
@@ -109,10 +106,18 @@ public class SessionDbGateway implements SessionGateway {
         }
     }
 
+    /**
+     * Obtains the course questions from the session database. Since there can only be one course on the session
+     * database at a time, a course id is not required as an input parameter since the questions are retrieved
+     * from the only course in there.
+     *
+     * @return List of Strings representing the courses questions.
+     */
     public List<String> getCourseQuestions() {
         List<String> questions = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME_COURSE);
+            String SQL = "SELECT * FROM " + DATABASE_NAME_COURSE;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -120,28 +125,50 @@ public class SessionDbGateway implements SessionGateway {
             }
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
         return questions;
     }
 
+    /**
+     * Delete the current user on the session database. This method is called after a user logs out of the program.
+     * This method is also called during initialization of the databases: when the program shuts down or is exited
+     * incorrectly, there may be data in the session database at the start of the program which would need
+     * to be deleted.
+     */
     public void deleteStudentSession() {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM " + DATABASE_NAME_STUDENT);
+            String SQL = "TRUNCATE " + DATABASE_NAME_STUDENT;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Delete the current course on the session database. This method is called after a user completes the course,
+     * receives a grade, and is automatically un-enrolled from the course. This method is also called during
+     * initialization of the databases: when the program shuts down or is exited incorrectly, there may be data in the
+     * session database at the start of the program which would need to be deleted.
+     */
     public void deleteCourseSession() {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM " + DATABASE_NAME_COURSE);
+            String SQL = "TRUNCATE " + DATABASE_NAME_COURSE;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Saves the students answers to the session database.
+     *
+     * @param requestModel data structure with the questions and answers to be saved.
+     */
     @Override
     public void saveAnswers(RunCourseDbRequestModel requestModel) {
         try {
@@ -149,7 +176,8 @@ public class SessionDbGateway implements SessionGateway {
             List<String> answers = requestModel.getAnswers();
 
             for (int j = 0; j < questions.size(); j++) {
-                PreparedStatement statement = connection.prepareStatement("UPDATE " + DATABASE_NAME_COURSE + " SET Answer = ? WHERE Question = ?");
+                String SQL = "UPDATE " + DATABASE_NAME_COURSE + " SET Answer = ? WHERE Question = ?";
+                PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, answers.get(j));
                 statement.setString(2, questions.get(j));
                 statement.executeUpdate();
@@ -160,6 +188,12 @@ public class SessionDbGateway implements SessionGateway {
         }
     }
 
+    /**
+     * Retrieves the current course from the session database. This represents the course that the student has
+     * answered.
+     *
+     * @return EvaluatorDbResponseModel with the questions, answers, and points per question.
+     */
     @Override
     public EvaluatorDbResponseModel retrieveCourse() {
         EvaluatorDbResponseModel responseModel = new EvaluatorDbResponseModel();
@@ -168,7 +202,8 @@ public class SessionDbGateway implements SessionGateway {
             List<String> answers = new ArrayList<>();
             List<Integer> points = new ArrayList<>();
 
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME_COURSE);
+            String SQL = "SELECT * FROM " + DATABASE_NAME_COURSE;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
 
             resultSet.next();
@@ -190,10 +225,17 @@ public class SessionDbGateway implements SessionGateway {
         return responseModel;
     }
 
+    /**
+     * Retrieves the courseID of the current user logged in. There can only be one user in the session database thus
+     * it returns the only username on the database.
+     *
+     * @return String being the username of the current student.
+     */
     @Override
     public String retrieveStudentId() {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT StudentID FROM " + DATABASE_NAME_STUDENT);
+            String SQL = "SELECT DISTINCT StudentID FROM " + DATABASE_NAME_STUDENT;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
 
             resultSet.next();

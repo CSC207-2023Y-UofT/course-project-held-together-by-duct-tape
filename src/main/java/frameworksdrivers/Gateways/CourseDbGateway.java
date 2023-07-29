@@ -10,7 +10,6 @@ import java.util.List;
 import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
-import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
@@ -32,7 +31,8 @@ public class CourseDbGateway implements CourseGateway {
     public List<String> getCourseIDs() {
         List<String> courses = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT CourseID FROM " + DATABASE_NAME);
+            String SQL = "SELECT DISTINCT CourseID FROM " + DATABASE_NAME;
+            PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -41,36 +41,43 @@ public class CourseDbGateway implements CourseGateway {
             return courses;
         } catch (SQLException e) {
             System.out.println("Error with database!");
+            e.printStackTrace();
         }
         return courses;
     }
 
+    // THIS METHOD IS NOT NEEDED ???
     /**
      * Checks if ID exists in Course Database.
+     *
      * @param courseId the course ID
      * @return true if the course is in Course Database, false if not.
      */
     @Override
     public boolean existsByCourseId(String courseId) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            String SQL = "SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, courseId);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
         return false;
     }
 
     /**
      * Retrieves course from Course Database.
+     *
      * @param requestModel the course ID
      */
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            String SQL = "SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, requestModel.getCourseID());
             ResultSet resultSet = statement.executeQuery();
 
@@ -89,11 +96,18 @@ public class CourseDbGateway implements CourseGateway {
             requestModel.setQuestions(questions);
             requestModel.setPoints(points);
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Retrieves the course from the database.
+     *
+     * THE SAME METHOD AS ABOVE ? JUST A DIFFERENT MODEL?
+     *
+     * @param requestModel with the courseID to be retrieved.
+     */
     @Override
     public void findCourse(EvaluatorDbResponseModel requestModel) {
         try {
@@ -101,7 +115,8 @@ public class CourseDbGateway implements CourseGateway {
             List<String> answers = new ArrayList<>();
             List<Integer> points = new ArrayList<>();
 
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            String SQL = "SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, requestModel.getCourseId());
             ResultSet resultSet = statement.executeQuery();
 
@@ -117,8 +132,8 @@ public class CourseDbGateway implements CourseGateway {
             requestModel.setAnswers(answers);
             requestModel.setPoints(points);
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println("Error with the database!");
+            e.printStackTrace();
         }
     }
 }

@@ -1,7 +1,6 @@
 package usecases.LoginStudentUseCase;
 
-import frameworksdrivers.SessionDbGatewayMock;
-import frameworksdrivers.StudentDbGatewayMock;
+import frameworksdriversmock.DatabaseDriverMock;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginUserFailed;
 
@@ -21,10 +20,10 @@ class LoginStudentInteractorTest {
      */
     @BeforeEach
     public void init() {
-        StudentDbGatewayMock studentDbGateway = new StudentDbGatewayMock();
-        SessionDbGatewayMock sessionDbGateway = new SessionDbGatewayMock();
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
-        loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
+        DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
+
+        loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGatewayMock(), databaseDriver.getSessionDbGatewayMock(), loginPresenter);
     }
 
     /**

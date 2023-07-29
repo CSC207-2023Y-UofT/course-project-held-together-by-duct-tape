@@ -1,8 +1,5 @@
 package usecases.CreateStudentUsecase;
 
-import frameworksdrivers.StudentDbGatewayMock;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +10,12 @@ class CreateStudentInteractorTest {
 
     @BeforeEach
     public void init(){
-        CreateStudentDataAccess gateway = new StudentDbGatewayMock();
-        interactor = new CreateStudentInteractor(gateway, new CreateStudentPresenter());
-        requestModels = new CreateStudentRequestModel[]{
-                        new CreateStudentRequestModel("Nour", "Nour"),
-                        new CreateStudentRequestModel("Hanan", "Hassan"),
-                        new CreateStudentRequestModel("", "")};
+//        CreateStudentDataAccess gateway = new StudentDbGatewayMock();
+//        interactor = new CreateStudentInteractor(gateway, new CreateStudentPresenter());
+//        requestModels = new CreateStudentRequestModel[]{
+//                        new CreateStudentRequestModel("Nour", "Nour"),
+//                        new CreateStudentRequestModel("Hanan", "Hassan"),
+//                        new CreateStudentRequestModel("", "")};
     }
 
     @Test

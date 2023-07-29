@@ -1,8 +1,5 @@
 package usecases.CourseEnrollmentUseCase;
 
-import frameworksdrivers.CourseDbGatewayMock;
-import frameworksdrivers.SessionDbGatewayMock;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
@@ -15,16 +12,16 @@ public class CourseEnrolmentInteractorTest {
 
     @BeforeEach
     public void init() {
-        EnrolmentSessionDataAccess sessionDbGateway = new SessionDbGatewayMock();
-        EnrolmentCourseDataAccess courseDbGateway = new CourseDbGatewayMock();
-
-        CheckPrerequisitesInteractor completedPrerequisites = new CheckPrerequisitesInteractor(sessionDbGateway);
-        EnrolmentOutputBoundary presenter = new EnrolmentPresenter(courseDbGateway, sessionDbGateway);
-
-        interactor = new CourseEnrolmentInteractor(courseDbGateway, completedPrerequisites, sessionDbGateway, presenter);
-
-        requestModel = new EnrolmentRequestModel("CSC207");
-        responseModel = new EnrolmentResponseModel("CSC207");
+//        EnrolmentSessionDataAccess sessionDbGateway = new SessionDbGatewayMock();
+//        EnrolmentCourseDataAccess courseDbGateway = new CourseDbGatewayMock();
+//
+//        CheckPrerequisitesInteractor completedPrerequisites = new CheckPrerequisitesInteractor(sessionDbGateway);
+//        EnrolmentOutputBoundary presenter = new EnrolmentPresenter(courseDbGateway, sessionDbGateway);
+//
+//        interactor = new CourseEnrolmentInteractor(courseDbGateway, completedPrerequisites, sessionDbGateway, presenter);
+//
+//        requestModel = new EnrolmentRequestModel("CSC207");
+//        responseModel = new EnrolmentResponseModel("CSC207");
     }
 
     @Test

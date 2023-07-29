@@ -39,17 +39,12 @@ public class StudentDbGatewayMock implements LoginStudentDataAccess, CreateStude
     }
 
     @Override
-    public boolean isUnique(String username) {
-        return false;
-    }
-
-    @Override
-    public void save(CreateStudentDsModel student) {}
-
-    @Override
     public boolean usernameExists(String username) {
         return studentIDs.contains(username);
     }
+
+    @Override
+    public void saveUser(CreateStudentDsModel student) {}
 
     @Override
     public void getUser(LoginStudentDbRequestModel dbRequestModel) {

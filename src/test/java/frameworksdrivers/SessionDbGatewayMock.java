@@ -20,5 +20,8 @@ public class SessionDbGatewayMock implements LoginSessionDataAccess, EnrolmentSe
     public void saveCourse(EnrolmentDbRequestModel requestModel) {}
 
     @Override
+    public void deleteCourseSession() {}
+
+    @Override
     public void saveUser(LoginStudentDbRequestModel requestModel) {}
 }

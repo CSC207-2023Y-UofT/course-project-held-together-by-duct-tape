@@ -4,6 +4,7 @@ import interfaceadapters.RunCourseInterfaceAdapters.RunCourseController;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.GenericProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -12,10 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RunCourseScreen extends JPanel implements ActionListener {
-    private String question1;
-    private final JTextField answer1 = new JTextField(25);
-    private String question2;
-    private final JTextField answer2 = new JTextField(25);
+    private List<String> questions = new ArrayList<>();
+    private List<JTextField> answers = new ArrayList<>();
     private final GenericProperties genericProperties;
     private final RunCourseController controller;
     private final RunCoursePresenter presenter;
@@ -29,52 +28,79 @@ public class RunCourseScreen extends JPanel implements ActionListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
         this.add(title);
     }
 
     public void renderQuestions() {
-        List<String> questions = presenter.getCourseQuestions();
-        this.question1 = questions.get(0);
-        this.question2 = questions.get(1);
+        List<String> questionsCourse = presenter.getCourseQuestions();
+        setUpAnswers(questionsCourse.size());
 
-        JPanel question1Panel = new JPanel();
-        question1Panel.add(new JLabel(question1));
-        question1Panel.add(answer1);
-        JPanel question2Panel = new JPanel();
-        question2Panel.add(new JLabel(question2));
-        question2Panel.add(answer2);
+        for (int j = 0; j < questionsCourse.size(); j++) {
+            questions.add(questionsCourse.get(j));
+            JPanel questionPanel = new JPanel();
+            questionPanel.add(new JLabel(questions.get(j)));
 
-        JButton save = new JButton("Save Course");
-        JButton evaluate = new JButton("Evaluate");
+            JPanel answerPanel = new JPanel();
+            answerPanel.add(answers.get(j));
+
+            this.add(questionPanel);
+            this.add(answerPanel);
+        }
+
+        JButton save = new JButton("Evaluate Course");
         JButton unenroll = new JButton("Unenroll");
 
         JPanel buttons = new JPanel();
         buttons.add(save);
         buttons.add(unenroll);
 
-        JPanel button = new JPanel();
-        buttons.add(evaluate);
-
         save.addActionListener(this);
         unenroll.addActionListener(this);
-        evaluate.addActionListener(this);
 
-        this.add(question1Panel);
-        this.add(question2Panel);
         this.add(buttons);
-        this.add(button);
+    }
+
+    public void setUpAnswers(int size) {
+        for (int j = 0; j < size; j++) {
+            JTextField answer = new JTextField(25);
+            answers.add(answer);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         System.out.println("Event " + event.getActionCommand());
 
-        if (event.getActionCommand().equals("Unenroll")) {
+        if (event.getActionCommand().equals("Evaluate Course")) {
+            List<String> answersCourse = formatAnswers();
+            JOptionPane.showMessageDialog(this, controller.runCourse(answersCourse));
+        } else if (event.getActionCommand().equals("Unenroll")) {
             presenter.deleteCourseSession();
-            genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
         }
 
+        presenter.deleteCourseSession();
+        genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
+        clearFields();
+    }
 
+    public List<String> formatAnswers() {
+        List<String> answerList = new ArrayList<>();
+        for (JTextField answer : answers) {
+            answerList.add(answer.getText());
+        }
+        return answerList;
+    }
+
+    public void clearFields() {
+        questions = new ArrayList<>();
+        answers = new ArrayList<>();
+
+        Component[] components = this.getComponents();
+
+        for (Component component : components) {
+            if (!(component instanceof JLabel)) {
+                this.remove(component);
+            }
+        }
     }
 }

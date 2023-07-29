@@ -1,12 +1,14 @@
 package frameworksdriversmock;
 
-import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
+import frameworksdrivers.CourseGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CourseEvaluator.EvaluatorDbResponseModel;
+import usecases.CourseEvaluator.EvaluatorRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDbGatewayMock implements EnrolmentCourseDataAccess {
+public class CourseDbGatewayMock implements CourseGateway {
     private final List<String> courseIDs = new ArrayList<>();
     private final List<String> prerequisiteIDs = new ArrayList<>();
     private final List<Integer> prerequisiteGrades = new ArrayList<>();
@@ -41,17 +43,22 @@ public class CourseDbGatewayMock implements EnrolmentCourseDataAccess {
 
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
-        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseID());
+//        EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseID());
 
         int courseIndex = courseIDs.indexOf(requestModel.getCourseID());
-        dbRequestModel.setPrerequisiteID(prerequisiteIDs.get(courseIndex));
-        dbRequestModel.setPrerequisiteGrade(prerequisiteGrades.get(courseIndex));
-        dbRequestModel.setQuestions(allQuestions.get(courseIndex));
-        dbRequestModel.setPoints(allPoints.get(courseIndex));
+        requestModel.setPrerequisiteID(prerequisiteIDs.get(courseIndex));
+        requestModel.setPrerequisiteGrade(prerequisiteGrades.get(courseIndex));
+        requestModel.setQuestions(allQuestions.get(courseIndex));
+        requestModel.setPoints(allPoints.get(courseIndex));
     }
 
     @Override
     public List<String> getCourseIDs() {
         return courseIDs;
+    }
+
+    @Override
+    public EvaluatorDbResponseModel findCourse(EvaluatorRequestModel requestModel) {
+        return null;
     }
 }

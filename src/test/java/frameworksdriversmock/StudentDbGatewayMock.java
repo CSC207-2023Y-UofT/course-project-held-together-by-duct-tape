@@ -1,9 +1,9 @@
 package frameworksdriversmock;
 
-import usecases.CreateStudentUsecase.CreateStudentDataAccess;
+import frameworksdrivers.StudentGateway;
 
+import usecases.CourseEvaluator.EvaluatorDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
-import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 
@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StudentDbGatewayMock implements LoginStudentDataAccess, CreateStudentDataAccess {
+public class StudentDbGatewayMock implements StudentGateway {
     private final List<String> studentIDs = new ArrayList<>();
     private final List<String> passwords = new ArrayList<>();
     private final List<Map<String, Integer>> courses = new ArrayList<>();
@@ -56,5 +56,10 @@ public class StudentDbGatewayMock implements LoginStudentDataAccess, CreateStude
     public boolean checkPassword(LoginStudentRequestModel requestModel) {
         int studentIndex = studentIDs.indexOf(requestModel.getUsername());
         return passwords.get(studentIndex).equals(requestModel.getPassword());
+    }
+
+    @Override
+    public int saveGPA(EvaluatorDbRequestModel requestModel) {
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 package frameworksdrivers;
 
-public class DatabaseDriver {
+public class DatabaseDriver implements Driver {
     private final StudentDbGateway studentDbGateway;
     private final SessionDbGateway sessionDbGateway;
     private final CourseDbGateway courseDbGateway;

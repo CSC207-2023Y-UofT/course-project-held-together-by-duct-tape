@@ -1,4 +1,4 @@
-package frameworksdrivers;
+package frameworksdriversmock;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;

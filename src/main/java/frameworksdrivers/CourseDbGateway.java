@@ -10,7 +10,6 @@ import java.util.List;
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentCourseDataAccess;
-import entities.Prerequisite;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from

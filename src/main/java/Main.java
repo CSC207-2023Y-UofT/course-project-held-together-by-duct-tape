@@ -1,4 +1,4 @@
-import frameworksdrivers.*;
+import frameworksdrivers.DatabaseDriver;
 
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
@@ -27,7 +27,7 @@ public class Main {
         // Components
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
-        // CreateStudent Use Case
+        // Presenters
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);

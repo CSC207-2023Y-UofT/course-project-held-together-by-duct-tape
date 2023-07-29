@@ -1,4 +1,4 @@
-package usecases.CourseEvaluator;
+package usecases.CourseEvaluatorUseCase;
 
 
 import entities.Course;
@@ -35,17 +35,17 @@ public class EvaluatorInteractor implements EvaluatorInputBoundary {
      * the student grade is saved to the Student data access.
      * Then the presenter prepares success/fail views depending on each case.
      *
-     * @param requestModel data structure packaging the courseId.
      * @return String prepare success and fail view.
      */
 
 
-    public String evaluate(EvaluatorRequestModel requestModel) {
+    public String evaluate() {
 
         // creates response model for student and course and creates a course for each of them as well
 
-        EvaluatorDbResponseModel studentResponseModel = sessionDataAccess.retrieveCourse(requestModel);
+        EvaluatorDbResponseModel studentResponseModel = sessionDataAccess.retrieveCourse();
 
+        EvaluatorRequestModel requestModel = new EvaluatorRequestModel(studentResponseModel.getCourseId());
         EvaluatorDbResponseModel courseResponseModel = courseDbGateway.findCourse(requestModel);
 
         Course studentsCourse = courseFactory.create(studentResponseModel.getCourseId(), studentResponseModel.getQuestions(),

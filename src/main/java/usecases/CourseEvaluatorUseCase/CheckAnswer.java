@@ -1,4 +1,4 @@
-package usecases.CourseEvaluator;
+package usecases.CourseEvaluatorUseCase;
 import entities.Course;
 
 

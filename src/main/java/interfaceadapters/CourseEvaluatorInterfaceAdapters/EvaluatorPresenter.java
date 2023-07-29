@@ -1,7 +1,7 @@
-package interfaceadapters.CourseEvaluator;
+package interfaceadapters.CourseEvaluatorInterfaceAdapters;
 
-import usecases.CourseEvaluator.EvaluatorOutputBoundary;
-import usecases.CourseEvaluator.EvaluatorResponseModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorOutputBoundary;
+import usecases.CourseEvaluatorUseCase.EvaluatorResponseModel;
 
 public class EvaluatorPresenter implements EvaluatorOutputBoundary {
 

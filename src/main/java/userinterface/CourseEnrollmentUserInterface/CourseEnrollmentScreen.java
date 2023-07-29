@@ -64,7 +64,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         }
 
         if (event.getActionCommand().equals("Logout")) {
-            // logout use case (delete information from session database)
+            enrollmentPresenter.deleteStudentSession();
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
             return ;
         }

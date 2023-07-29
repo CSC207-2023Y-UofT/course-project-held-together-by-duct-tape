@@ -1,4 +1,4 @@
-package frameworksdrivers;
+package frameworksdrivers.Gateways;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.HashMap;
 
+import frameworksdrivers.DbConnection;
 import usecases.CourseEvaluatorUseCase.*;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;

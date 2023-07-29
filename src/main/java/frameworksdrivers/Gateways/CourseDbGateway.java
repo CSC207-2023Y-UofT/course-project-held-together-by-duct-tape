@@ -1,4 +1,4 @@
-package frameworksdrivers;
+package frameworksdrivers.Gateways;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorRequestModel;
@@ -51,13 +52,20 @@ public class CourseDbGateway implements CourseGateway {
      */
     @Override
     public boolean existsByCourseId(String courseId) {
-        return true;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            statement.setString(1, courseId);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
+        return false;
     }
 
     /**
      * Retrieves course from Course Database.
      * @param requestModel the course ID
-     * @return a response model containing the course.
      */
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
@@ -87,7 +95,30 @@ public class CourseDbGateway implements CourseGateway {
     }
 
     @Override
-    public EvaluatorDbResponseModel findCourse(EvaluatorRequestModel requestModel) {
-        return null;
+    public void findCourse(EvaluatorDbResponseModel requestModel) {
+        try {
+            List<String> questions = new ArrayList<>();
+            List<String> answers = new ArrayList<>();
+            List<Integer> points = new ArrayList<>();
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?");
+            statement.setString(1, requestModel.getCourseId());
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.next();
+
+            do {
+                questions.add(resultSet.getString(4));
+                answers.add(resultSet.getString(5));
+                points.add(resultSet.getInt(6));
+            } while (resultSet.next());
+
+            requestModel.setQuestions(questions);
+            requestModel.setAnswers(answers);
+            requestModel.setPoints(points);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error with the database!");
+        }
     }
 }

@@ -1,5 +1,6 @@
-package frameworksdrivers;
+package frameworksdrivers.Gateways;
 
+import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
+import java.util.Map;
 
 /**
  * Gateway that accesses and interacts with the Session Database. It has a reference to the connection obtained from
@@ -33,7 +35,21 @@ public class SessionDbGateway implements SessionGateway {
      */
     @Override
     public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel) {
-        return true;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT CourseID, CourseGrade FROM " + DATABASE_NAME_STUDENT);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                boolean course = resultSet.getString(1).equals(requestModel.getCourseID());
+                boolean grade = resultSet.getInt(2) == requestModel.getPrerequisiteGrade();
+                if (course && grade) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
+        return false;
     }
 
     /**
@@ -77,7 +93,22 @@ public class SessionDbGateway implements SessionGateway {
      *
      * @param requestModel student username.
      */
-    public void saveUser(LoginStudentDbRequestModel requestModel) {}
+    public void saveUser(LoginStudentDbRequestModel requestModel) {
+        try {
+            Map<String, Integer> courses = requestModel.getCourses();
+
+            for (Map.Entry<String, Integer> course : courses.entrySet()) {
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO " + DATABASE_NAME_STUDENT + " (StudentID, CourseID, CourseGrade) VALUES (?, ?, ?)");
+                statement.setString(1, requestModel.getUsername());
+                statement.setString(2, course.getKey());
+                statement.setString(3, course.getValue().toString());
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with the database");
+            e.printStackTrace();
+        }
+    }
 
     public List<String> getCourseQuestions() {
         List<String> questions = new ArrayList<>();
@@ -92,6 +123,15 @@ public class SessionDbGateway implements SessionGateway {
             System.out.println("Error with the database!");
         }
         return questions;
+    }
+
+    public void deleteStudentSession() {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM " + DATABASE_NAME_STUDENT);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+        }
     }
 
     public void deleteCourseSession() {

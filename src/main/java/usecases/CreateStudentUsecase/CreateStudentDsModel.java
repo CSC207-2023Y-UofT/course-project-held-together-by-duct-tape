@@ -20,7 +20,7 @@ public class CreateStudentDsModel {
         return student.getStudentId();
     }
 
-    public Map<String, Integer> getCourseList() {
+    public Map<String, Float> getCourseList() {
         return student.getCourses();
     }
 

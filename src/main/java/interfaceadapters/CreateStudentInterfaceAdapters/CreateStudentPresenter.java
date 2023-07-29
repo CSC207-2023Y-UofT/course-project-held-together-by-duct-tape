@@ -1,5 +1,5 @@
 package interfaceadapters.CreateStudentInterfaceAdapters;
-import entities.StudentFactory;
+
 import frameworksdrivers.Driver;
 import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;

@@ -5,7 +5,7 @@ import java.util.List;
 public class EnrolmentDbRequestModel {
     private final String courseID;
     private String prerequisiteID;
-    private int prerequisiteGrade;
+    private float prerequisiteGrade;
     private List<String> questions;
     private List<Integer> points;
 
@@ -25,7 +25,7 @@ public class EnrolmentDbRequestModel {
         return prerequisiteID;
     }
 
-    public int getPrerequisiteGrade() {
+    public float getPrerequisiteGrade() {
         return prerequisiteGrade;
     }
 
@@ -41,7 +41,7 @@ public class EnrolmentDbRequestModel {
         this.prerequisiteID = prerequisiteID;
     }
 
-    public void setPrerequisiteGrade(int prerequisiteGrade) {
+    public void setPrerequisiteGrade(float prerequisiteGrade) {
         this.prerequisiteGrade = prerequisiteGrade;
     }
 

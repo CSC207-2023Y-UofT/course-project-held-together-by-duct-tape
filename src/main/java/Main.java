@@ -18,7 +18,6 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-
         // Application set-up
         JFrame application = new JFrame();
         CardLayout cards = new CardLayout();

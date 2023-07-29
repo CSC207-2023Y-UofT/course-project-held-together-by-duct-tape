@@ -1,7 +1,5 @@
 package usecases.CourseEvaluator;
 
-import java.util.List;
-
 
 public class EvaluatorResponseModel {
     private String courseId;

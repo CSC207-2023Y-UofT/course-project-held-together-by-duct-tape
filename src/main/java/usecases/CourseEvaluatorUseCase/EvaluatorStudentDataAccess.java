@@ -1,5 +1,5 @@
 package usecases.CourseEvaluatorUseCase;
 
-public interface StudentDataAccess {
-    float saveGPA (EvaluatorDbRequestModel requestModel);
+public interface EvaluatorStudentDataAccess {
+    void saveGPA (EvaluatorDbRequestModel requestModel);
 }

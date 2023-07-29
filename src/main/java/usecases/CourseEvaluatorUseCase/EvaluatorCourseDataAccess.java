@@ -1,5 +1,5 @@
 package usecases.CourseEvaluatorUseCase;
 
-public interface CourseDataAccess {
+public interface EvaluatorCourseDataAccess {
     void findCourse(EvaluatorDbResponseModel responseModel);
 }

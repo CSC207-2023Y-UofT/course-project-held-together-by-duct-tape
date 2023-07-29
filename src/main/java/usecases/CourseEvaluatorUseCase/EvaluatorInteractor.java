@@ -2,13 +2,13 @@ package usecases.CourseEvaluatorUseCase;
 
 public class EvaluatorInteractor implements EvaluatorInputBoundary {
    private final EvaluatorOutputBoundary presenter;
-   private final StudentDataAccess studentDataAccess;
-   private final CourseDataAccess courseDbGateway;
+   private final EvaluatorStudentDataAccess studentDataAccess;
+   private final EvaluatorCourseDataAccess courseDbGateway;
    private final EvaluatorSessionDataAccess sessionDataAccess;
 
-   public EvaluatorInteractor(EvaluatorOutputBoundary presenter, CourseDataAccess courseDbGateway,
+   public EvaluatorInteractor(EvaluatorOutputBoundary presenter, EvaluatorCourseDataAccess courseDbGateway,
                               EvaluatorSessionDataAccess sessionDataAccess,
-                              StudentDataAccess studentDataAccess) {
+                              EvaluatorStudentDataAccess studentDataAccess) {
        this.presenter = presenter;
        this.courseDbGateway = courseDbGateway;
        this.sessionDataAccess = sessionDataAccess;

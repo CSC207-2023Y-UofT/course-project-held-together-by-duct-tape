@@ -2,8 +2,8 @@ package usecases.CourseEvaluatorUseCase;
 
 
 public class EvaluatorResponseModel {
-    private String courseId;
-    private float percentage;
+    private final String courseId;
+    private final float percentage;
 
     public EvaluatorResponseModel(String courseId, float percentage) {
         this.courseId = courseId;

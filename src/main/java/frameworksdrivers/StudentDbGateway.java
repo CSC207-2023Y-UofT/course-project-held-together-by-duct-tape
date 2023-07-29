@@ -1,18 +1,29 @@
 package frameworksdrivers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
 import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 
 /**
- * MOCK GATEWAY: Currently a mock gateway such that the interactor is able to perform
- * its function. Once the databases are chosen, the gateway will be modified.
+ * Gateway that accesses and interacts with the Student Database. It has a reference to the connection obtained from
+ * DbConnection. Implements the various interfaces so that interactors are able to access information from the database.
  */
 public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
+    private final Connection connection;
+
+    public StudentDbGateway(DbConnection dbConnection) {
+        this.connection = dbConnection.connect();
+    }
+
     /**
      * Method returns a boolean whether a username exists in the student database.
      *
@@ -21,7 +32,15 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
      */
     @Override
     public boolean usernameExists(String username) {
-        return true;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
+        return false;
     }
 
     /**
@@ -29,23 +48,43 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
      *
      * @param dbRequestModel request model that is updated with the students courses.
      */
+    @Override
     public void getUser(LoginStudentDbRequestModel dbRequestModel) {
-        Map<String, Integer> courses = new HashMap<String, Integer>();
-        courses.put("csc148", 90);
-        dbRequestModel.setCourses(courses);
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM students WHERE StudentID = ?");
+            statement.setString(1, dbRequestModel.getUsername());
+            ResultSet resultSet = statement.executeQuery();
 
+            Map<String, Integer> courses = new HashMap<String, Integer>();
+            while (resultSet.next()) {
+                // CourseID, CourseGrade
+                courses.put(resultSet.getString(2), resultSet.getInt(3));
+            }
+
+            dbRequestModel.setCourses(courses);
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
     }
 
+    /**
+     * Method saves the user info stored in "student" to the database.
+     *
+     * @param student model that stores what will be saved onto the database.
+     */
     @Override
-    /** Method returns whether the username is unique meaning that it's not already present in the database
-     * @param username is the username that is checked for whether it is unique*/
-    public boolean isUnique(String username) {
-        return true;
-    }
-    /** Method saves the user info stored in "student" to the database
-     *@param student this a model that stores what will be saved onto the database*/
-    @Override
-    public void save(CreateStudentDsModel student) { System.out.println("It saved!");
-
+    public void saveUser(CreateStudentDsModel student) {
+        try{
+        Map<String, Integer> courses = student.getCourseList();
+        List<String> courseNames = (List<String>) courses.keySet();
+        for(String course: courseNames){
+            courses.get(course);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO students (StudentID, Password," +
+                    " CourseID, CourseGrade) Values (" +student.getUsername() +", " + student.getPassword() +", "+
+                    course +", "+ courses.get(course)+")");
+            statement.executeQuery();}
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
     }
 }

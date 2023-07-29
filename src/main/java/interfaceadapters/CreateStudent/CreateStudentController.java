@@ -6,6 +6,6 @@ public class CreateStudentController {
     public CreateStudentController(CreateStudentInputBoundary interactor){
         this.interactor = interactor;}
 
-    public String create(String username, String repeat){
-        CreateStudentRequestModel requestModel = new CreateStudentRequestModel(username, repeat);
+    public String create(String username, String repeat, String password){
+        CreateStudentRequestModel requestModel = new CreateStudentRequestModel(username, repeat, password);
         return interactor.createStudent(requestModel);}}

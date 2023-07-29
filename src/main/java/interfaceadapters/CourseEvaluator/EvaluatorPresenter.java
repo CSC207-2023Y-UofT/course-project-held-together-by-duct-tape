@@ -10,7 +10,4 @@ public class EvaluatorPresenter implements EvaluatorOutputBoundary {
         return "You got " + grade.getPercentage() + "%" + " in " + grade.getCourseId();
     }
 
-
-
-
 }

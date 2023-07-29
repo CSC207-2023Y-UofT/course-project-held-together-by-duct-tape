@@ -1,11 +1,5 @@
 package usecases.CourseEnrollmentUseCase;
 
-import entities.Course;
-import entities.CourseFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private final CheckPrerequisitesInteractor completedPrerequisite;
     private final EnrolmentSessionDataAccess sessionDbGateway;
@@ -46,7 +40,7 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
 
         if (!completedPrerequisite.checkPrerequisite(dbRequestModel)) {
             return enrolmentPresenter.prepareFailView("You have not completed the prerequisites " +
-                        "for the course");
+                        "for the course.\nPrerequisite: " + dbRequestModel.getPrerequisiteID() + " Grade: " + dbRequestModel.getPrerequisiteGrade());
         }
 
         sessionDbGateway.saveCourse(dbRequestModel);

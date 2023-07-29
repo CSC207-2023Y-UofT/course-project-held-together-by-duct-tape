@@ -1,8 +1,5 @@
 package usecases.CourseEnrollmentUseCase;
 
-
-import entities.Course;
-
 public class CheckPrerequisitesInteractor {
     private final EnrolmentSessionDataAccess sessionDbGateway;
 
@@ -22,7 +19,6 @@ public class CheckPrerequisitesInteractor {
             return true;
         }
 
-        // sessionDbGateway.hasCompletedCourse(requestModel);
         return sessionDbGateway.hasCompletedCourse(requestModel);
     }
 }

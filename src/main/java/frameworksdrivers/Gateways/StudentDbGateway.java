@@ -78,7 +78,6 @@ public class StudentDbGateway implements StudentGateway {
 
             resultSet.next();
             return resultSet.getString(2).equals(requestModel.getPassword());
-            // return resultSet.getString(2).equals(requestModel.getPassword());
         } catch (SQLException e) {
             System.out.println("Error with database!");
         }
@@ -100,7 +99,7 @@ public class StudentDbGateway implements StudentGateway {
                 statement.setString(1, student.getUsername());
                 statement.setString(2, student.getPassword());
                 statement.setString(3, course.getKey());
-                statement.setString(4, "0");
+                statement.setFloat(4, 0.0f);
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -109,7 +108,16 @@ public class StudentDbGateway implements StudentGateway {
     }
 
     @Override
-    public int saveGPA(EvaluatorDbRequestModel requestModel) {
-        return 0;
+    public float saveGPA(EvaluatorDbRequestModel requestModel) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE " + DATABASE_NAME + " SET CourseGrade = ? WHERE StudentID = ? AND CourseID = ?");
+            statement.setFloat(1, requestModel.getGrade());
+            statement.setString(2, requestModel.getStudentID());
+            statement.setString(3, requestModel.getCourseID());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error with database!");
+        }
+        return requestModel.getGrade();
     }
 }

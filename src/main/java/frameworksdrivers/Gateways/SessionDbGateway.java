@@ -36,16 +36,15 @@ public class SessionDbGateway implements SessionGateway {
     @Override
     public boolean hasCompletedCourse(EnrolmentDbRequestModel requestModel) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT CourseID, CourseGrade FROM " + DATABASE_NAME_STUDENT);
+            PreparedStatement statement = connection.prepareStatement("SELECT CourseID, CourseGrade FROM " + DATABASE_NAME_STUDENT + " WHERE CourseID=?");
+            statement.setString(1, requestModel.getPrerequisiteID());
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                boolean course = resultSet.getString(1).equals(requestModel.getCourseID());
-                boolean grade = resultSet.getInt(2) == requestModel.getPrerequisiteGrade();
-                if (course && grade) {
-                    return true;
-                }
+            if (!resultSet.next()) {
+                return false;
             }
+
+            return resultSet.getInt(2) == requestModel.getPrerequisiteGrade();
         } catch (SQLException e) {
             System.out.println("Error with the database!");
         }
@@ -144,15 +143,65 @@ public class SessionDbGateway implements SessionGateway {
     }
 
     @Override
-    public void saveAnswers(RunCourseDbRequestModel requestModel) {}
+    public void saveAnswers(RunCourseDbRequestModel requestModel) {
+        try {
+            List<String> questions = requestModel.getQuestions();
+            List<String> answers = requestModel.getAnswers();
+
+            for (int j = 0; j < questions.size(); j++) {
+                PreparedStatement statement = connection.prepareStatement("UPDATE " + DATABASE_NAME_COURSE + " SET Answer = ? WHERE Question = ?");
+                statement.setString(1, answers.get(j));
+                statement.setString(2, questions.get(j));
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public EvaluatorDbResponseModel retrieveCourse() {
-        return null;
+        EvaluatorDbResponseModel responseModel = new EvaluatorDbResponseModel();
+        try {
+            List<String> questions = new ArrayList<>();
+            List<String> answers = new ArrayList<>();
+            List<Integer> points = new ArrayList<>();
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + DATABASE_NAME_COURSE);
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.next();
+            responseModel.setCourseId(resultSet.getString(1));
+
+            do {
+                questions.add(resultSet.getString(2));
+                answers.add(resultSet.getString(3));
+                points.add(resultSet.getInt(4));
+            } while (resultSet.next());
+
+            responseModel.setQuestions(questions);
+            responseModel.setAnswers(answers);
+            responseModel.setPoints(points);
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+        return responseModel;
     }
 
     @Override
     public String retrieveStudentId() {
-        return null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT StudentID FROM " + DATABASE_NAME_STUDENT);
+            ResultSet resultSet = statement.executeQuery();
+
+            resultSet.next();
+            return resultSet.getString(1);
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+        return "";
     }
 }

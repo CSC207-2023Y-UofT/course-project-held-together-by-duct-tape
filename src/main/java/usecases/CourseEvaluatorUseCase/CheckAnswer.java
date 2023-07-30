@@ -1,6 +1,8 @@
 package usecases.CourseEvaluatorUseCase;
 
 import entities.Course;
+import entities.CourseBuilder.CourseBuilder;
+import entities.CourseBuilder.CourseNoPrerequisiteBuilder;
 import entities.CourseFactory;
 
 import java.text.DecimalFormat;
@@ -9,13 +11,20 @@ public class CheckAnswer {
     public static float compare(EvaluatorDbResponseModel studentResponseModel,
                               EvaluatorDbResponseModel courseResponseModel) {
         // Creates two course objects, original and the student
-        Course student = CourseFactory.create(studentResponseModel.getCourseId(),
-                studentResponseModel.getQuestions(), studentResponseModel.getAnswers(),
+        CourseBuilder courseStudentBuilder = new CourseNoPrerequisiteBuilder(studentResponseModel.getCourseId(), studentResponseModel.getQuestions(), studentResponseModel.getAnswers(),
                 studentResponseModel.getPoints());
+        CourseFactory courseFactory = new CourseFactory(courseStudentBuilder);
+        courseFactory.create();
 
-        Course original = CourseFactory.create(courseResponseModel.getCourseId(),
+        Course student = courseStudentBuilder.getProduct();
+
+        CourseBuilder courseOriginalBuilder = new CourseNoPrerequisiteBuilder(courseResponseModel.getCourseId(),
                 courseResponseModel.getQuestions(), courseResponseModel.getAnswers(),
                 courseResponseModel.getPoints());
+        courseFactory.setBuilder(courseOriginalBuilder);
+        courseFactory.create();
+
+        Course original = courseOriginalBuilder.getProduct();
 
         float counter = 0;
 

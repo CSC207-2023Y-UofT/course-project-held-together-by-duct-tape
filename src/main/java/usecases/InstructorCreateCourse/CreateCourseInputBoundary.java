@@ -1,4 +1,4 @@
-package usecases.InstructorCreateCoursesUseCase;
+package usecases.InstructorCreateCourse;
 import entities.*;
 
 public interface CreateCourseInputBoundary {

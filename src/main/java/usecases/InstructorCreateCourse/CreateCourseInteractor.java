@@ -1,4 +1,4 @@
-package usecases.InstructorCreateCoursesUseCase;
+package usecases.InstructorCreateCourse;
 import entities.*;
 import java.util.*;
 

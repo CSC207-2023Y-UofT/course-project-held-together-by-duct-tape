@@ -6,7 +6,9 @@ import usecases.CreateStudentUsecase.CreateStudentInteractor;
 import usecases.CreateStudentUsecase.CreateStudentOutputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentResponseModel;
 
-/**This class implements the CreateStudent output boundary and formats the success and fail messages*/
+/**This class implements the CreateStudent output boundary and formats the success and fail messages
+ * the different components required for the Create student usecase to run are also initialized
+ * here so all that is necessary to render the screen is here*/
 public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
 
@@ -15,7 +17,8 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary {
                 databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);
     }
-
+    /**This method retrieves the controller
+     * @return CreateStudentController the controller of the program */
     public CreateStudentController getCreateStudentController() {
         return createStudentController;
     }

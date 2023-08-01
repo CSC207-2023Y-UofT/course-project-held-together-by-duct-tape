@@ -105,7 +105,15 @@ public class StudentDbGateway implements StudentGateway {
     public void saveUser(CreateStudentDsModel student) {
         try{
             Map<String, Float> courses = student.getCourseList();
-
+            if (courses.isEmpty()){String SQL = "INSERT INTO " + DATABASE_NAME +
+                    " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(SQL);
+                statement.setString(1, student.getUsername());
+                statement.setString(2, student.getPassword());
+                statement.setString(3, "");
+                statement.setFloat(4, 0.0f);
+                statement.executeUpdate();}
+            else {
             for (Map.Entry<String, Float> course : courses.entrySet()) {
                 String SQL = "INSERT INTO " + DATABASE_NAME +
                         " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
@@ -114,7 +122,7 @@ public class StudentDbGateway implements StudentGateway {
                 statement.setString(2, student.getPassword());
                 statement.setString(3, course.getKey());
                 statement.setFloat(4, 0.0f);
-                statement.executeUpdate();
+                statement.executeUpdate();}
             }
         } catch (SQLException e) {
             System.out.println("Error with database!");

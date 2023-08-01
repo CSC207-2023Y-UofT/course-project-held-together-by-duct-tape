@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.util.List;
+
 import java.util.Map;
 import java.util.HashMap;
+
+
 import usecases.LoginStudentUseCase.LoginStudentDataAccess;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
@@ -19,6 +21,8 @@ import usecases.CreateStudentUsecase.CreateStudentDataAccess;
  */
 public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDataAccess {
     private final Connection connection;
+    private final String DATABASE_NAME = "students";
+
 
     public StudentDbGateway(DbConnection dbConnection) {
         this.connection = dbConnection.connect();
@@ -75,15 +79,18 @@ public class StudentDbGateway implements LoginStudentDataAccess, CreateStudentDa
     @Override
     public void saveUser(CreateStudentDsModel student) {
         try{
-        Map<String, Integer> courses = student.getCourseList();
-        List<String> courseNames = (List<String>) courses.keySet();
-        for(String course: courseNames){
-            courses.get(course);
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO student (StudentID, Password," +
-                    " CourseID, CourseGrade) Values (" +student.getUsername() +", " + student.getPassword() +", "+
-                    course +", "+ courses.get(course)+")");
-            statement.executeQuery();}
+            Map<String, Integer> courses = student.getCourseList();
+
+            for (Map.Entry<String, Integer> course : courses.entrySet()) {
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO " + DATABASE_NAME + " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)");
+                statement.setString(1, student.getUsername());
+                statement.setString(2, student.getPassword());
+                statement.setString(3, course.getKey());
+                statement.setString(4, "0");
+                statement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Error with database!");
+        }
     }
-}}
+}

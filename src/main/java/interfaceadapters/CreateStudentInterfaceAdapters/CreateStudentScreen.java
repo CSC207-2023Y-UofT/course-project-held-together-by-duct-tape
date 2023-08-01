@@ -34,7 +34,7 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         passwordPanel.add(new JLabel("Enter Password"));
         passwordPanel.add(password);
         JPanel repeatPasswordPanel = new JPanel();
-        repeatPasswordPanel.add(new JLabel("Reenter Username"));
+        repeatPasswordPanel.add(new JLabel("Reenter Password"));
         repeatPasswordPanel.add(repeat);
         JPanel buttons = new JPanel();
         buttons.add(create);

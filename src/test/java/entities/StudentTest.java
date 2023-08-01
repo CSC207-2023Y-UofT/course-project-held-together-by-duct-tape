@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 class StudentTest {
     Student student;
-    Map<String, Integer> courses;
+    Map<String, Float> courses;
     @BeforeEach
     public void init() {
-        courses = new HashMap<String, Integer>();
+        courses = new HashMap<String, Float>();
         student = new Student("JP", courses);
     }
 

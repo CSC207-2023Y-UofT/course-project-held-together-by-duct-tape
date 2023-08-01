@@ -1,17 +1,21 @@
 package usecases.RunCourseUseCase;
+
 import java.util.List;
-import entities.Question;
 
 public class RunCourseDbRequestModel {
+    private final List<String> questions;
+    private final List<String> answers;
 
-    private String id;
-    private List<Question> questions;
-    private List<String> answers;
-    private List<Integer> points;
-    public RunCourseDbRequestModel(String id, List<Question> questions, List<String> answers, List<Integer> points){
-        this.id = id;
+    public RunCourseDbRequestModel(List<String> questions, List<String> answers){
         this.questions = questions;
         this.answers = answers;
-        this.points = points;
+    }
+
+    public List<String> getQuestions() {
+        return questions;
+    }
+
+    public List<String> getAnswers() {
+        return answers;
     }
 }

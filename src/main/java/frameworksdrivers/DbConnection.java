@@ -9,7 +9,6 @@ import java.util.Properties;
  * connection to the database.
  */
 public class DbConnection {
-
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/course_simulator";
     private static final String USERNAME = "root";

@@ -1,36 +1,51 @@
 package usecases.CourseEnrollmentUseCase;
 
-import entities.Prerequisite;
-import entities.Question;
-
 import java.util.List;
 
 public class EnrolmentDbRequestModel {
-    private final String courseId;
-    private List<Question> questions;
-    private Prerequisite prerequisite;
+    private final String courseID;
+    private String prerequisiteID;
+    private float prerequisiteGrade;
+    private List<String> questions;
+    private List<Integer> points;
 
     public EnrolmentDbRequestModel(String courseId) {
-        this.courseId = courseId;
+        this.courseID = courseId;
     }
 
-    public String getCourseId() {
-        return courseId;
+    public String getCourseID() {
+        return courseID;
     }
 
-    public List<Question> getQuestions() {
+    public List<String> getQuestions() {
         return questions;
     }
 
-    public Prerequisite getPrerequisite() {
-        return prerequisite;
+    public String getPrerequisiteID() {
+        return prerequisiteID;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public float getPrerequisiteGrade() {
+        return prerequisiteGrade;
+    }
+
+    public List<Integer> getPoints() {
+        return points;
+    }
+
+    public void setQuestions(List<String> questions) {
         this.questions = questions;
     }
 
-    public void setPrerequisite(Prerequisite prerequisite) {
-        this.prerequisite = prerequisite;
+    public void setPrerequisiteID(String prerequisiteID) {
+        this.prerequisiteID = prerequisiteID;
+    }
+
+    public void setPrerequisiteGrade(float prerequisiteGrade) {
+        this.prerequisiteGrade = prerequisiteGrade;
+    }
+
+    public void setPoints(List<Integer> points) {
+        this.points = points;
     }
 }

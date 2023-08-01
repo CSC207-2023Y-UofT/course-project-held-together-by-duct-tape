@@ -1,24 +1,18 @@
-import entities.StudentFactory;
-import frameworksdrivers.CourseDbGateway;
-import frameworksdrivers.DbConnection;
-import frameworksdrivers.SessionDbGateway;
-import frameworksdrivers.StudentDbGateway;
+import frameworksdrivers.DatabaseDriver;
 
-import interfaceadapters.*;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.CourseEnrollmentScreen;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
+import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
+import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentScreen;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
 
-import usecases.CourseEnrollmentUseCase.CheckPrerequisitesInteractor;
-import usecases.CourseEnrollmentUseCase.CourseEnrolmentInteractor;
-import usecases.CreateStudentUsecase.CreateStudentInteractor;
-import usecases.LoginStudentUseCase.LoginStudentInteractor;
+import userinterface.CreateStudentUserInterface.CreateStudentScreen;
+import userinterface.GenericProperties;
+import userinterface.LoginStudentUserInterface.LoginStudentScreen;
+import userinterface.RunCourseUserInterface.RunCourseScreen;
+import userinterface.StudentModeScreen;
+import userinterface.UserModeScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,44 +26,30 @@ public class Main {
         application.add(screens);
 
         // Components
-        DbConnection dbConnection = new DbConnection();
-        StudentDbGateway studentDbGateway = new StudentDbGateway(dbConnection);
-        SessionDbGateway sessionDbGateway = new SessionDbGateway(dbConnection);
-        CourseDbGateway courseDbGateway = new CourseDbGateway(dbConnection);
+        DatabaseDriver databaseDriver = new DatabaseDriver();
 
-        // CreateStudent Use Case
-        StudentFactory studentFactory = new StudentFactory();
-        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway, createStudentPresenter, courseDbGateway, studentFactory);
-        CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
-
-        // LoginStudent Use Case
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
-        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
-        LoginStudentController loginController = new LoginStudentController(loginInteractor);
-
-        // CourseEnrollment Use Case
-        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(courseDbGateway);
-        CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
-        CourseEnrolmentInteractor enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway, prerequisitesInteractor, sessionDbGateway, enrolmentPresenter);
-        EnrolmentController enrolmentController = new EnrolmentController(enrolmentInteractor);
+        // Presenters
+        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
+        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
+        RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
+        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
 
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
-
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
-
-        // Use Case Screens
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentController);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginController);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, enrolmentController);
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");
         screens.add(createStudentScreen, "createStudent");
         screens.add(loginScreen, "login");
         screens.add(enrollmentScreen, "enrollment");
+        screens.add(courseScreen, "course");
 
         cards.show(screens, "main");
 

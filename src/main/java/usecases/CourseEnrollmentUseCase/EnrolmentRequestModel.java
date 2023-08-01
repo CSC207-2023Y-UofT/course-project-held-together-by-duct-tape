@@ -1,7 +1,7 @@
 package usecases.CourseEnrollmentUseCase;
 
 public class EnrolmentRequestModel {
-    private String courseId;
+    private final String courseId;
 
     public EnrolmentRequestModel(String courseId) {
         this.courseId = courseId;

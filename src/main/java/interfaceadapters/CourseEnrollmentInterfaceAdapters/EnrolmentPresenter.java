@@ -1,16 +1,28 @@
 package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
-import frameworksdrivers.CourseDbGateway;
-import usecases.CourseEnrollmentUseCase.EnrolmentOutputBoundary;
-import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
+import frameworksdrivers.Driver;
+import usecases.CourseEnrollmentUseCase.*;
 
 import java.util.List;
 
 public class EnrolmentPresenter implements EnrolmentOutputBoundary {
-    private final CourseDbGateway courseDbGateway;
+    private final EnrolmentCourseDataAccess courseDbGateway;
+    private final EnrolmentSessionDataAccess sessionDbGateway;
+    private final EnrolmentController enrolmentController;
 
-    public EnrolmentPresenter(CourseDbGateway courseDbGateway) {
-        this.courseDbGateway = courseDbGateway;
+    public EnrolmentPresenter(Driver databaseDriver) {
+        this.courseDbGateway = databaseDriver.getCourseDbGateway();
+        this.sessionDbGateway = databaseDriver.getSessionDbGateway();
+
+        CheckPrerequisitesInteractor prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
+        EnrolmentInputBoundary enrolmentInteractor = new CourseEnrolmentInteractor(courseDbGateway,
+                prerequisitesInteractor, sessionDbGateway, this);
+
+        enrolmentController = new EnrolmentController(enrolmentInteractor);
+    }
+
+    public EnrolmentController getEnrolmentController() {
+        return enrolmentController;
     }
 
     /**
@@ -33,6 +45,14 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     @Override
     public String prepareFailView(String failMessage) {
         throw new RuntimeException(failMessage);
+    }
+
+    public void deleteCourseSession() {
+        sessionDbGateway.deleteCourseSession();
+    }
+
+    public void deleteStudentSession() {
+        sessionDbGateway.deleteStudentSession();
     }
 
     /**

@@ -19,7 +19,7 @@ public class LoginStudentPresenter implements LoginStudentOutputBoundary {
      * parameter. Constructs a controller which has a reference to the interactor.
      */
     public LoginStudentPresenter() {
-        DatabaseDriver databaseDriver = new DatabaseDriver();
+        Driver databaseDriver = new DatabaseDriver();
         LoginStudentInputBoundary loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGateway(),
                 databaseDriver.getSessionDbGateway(), this);
         this.loginController = new LoginStudentController(loginInteractor);

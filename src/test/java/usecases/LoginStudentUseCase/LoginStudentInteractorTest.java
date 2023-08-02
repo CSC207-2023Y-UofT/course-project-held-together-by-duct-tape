@@ -23,7 +23,8 @@ class LoginStudentInteractorTest {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
 
-        loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGatewayMock(), databaseDriver.getSessionDbGatewayMock(), loginPresenter);
+        this.loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGatewayMock(),
+                databaseDriver.getSessionDbGatewayMock(), loginPresenter);
     }
 
     /**

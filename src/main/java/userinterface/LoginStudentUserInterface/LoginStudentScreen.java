@@ -19,8 +19,9 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
     private final LoginStudentController controller;
 
-    public LoginStudentScreen(GenericProperties genericProperties, LoginStudentPresenter loginPresenter) {
+    public LoginStudentScreen(GenericProperties genericProperties) {
         this.genericProperties = genericProperties;
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
         this.controller = loginPresenter.getLoginController();
 
         JLabel title = new JLabel("Login Screen");

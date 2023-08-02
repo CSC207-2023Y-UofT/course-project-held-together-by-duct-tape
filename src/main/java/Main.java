@@ -29,8 +29,8 @@ public class Main {
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
         // Presenters
+        // Remove from main and put in screens
         CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
@@ -40,7 +40,7 @@ public class Main {
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
 

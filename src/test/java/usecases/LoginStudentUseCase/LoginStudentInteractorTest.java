@@ -21,7 +21,7 @@ class LoginStudentInteractorTest {
     @BeforeEach
     public void init() {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
 
         loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGatewayMock(), databaseDriver.getSessionDbGatewayMock(), loginPresenter);
     }

@@ -20,7 +20,7 @@ class CreateStudentInteractorTest {
        CreateStudentDataAccess gateway = new StudentDbGatewayMock();
        CreateStudentCourseDataAccess gateway2 = new CourseDbGatewayMock();
        interactor =
-               new CreateStudentInteractor(gateway, new CreateStudentPresenter(new DatabaseDriverMock()), gateway2);
+               new CreateStudentInteractor(gateway, new CreateStudentPresenter(), gateway2);
        requestModels = new CreateStudentRequestModel[]{
                        new CreateStudentRequestModel("Nour", "1234", "1234"),
                         new CreateStudentRequestModel("Hanan", "123", "1234"),

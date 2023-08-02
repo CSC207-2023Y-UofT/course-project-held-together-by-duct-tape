@@ -23,7 +23,8 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
     // for the following code I used this
     // link: https://www.geeksforgeeks.org/java-swing-simple-user-registration-form/ to figure out how to make
     // the visual aspect of the screen as well as how the actionListener should work.
-    public CreateStudentScreen(GenericProperties genericProperties, CreateStudentPresenter presenter){
+    public CreateStudentScreen(GenericProperties genericProperties){
+        CreateStudentPresenter presenter =  new CreateStudentPresenter();
         this.genericProperties = genericProperties;
 
         this.controller = presenter.getCreateStudentController();

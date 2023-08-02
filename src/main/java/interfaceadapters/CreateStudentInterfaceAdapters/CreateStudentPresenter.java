@@ -1,5 +1,6 @@
 package interfaceadapters.CreateStudentInterfaceAdapters;
 
+import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.Driver;
 import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
@@ -12,7 +13,8 @@ import usecases.CreateStudentUsecase.CreateStudentResponseModel;
 public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
 
-    public CreateStudentPresenter(Driver databaseDriver) {
+    public CreateStudentPresenter() {
+        Driver databaseDriver = new DatabaseDriver();
         CreateStudentInputBoundary createStudentInteractor = new CreateStudentInteractor(
                 databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);

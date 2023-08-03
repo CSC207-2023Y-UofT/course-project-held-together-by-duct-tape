@@ -25,13 +25,15 @@ class CreateStudentInteractorTest {
        requestModels = new CreateStudentRequestModel[]{
                        new CreateStudentRequestModel("Nour", "1234", "1234"),
                         new CreateStudentRequestModel("Hanan", "123", "1234"),
-                        new CreateStudentRequestModel("", "", "")};
+                        new CreateStudentRequestModel("", "", ""),
+                        new CreateStudentRequestModel("nourh", "123", "123")};
     }
 
     @Test
     public void CreateStudentTestPass(){
         // fails because mock gateway tells it to fail
-        assertEquals("You have successfully created a New student! Welcome Nour", interactor.createStudent(requestModels[0]));
+        assertEquals("You have successfully created a New student! Welcome Nour",
+                interactor.createStudent(requestModels[0]));
     }
 
     @Test
@@ -40,6 +42,9 @@ class CreateStudentInteractorTest {
                 "or your passwords don't match!", interactor.createStudent(requestModels[1]));
         Assertions.assertEquals("Sorry it appears that either the Username already exists, " +
                 "or your passwords don't match!", interactor.createStudent(requestModels[2]));
+        Assertions.assertEquals("Sorry it appears that either the Username already exists, " +
+                "or your passwords don't match!", interactor.createStudent(requestModels[3]));
+        // username already exists
     }
 }
 

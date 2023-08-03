@@ -12,9 +12,9 @@ import usecases.CreateStudentUsecase.CreateStudentResponseModel;
  * here so all that is necessary to render the screen is here*/
 public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
-    private static Driver databaseDriver = new DatabaseDriver();
-    public CreateStudentPresenter() {
-        Driver databaseDriver = new DatabaseDriver();
+    private static Driver databaseDriver;
+    public CreateStudentPresenter( Driver databaseDriver) {
+        databaseDriver = databaseDriver;
         CreateStudentInputBoundary createStudentInteractor = new CreateStudentInteractor(
                 databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);
@@ -37,5 +37,4 @@ public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     public String getFailMessage() {
         return "Sorry it appears that either the Username already exists, or your passwords don't match!";
     }
-    public void setDriver(Driver driver){databaseDriver = driver;}
 }

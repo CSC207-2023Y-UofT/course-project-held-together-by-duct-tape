@@ -19,8 +19,7 @@ class CreateStudentInteractorTest {
     public void init(){
        CreateStudentDataAccess gateway = new StudentDbGatewayMock();
        CreateStudentCourseDataAccess gateway2 = new CourseDbGatewayMock();
-       CreateStudentPresenter presenter = new CreateStudentPresenter();
-       presenter.setDriver(new DatabaseDriverMock());
+       CreateStudentPresenter presenter = new CreateStudentPresenter(new DatabaseDriverMock());
        interactor =
                new CreateStudentInteractor(gateway, presenter, gateway2);
        requestModels = new CreateStudentRequestModel[]{

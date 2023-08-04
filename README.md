@@ -2,7 +2,9 @@
 The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar!
 
 #Set up (Windows)
+
 In order to set up the databases on Windows use this link (https://dev.mysql.com/downloads/mysql/) and 
+
 <img width="544" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/956cfa37-d5aa-4130-9ad5-66cdd0f29650">
 
 
@@ -24,6 +26,7 @@ coursesimgroup. After you have successfully installed the server login to the my
 - create table sessionstudent (StudentID Varchar(25), CourseID Varchar(25), CourseGrade float);
 
 - Show tables;  (use this command to confirm that the above tables were made successfully!)
+- 
   [image](https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/46094778-21de-4913-9528-4386e20fcbbf)
 
 

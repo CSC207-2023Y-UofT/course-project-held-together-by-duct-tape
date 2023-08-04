@@ -11,7 +11,21 @@ In order to set up the databases on Windows use this link (https://dev.mysql.com
 
 
 download the version above all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
-coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon). This may vary depending on the device, it is important however that this server is installed before attempting use and that the mentioned password is used!
+coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the commands (press enter after each semicolon). To install on mac, first, go to https://dev.mysql.com/downloads/mysql/ or search MySQL Community Server.
+
+Choose the operating system as MacOS, then select the OSVersion. If you are using MacBook M1 or M2, choose the ARM, if you are using MacBook Intel, Choose x86.
+
+<img width="347" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/2d96e065-58d0-4b5a-8d2d-ca48f257c425">
+
+Second, open the download package, (if the Mac says the program can not be authenticated， just open the setting->Security and privacy->allow the file to install.)
+After installation is successful, if you did everything in the instructions, you can open the setting on MacBook now, and you will see a cute dolphin and two green dots.
+Finally, activate your MySQL. Go to terminal to type: mysql -u root -p
+If there is an error like: “zsh:command not found: mysql”
+Just type: alias mysql=/user/local/mysql/bin/mysql
+Then re-enter: mysql -u root -p, enter your password (coursesimgroup).
+Tip, you can use terminal to operate MySQL, or you can choose to download MySQL Workbench(to download workbench are pretty easy, just go to the MySQL website and choose your version of workbench, install it as other normal apps.)
+
+<img width="290" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/62a0ffd5-a552-4727-a456-ca0101e7c13a">
 
 ## Commands (In Order):
 

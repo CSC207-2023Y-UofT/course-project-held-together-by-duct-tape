@@ -10,7 +10,7 @@ public class CheckPrerequisitesInteractor {
     /**
      * Check whether student has completed the prerequisite for the course in which they enrol.
      *
-     * @param course the course in which the student attempts to enrol.
+     * @param requestModel the course in which the student attempts to enrol.
      * @return true iff student has the prerequisite for the course
      */
     public boolean checkPrerequisite(EnrolmentDbRequestModel requestModel) {

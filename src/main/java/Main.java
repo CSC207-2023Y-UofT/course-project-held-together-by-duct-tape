@@ -34,7 +34,6 @@ public class Main {
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
-
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);

@@ -13,7 +13,7 @@ In order to set up the databases on Windows use this link (https://dev.mysql.com
 download the version above all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
 coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon).
 
-##Commands (In Order):
+## Commands (In Order):
 
 - Create database course_simulator;
 
@@ -90,6 +90,14 @@ We also implemented an iterator design pattern within our course class as we nee
 We used mock gateways so that we could test our interactors without causing issues to our set-up databases. 
 
 <img width="221" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/61d8a1d6-b46f-4467-aa30-21d5b36d3be1">
+
+## Structure 
+This is the diagram showing the related relationships regarding the create student feature:
+
+<img width="710" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/f283ccb8-fc5c-4b30-abd2-06f396f1989d">
+
+
+
 
 
 

@@ -1,49 +1,83 @@
 # Course Simulator
+The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar!
 
-This is a course simulator in which the user can pick between an instructor mode and a student mode.
+#Set up (Windows)
+In order to set up the databases on Windows use this link (https://dev.mysql.com/downloads/mysql/) and 
+<img width="544" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/956cfa37-d5aa-4130-9ad5-66cdd0f29650">
+download the version follow all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
+coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon).
+##Commands (In Order):
+
+- Create database course_simulator;
+
+- use course_simulator;
+
+- create table students (StudentID Varchar(25), Password Varchar(25), CourseID Varchar(25), CourseGrade float);
+
+- create table courses (CourseID Varchar(25), PrerequisiteCourseID Varchar(25), PrerequisiteGrade float, Question Varchar(250), Answer Varchar(250), Points int);
+
+- create table sessioncourse (CourseID Varchar(25), Question Varchar(250), Answer Varchar(250), Points int);
+
+- create table sessionstudent (StudentID Varchar(25), CourseID Varchar(25), CourseGrade float);
+
+- Show tables;  (use this command to confirm that the above tables were made successfully!)
+  [image](https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/46094778-21de-4913-9528-4386e20fcbbf)
+
+This is a course simulator in which the user can pick between an instructor mode and a student mode. 
 
 <img width="392" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/c7615b93-334d-4bbd-a902-bc55b4c786c1">
 
 
-In instructor mode, the user can create a course. They must give a course code, prerequisites, questions, answers and their corresponding number of points. Then that specific course is saved. In the student mode, the student must input a unique username and a password which creates a student account and they can go into the login screen and login to this new account using the username and password.
+In instructor mode, the user can create a course. They must give a course code, prerequisites, questions, answers and their corresponding number of points. Then that specific course is saved. 
+
+
+In the student mode, the student must input a unique username and a password which creates a student account. They can go to the login screen and log in to this new account using the username and password.
 <img width="391" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/330d4817-dc69-499d-9e43-b6f745ac4747">
-
-
+<img width="317" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/6e9f47a0-0490-47e6-affd-d8278f0e333e">
  
+ The student is then able to see a list of all the courses. The student can choose to enroll in a course, however, they must meet the prerequisites to do that, if they don’t, they are not allowed to enroll. 
+ <img width="347" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/6274c125-913d-4e0c-845d-4a8fd5524d85">
  
- The student is then able to see a list of all the courses. The student can choose to enroll in a course, however, they must meet the prerequisites to do that, if they don’t, they are not allowed to enroll. Once the student picks a course, they can answer questions and based on a certain criterion, they can get credit for the course. A student has an overall GPA that is updated every time they take a course.
+ Once the student picks a course, they can answer questions and then the course is evaluated for a grade.
+ <img width="187" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/9a7efefb-21cc-48f5-b141-6b3d3ca2d627">
+ <img width="194" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/7c2b9b13-a77a-4357-8473-3a8a012992ce">
+ 
+
+## User stories
+- The user can create different student users that will have their own respective data on how they performed in different courses
+- The user can log in to a created student user using a unique username and a password
+- The user can create a course with a unique course id that may or may not have a prerequisite but will have questions and answers (as well as points assigned to them)
+- The user can enrol in a course that they have the appropriate prerequisites for
+- The user can run a course and answer its questions
+- the user can evaluate their course and see what grade they got for that attempt
+  
+## Packaging
+The different files are separated by what layer they fall in according to the clean architecture guidelines  and are further divided by what feature they are specifically needed for.
+<img width="253" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/fa4a9f59-c69b-486e-af1a-6841c952bb07">
 
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+## Design Patterns and choices
+We implemented a factory design patterns so that our program could potentially be extended and future subclasses of our courses, prerequisites or student entities can be incorporated and it also allowed for greater separation between our layers.
+<img width="576" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/3fcd846b-81bf-4c6f-9071-c43f9358542d">
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+We included a builder design pattern for the creation of our courses as the courses are containing both questions and prerequisites which both require different methods to construct so it felt cleaner to implement this design pattern for this more complex class.
+<img width="712" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/737beea5-feeb-4df7-894f-878ce6581e29">
 
-## Workflow Documents
+We also implemented an iterator design pattern within our course class as we needed a way to seamlessly iterate through the questions so that they can be presented to the user so they can answer them.
+<img width="551" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/5ccf090c-0f03-4610-9682-e1949e125485">
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+We used mock gateways so that we could test our interactors without causing issues to our set-up databases. 
+<img width="221" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/61d8a1d6-b46f-4467-aa30-21d5b36d3be1">
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
 
-You can create another simple class and try generating a test for this class.
+
+
+
+
+

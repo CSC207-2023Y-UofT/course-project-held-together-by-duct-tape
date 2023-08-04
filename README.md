@@ -4,7 +4,10 @@ The program is a course simulator where users can create and take different cour
 #Set up (Windows)
 In order to set up the databases on Windows use this link (https://dev.mysql.com/downloads/mysql/) and 
 <img width="544" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/956cfa37-d5aa-4130-9ad5-66cdd0f29650">
-download the version follow all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
+
+
+
+download the version above all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
 coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon).
 ##Commands (In Order):
 
@@ -23,7 +26,10 @@ coursesimgroup. After you have successfully installed the server login to the my
 - Show tables;  (use this command to confirm that the above tables were made successfully!)
   [image](https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/46094778-21de-4913-9528-4386e20fcbbf)
 
+
+
 This is a course simulator in which the user can pick between an instructor mode and a student mode. 
+
 
 <img width="392" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/c7615b93-334d-4bbd-a902-bc55b4c786c1">
 

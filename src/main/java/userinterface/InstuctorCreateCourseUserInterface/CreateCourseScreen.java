@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCourseController;
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import userinterface.GenericProperties;
 
 public class CreateCourseScreen extends JPanel implements ActionListener {

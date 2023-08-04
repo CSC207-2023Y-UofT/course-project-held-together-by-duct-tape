@@ -11,7 +11,6 @@ public class EvaluatorDbResponseModel {
     private List<Integer> points;
 
 
-
     public void EnrolmentDbResponseModel(String courseId, List<String> questions, List<String> answers,
                                          List<Integer> points) {
         this.courseId = courseId;

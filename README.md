@@ -38,14 +38,21 @@ In instructor mode, the user can create a course. They must give a course code, 
 
 
 In the student mode, the student must input a unique username and a password which creates a student account. They can go to the login screen and log in to this new account using the username and password.
+
+
 <img width="391" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/330d4817-dc69-499d-9e43-b6f745ac4747">
+
+
 <img width="317" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/6e9f47a0-0490-47e6-affd-d8278f0e333e">
  
  The student is then able to see a list of all the courses. The student can choose to enroll in a course, however, they must meet the prerequisites to do that, if they don’t, they are not allowed to enroll. 
+ 
  <img width="347" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/6274c125-913d-4e0c-845d-4a8fd5524d85">
  
  Once the student picks a course, they can answer questions and then the course is evaluated for a grade.
+ 
  <img width="187" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/9a7efefb-21cc-48f5-b141-6b3d3ca2d627">
+ 
  <img width="194" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/7c2b9b13-a77a-4357-8473-3a8a012992ce">
  
 
@@ -59,20 +66,25 @@ In the student mode, the student must input a unique username and a password whi
   
 ## Packaging
 The different files are separated by what layer they fall in according to the clean architecture guidelines  and are further divided by what feature they are specifically needed for.
+
 <img width="253" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/fa4a9f59-c69b-486e-af1a-6841c952bb07">
 
 
 ## Design Patterns and choices
 We implemented a factory design patterns so that our program could potentially be extended and future subclasses of our courses, prerequisites or student entities can be incorporated and it also allowed for greater separation between our layers.
+
 <img width="576" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/3fcd846b-81bf-4c6f-9071-c43f9358542d">
 
 We included a builder design pattern for the creation of our courses as the courses are containing both questions and prerequisites which both require different methods to construct so it felt cleaner to implement this design pattern for this more complex class.
+
 <img width="712" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/737beea5-feeb-4df7-894f-878ce6581e29">
 
 We also implemented an iterator design pattern within our course class as we needed a way to seamlessly iterate through the questions so that they can be presented to the user so they can answer them.
+
 <img width="551" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/5ccf090c-0f03-4610-9682-e1949e125485">
 
 We used mock gateways so that we could test our interactors without causing issues to our set-up databases. 
+
 <img width="221" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/61d8a1d6-b46f-4467-aa30-21d5b36d3be1">
 
 

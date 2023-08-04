@@ -19,7 +19,7 @@ public class RunCourseInteractorTest {
     public void init() {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
-        interactor = new RunCourseInteractor(databaseDriver.getSessionDbGateway(), coursePresenter);
+        interactor = new RunCourseInteractor(databaseDriver.getSessionDbGatewayMock(), coursePresenter);
     }
 
     @Test

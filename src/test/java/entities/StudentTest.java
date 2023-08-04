@@ -13,8 +13,7 @@ class StudentTest {
     @BeforeEach
     public void init() {
         courses = new HashMap<String, Float>();
-        student = new Student("JP", courses);
-    }
+        student = new Student("JP", courses);}
 
     @Test
     public void testStudentNoCourses() {

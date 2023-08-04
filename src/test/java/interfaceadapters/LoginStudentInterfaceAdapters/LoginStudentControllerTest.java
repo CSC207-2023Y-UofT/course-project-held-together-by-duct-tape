@@ -4,6 +4,8 @@ import frameworksdriversmock.DatabaseDriverMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import usecases.LoginStudentUseCase.LoginStudentInputBoundary;
+import usecases.LoginStudentUseCase.LoginStudentInteractor;
 
 public class LoginStudentControllerTest {
     private LoginStudentController loginController;
@@ -12,8 +14,9 @@ public class LoginStudentControllerTest {
     public void init() {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
+        LoginStudentInputBoundary loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGatewayMock(), databaseDriver.getSessionDbGatewayMock(), loginPresenter);
 
-        this.loginController = loginPresenter.getLoginController();
+        this.loginController = new LoginStudentController(loginInteractor);
     }
 
     @Test

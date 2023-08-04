@@ -105,7 +105,9 @@ public class StudentDbGateway implements StudentGateway {
     public void saveUser(CreateStudentDsModel student) {
         try{
             Map<String, Float> courses = student.getCourseList();
-
+            if (courses.isEmpty()){
+               saveUserNoCourses(student);}
+            else {
             for (Map.Entry<String, Float> course : courses.entrySet()) {
                 String SQL = "INSERT INTO " + DATABASE_NAME +
                         " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
@@ -114,7 +116,7 @@ public class StudentDbGateway implements StudentGateway {
                 statement.setString(2, student.getPassword());
                 statement.setString(3, course.getKey());
                 statement.setFloat(4, 0.0f);
-                statement.executeUpdate();
+                statement.executeUpdate();}
             }
         } catch (SQLException e) {
             System.out.println("Error with database!");
@@ -122,12 +124,30 @@ public class StudentDbGateway implements StudentGateway {
         }
     }
 
-    /**
-     * Saves the GPA of a student with a username and courseID. The courseID specifies what course the grade is from,
-     * the username specifies what student got this grade.
-     *
-     * @param requestModel with the StudentID, CourseID, and grade.
-     */
+    /**This method saves a user when they first open a program, and they have no courses created
+     * @param student this is the request model containing the student password and username*/
+    private void saveUserNoCourses(CreateStudentDsModel student){
+        try {String SQL = "INSERT INTO " + DATABASE_NAME +
+                " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(SQL);
+        statement.setString(1, student.getUsername());
+        statement.setString(2, student.getPassword());
+        statement.setString(3, "");
+        statement.setFloat(4, 0.0f);
+        statement.executeUpdate();
+    }
+        catch(SQLException e){
+            System.out.println("Error with database!");
+            e.printStackTrace();}
+        }
+
+
+        /**
+         * Saves the GPA of a student with a username and courseID. The courseID specifies what course the grade is from,
+         * the username specifies what student got this grade.
+         *
+         * @param requestModel with the StudentID, CourseID, and grade.
+         */
     @Override
     public void saveGPA(EvaluatorDbRequestModel requestModel) {
         try {

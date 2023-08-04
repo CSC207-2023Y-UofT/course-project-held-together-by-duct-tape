@@ -11,7 +11,7 @@ public class DatabaseDriver implements Driver {
     private final StudentGateway studentDbGateway;
     private final SessionGateway sessionDbGateway;
     private final CourseGateway courseDbGateway;
-
+    private static final  DbConnection dbConnection = new DbConnection();
     /**
      * Creates a new DbConnection (Database Connection) and creates the various gateways needed.
      */

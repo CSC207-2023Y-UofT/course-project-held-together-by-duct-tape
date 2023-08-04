@@ -32,12 +32,7 @@ public class RunCourseInteractorTest {
         questions.add("Question1");
         answers.add("");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Answers can not be empty.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Answers can not be empty.");
     }
     @Test
     public void testOneValidAnswer() {
@@ -46,12 +41,7 @@ public class RunCourseInteractorTest {
         questions.add("Question1");
         answers.add("Answer");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Course Completed.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Course Completed.");
     }
     @Test
     public void testOneEmptyAnswer() {
@@ -62,12 +52,7 @@ public class RunCourseInteractorTest {
         questions.add("Question2");
         answers.add("");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Answers can not be empty.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Answers can not be empty.");
     }
     @Test
     public void testAllValidAnswer() {
@@ -78,12 +63,7 @@ public class RunCourseInteractorTest {
         questions.add("Question2");
         answers.add("Answer");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Course Completed.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Course Completed.");
     }
     @Test
     public void testSpaceAnswer() {
@@ -92,12 +72,7 @@ public class RunCourseInteractorTest {
         questions.add("Question1");
         answers.add(" ");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Course Completed.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Course Completed.");
     }
     @Test
     public void testInvalidAnswerAtStart() {
@@ -108,11 +83,6 @@ public class RunCourseInteractorTest {
         questions.add("Question2");
         answers.add("Answer");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
-        try {
-            interactor.runCourse(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (LoginUserFailed e) {
-            Assertions.assertEquals(e.getMessage(), "Course Completed.");
-        }
+        Assertions.assertEquals(interactor.runCourse(requestModel), "Answers can not be empty.");
     }
 }

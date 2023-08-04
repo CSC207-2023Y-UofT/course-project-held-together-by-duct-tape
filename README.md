@@ -12,6 +12,7 @@ In order to set up the databases on Windows use this link (https://dev.mysql.com
 
 download the version above all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
 coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon).
+
 ##Commands (In Order):
 
 - Create database course_simulator;

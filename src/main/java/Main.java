@@ -1,6 +1,7 @@
 import frameworksdrivers.DatabaseDriver;
 
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
@@ -9,6 +10,7 @@ import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import userinterface.GenericProperties;
+import userinterface.InstuctorCreateCourseUserInterface.CreateCourseScreen;
 import userinterface.LoginStudentUserInterface.LoginStudentScreen;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
 import userinterface.StudentModeScreen;
@@ -34,6 +36,7 @@ public class Main {
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
+        CreateCoursePresenter createCoursePresenter = new CreateCoursePresenter(databaseDriver);
 
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
@@ -43,9 +46,11 @@ public class Main {
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
+        CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties, createCoursePresenter);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");
+        screens.add(createCourseScreen, "Instructor Mode");
         screens.add(createStudentScreen, "createStudent");
         screens.add(loginScreen, "login");
         screens.add(enrollmentScreen, "enrollment");

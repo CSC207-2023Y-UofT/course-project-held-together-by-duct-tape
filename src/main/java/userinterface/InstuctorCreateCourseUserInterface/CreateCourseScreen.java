@@ -4,149 +4,142 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class CreateCourseScreen extends JFrame {
-    private JTextField courseNameField;
-    private JTextField prerequisiteField;
-    private List<JTextField> questionFields;
-    private List<JTextField> answerFields;
-    private List<JTextField> pointsFields;
+import javax.swing.JPanel;
 
-    public CreateCourseScreen() {
-        // Initialize the JFrame
-        setTitle("Create Course Screen");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+import interfaceadapters.CreateCourseInterfaceAdapters.CreateCourseController;
+import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
+import userinterface.GenericProperties;
 
-        // Create the components
-        courseNameField = new JTextField(20);
-        prerequisiteField = new JTextField(20);
+public class CreateCourseScreen extends JPanel implements ActionListener {
+    private CreateCourseController controller;
 
-        questionFields = new ArrayList<>();
-        answerFields = new ArrayList<>();
-        pointsFields = new ArrayList<>();
+    JTextField CourseName = new JTextField(10);
+    JTextField Prerequisite = new JTextField(10);
+    JTextField PrerequisiteGrade = new JTextField(10);
 
-        for (int i = 1; i <= 3; i++) {
-            questionFields.add(new JTextField(20));
-            answerFields.add(new JTextField(20));
-            pointsFields.add(new JTextField(5));
-        }
+    JTextField Question1 = new JTextField(10);
 
-        JButton saveButton = new JButton("Save");
-        saveButton.addActionListener(new SaveButtonListener());
+    JTextField Answer1 = new JTextField(10);
 
-        // Add components to the JPanel
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+    JTextField Points1 = new JTextField(10);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        mainPanel.add(new JLabel("Course Name:"), gbc);
-        gbc.gridx = 1;
-        mainPanel.add(courseNameField, gbc);
+    JTextField Question2 = new JTextField(10);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        mainPanel.add(new JLabel("Prerequisites:"), gbc);
-        gbc.gridx = 1;
-        mainPanel.add(prerequisiteField, gbc);
+    JTextField Answer2 = new JTextField(10);
 
-        for (int i = 0; i < 3; i++) {
-            gbc.gridx = 0;
-            gbc.gridy = i + 2;
-            mainPanel.add(new JLabel("Question #" + (i + 1) + ":"), gbc);
-            gbc.gridx = 1;
-            mainPanel.add(questionFields.get(i), gbc);
+    JTextField Points2 = new JTextField(10);
 
-            gbc.gridx = 0;
-            gbc.gridy = i + 5;
-            mainPanel.add(new JLabel("Answer #" + (i + 1) + ":"), gbc);
-            gbc.gridx = 1;
-            mainPanel.add(answerFields.get(i), gbc);
+    JTextField Question3 = new JTextField(10);
 
-            gbc.gridx = 0;
-            gbc.gridy = i + 8;
-            mainPanel.add(new JLabel("Points #" + (i + 1) + ":"), gbc);
-            gbc.gridx = 1;
-            mainPanel.add(pointsFields.get(i), gbc);
-        }
+    JTextField Answer3 = new JTextField(10);
 
-        gbc.gridx = 1;
-        gbc.gridy = 11;
-        mainPanel.add(saveButton, gbc);
+    JTextField Points3 = new JTextField(10);
 
-        // Add the main panel to the frame
-        add(mainPanel, BorderLayout.CENTER);
+    JButton create = new JButton("Create");
+    JButton cancel = new JButton(("Cancel"));
+    private GenericProperties genericProperties;
 
-        // Set the frame visible
-        setVisible(true);
+    public CreateCourseScreen(GenericProperties genericProperties, CreateCoursePresenter presenter) {
+        this.genericProperties = genericProperties;
+        this.controller = presenter.getCreateCourseController();
+
+        JLabel title = new JLabel("Instructor Mode");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel coursenamePanel = new JPanel();
+        coursenamePanel.add(new JLabel("Enter Course Name"));
+        coursenamePanel.add(CourseName);
+
+        JPanel prerequisitePanel = new JPanel();
+        prerequisitePanel.add(new JLabel("Enter Prerequisite(if no prerequisite, leave it empty.)"));
+        prerequisitePanel.add(Prerequisite);
+
+        JPanel prerequisitegradePanel = new JPanel();
+        prerequisitegradePanel.add(new JLabel("Enter Prerequisite's Grade(if no prerequisite, leave it empty.)"));
+        prerequisitegradePanel.add(PrerequisiteGrade);
+
+        JPanel question1Panel = new JPanel();
+        question1Panel.add(new JLabel("Enter Question#1"));
+        question1Panel.add(Question1);
+        JPanel answer1Panel = new JPanel();
+        answer1Panel.add(new JLabel("Enter Answer#1"));
+        answer1Panel.add(Answer1);
+        JPanel points1Panel = new JPanel();
+        points1Panel.add(new JLabel("Enter Points#1"));
+        points1Panel.add(Points1);
+
+        JPanel question2Panel = new JPanel();
+        question2Panel.add(new JLabel("Enter Question#2"));
+        question2Panel.add(Question2);
+        JPanel answer2Panel = new JPanel();
+        answer2Panel.add(new JLabel("Enter Answer#2"));
+        answer2Panel.add(Answer2);
+        JPanel points2Panel = new JPanel();
+        points2Panel.add(new JLabel("Enter Points#2"));
+        points2Panel.add(Points2);
+
+        JPanel question3Panel = new JPanel();
+        question3Panel.add(new JLabel("Enter Question#3"));
+        question3Panel.add(Question3);
+        JPanel answer3Panel = new JPanel();
+        answer3Panel.add(new JLabel("Enter Answer#3"));
+        answer3Panel.add(Answer3);
+        JPanel points3Panel = new JPanel();
+        points3Panel.add(new JLabel("Enter Points#3"));
+        points3Panel.add(Points3);
+
+        JPanel buttons = new JPanel();
+        buttons.add(create);
+        buttons.add(cancel);
+        create.addActionListener(this);
+        cancel.addActionListener(this);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title);
+        this.add(coursenamePanel);
+        this.add(prerequisitePanel);
+        this.add(prerequisitegradePanel);
+        this.add(question1Panel);
+        this.add(answer1Panel);
+        this.add(points1Panel);
+        this.add(question2Panel);
+        this.add(answer2Panel);
+        this.add(points2Panel);
+        this.add(question3Panel);
+        this.add(answer3Panel);
+        this.add(points3Panel);
+        this.add(buttons);
+
+
     }
 
-    private class SaveButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // Get the input values from the fields
-            String courseId = courseNameField.getText();
-            String prerequisite = prerequisiteField.getText();
-            List<String> questions = new ArrayList<>();
-            List<String> answers = new ArrayList<>();
-            List<Integer> points = new ArrayList<>();
-
-            for (int i = 0; i < 3; i++) {
-                questions.add(questionFields.get(i).getText());
-                answers.add(answerFields.get(i).getText());
-                try {
-                    points.add(Integer.parseInt(pointsFields.get(i).getText()));
-                } catch (NumberFormatException ex) {
-                    showErrorMessage("Points must be numbers.");
-                    return;
-                }
-            }
-
-            // Perform validation checks
-            if (courseId.isEmpty() || questions.contains("") || answers.contains("")) {
-                showErrorMessage("Course Name, Questions, and Answers cannot be empty.");
-                return;
-            }
-
-            // TODO: Connect to the database and save the course using InstructorCreateCourseUseCase
-
-            // Show success message
-            showSuccessMessage("Thank you, the course is saved.");
-            // Clear fields
-            clearFields();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String coursename = CourseName.getText();
+        String prereq = Prerequisite.getText();
+        Float prereqgrade = Float.valueOf(PrerequisiteGrade.getText());
+        ArrayList<String> questions = new ArrayList<>();
+        questions.add(Question1.getText());
+        questions.add(Question2.getText());
+        questions.add(Question3.getText());
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add(Answer1.getText());
+        answers.add(Answer2.getText());
+        answers.add(Answer3.getText());
+        ArrayList<Integer> points = new ArrayList<>();
+        points.add(Integer.valueOf(Points1.getText()));
+        points.add(Integer.valueOf(Points2.getText()));
+        points.add(Integer.valueOf(Points3.getText()));
+        if ( e.getActionCommand() == "create"){ controller.createCourse(coursename, prereq, prereqgrade, questions,
+                answers, points);}
+        if (e.getActionCommand() == "cancel"){
+            genericProperties.getCards().show(genericProperties.getScreens(), "main");
         }
 
-        private void showErrorMessage(String message) {
-            JOptionPane.showMessageDialog(CreateCourseScreen.this, message, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        private void showSuccessMessage(String message) {
-            JOptionPane.showMessageDialog(CreateCourseScreen.this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        private void clearFields() {
-            courseNameField.setText("");
-            prerequisiteField.setText("");
-            for (int i = 0; i < 3; i++) {
-                questionFields.get(i).setText("");
-                answerFields.get(i).setText("");
-                pointsFields.get(i).setText("");
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new CreateCourseScreen());
     }
 }
+
 

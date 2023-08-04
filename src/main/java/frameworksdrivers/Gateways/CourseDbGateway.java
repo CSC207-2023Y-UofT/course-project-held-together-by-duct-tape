@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.Course;
 import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.InstructorCreateCourseUseCase.CourseDbRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
@@ -131,6 +133,32 @@ public class CourseDbGateway implements CourseGateway {
             requestModel.setQuestions(questions);
             requestModel.setAnswers(answers);
             requestModel.setPoints(points);
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void saveCourse(CourseDbRequestModel requestModel) {
+        try {
+            List<String> questions = requestModel.getQuestions();
+            List<String> answers = requestModel.getAnswers();
+            List<Integer> points = requestModel.getPoints();
+
+            for (int j = 0; j < questions.size(); j++) {
+                String SQL = "INSERT INTO " + DATABASE_NAME +
+                        " (CourseID, PrerequisteCourseID, PrerequisiteGrade, " +
+                        "Question, Answer, Points) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(SQL);
+                statement.setString(1, requestModel.getCourseId());
+                statement.setString(2, requestModel.getPrereq());
+                statement.setFloat(3, requestModel.getPrereqGrade());
+                statement.setString(4, questions.get(j));
+                statement.setString(5, answers.get(j));
+                statement.setInt(6, points.get(j));
+                statement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Error with the database!");
             e.printStackTrace();

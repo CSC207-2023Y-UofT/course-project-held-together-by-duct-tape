@@ -1,5 +1,4 @@
-package usecases.InstructorCreateCourse;
-import java.util.List;
+package usecases.InstructorCreateCourseUseCase;
 
 public class CreateCourseResponseModel {
     private final String courseId;

@@ -1,5 +1,4 @@
-package usecases.InstructorCreateCourse;
-import entities.*;
+package usecases.InstructorCreateCourseUseCase;
 
 public interface CreateCourseOutputBoundary {
     void courseCreated(CreateCourseResponseModel response);

@@ -3,6 +3,7 @@ package frameworksdriversmock;
 import frameworksdrivers.Gateways.CourseGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.InstructorCreateCourseUseCase.CourseDbRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,10 @@ public class CourseDbGatewayMock implements CourseGateway {
     @Override
     public boolean existsByCourseId(String courseID) {
         return courseIDs.contains(courseID);
+    }
+
+    @Override
+    public void saveCourse(CourseDbRequestModel course) {
     }
 
     @Override

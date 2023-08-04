@@ -11,7 +11,7 @@ In order to set up the databases on Windows use this link (https://dev.mysql.com
 
 
 download the version above all the default settings that the installer provides ensuring that the configuration is typical and when it asks for a root password please type 
-coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon).
+coursesimgroup. After you have successfully installed the server login to the mysQl command  using the root password and carry out the following commands (press enter after each semicolon). This may vary depending on the device, it is important however that this server is installed before attempting use and that the mentioned password is used!
 
 ## Commands (In Order):
 
@@ -96,7 +96,7 @@ This is the diagram showing the related relationships regarding the create stude
 
 <img width="710" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/f283ccb8-fc5c-4b30-abd2-06f396f1989d">
 
-This diagram illustrates the relationships between the components for the Log in feature:
+This diagram illustrates the relationships between the components for the Login feature:
 
 <img width="631" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/ff0f4c04-70b9-44ee-8792-af564db46046">
 

@@ -1,8 +1,18 @@
-# Project Template
+# Course Simulator
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+This is a course simulator in which the user can pick between an instructor mode and a student mode.
+
+<img width="392" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/c7615b93-334d-4bbd-a902-bc55b4c786c1">
+
+
+In instructor mode, the user can create a course. They must give a course code, prerequisites, questions, answers and their corresponding number of points. Then that specific course is saved. In the student mode, the student must input a unique username and a password which creates a student account and they can go into the login screen and login to this new account using the username and password.
+<img width="391" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/330d4817-dc69-499d-9e43-b6f745ac4747">
+
+
+ 
+ 
+ The student is then able to see a list of all the courses. The student can choose to enroll in a course, however, they must meet the prerequisites to do that, if they don’t, they are not allowed to enroll. Once the student picks a course, they can answer questions and based on a certain criterion, they can get credit for the course. A student has an overall GPA that is updated every time they take a course.
+
 
 ## Checklist For Your Project
 - [ ] Verify the correct settings for your project repository

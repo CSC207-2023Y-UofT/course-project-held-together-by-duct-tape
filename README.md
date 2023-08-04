@@ -96,6 +96,11 @@ This is the diagram showing the related relationships regarding the create stude
 
 <img width="710" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/f283ccb8-fc5c-4b30-abd2-06f396f1989d">
 
+This is the diagram illustrating the course evaluator feature:
+
+<img width="293" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/b89f7bcf-9008-4227-a344-e22e9004edf2">
+
+
 
 
 

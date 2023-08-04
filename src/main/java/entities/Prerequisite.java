@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class Prerequisite {
     private final String course;
-    private final int gpa;
+    private final float gpa;
 
     /**
      * Construct a prerequisite with the course id given and gpa.
@@ -16,9 +16,9 @@ public class Prerequisite {
      * @param course the course prerequisite.
      * @param gpa the gpa associated with the course required.
      */
-    public Prerequisite(String course, int gpa) {
+    public Prerequisite(String course, float gpa) {
         this.course = course;
-        this.gpa = gpa;
+        this.gpa = gpa; //do we want to make the default be 0?
     }
 
     public boolean isEmpty() {
@@ -29,7 +29,6 @@ public class Prerequisite {
         return this.course;
     }
 
-    public int getGpa() {
-        return this.gpa;
-    }
+    public float getGpa() {
+        return this.gpa;}
 }

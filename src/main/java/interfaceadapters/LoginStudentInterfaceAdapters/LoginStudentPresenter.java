@@ -1,5 +1,8 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
+import frameworksdrivers.Driver;
+import usecases.LoginStudentUseCase.LoginStudentInputBoundary;
+import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentOutputBoundary;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 
@@ -8,6 +11,24 @@ import usecases.LoginStudentUseCase.LoginStudentResponseModel;
  * In the fail view, it throws exceptions that must be handled.
  */
 public class LoginStudentPresenter implements LoginStudentOutputBoundary {
+    private final LoginStudentController loginController;
+
+    /**
+     * Creates an interactor with the necessary attributes. Obtains the necessary gateways from the database driver
+     * parameter. Constructs a controller which has a reference to the interactor.
+     *
+     * @param databaseDriver Driver object with reference to all of the gateways.
+     */
+    public LoginStudentPresenter(Driver databaseDriver) {
+        LoginStudentInputBoundary loginInteractor = new LoginStudentInteractor(databaseDriver.getStudentDbGateway(),
+                databaseDriver.getSessionDbGateway(), this);
+        this.loginController = new LoginStudentController(loginInteractor);
+    }
+
+    public LoginStudentController getLoginController() {
+        return loginController;
+    }
+
     /**
      * Presenter must prepare a success view since the use case has run successfully.
      * Interacts with the responseModel to prepare the response model that will be used
@@ -25,9 +46,9 @@ public class LoginStudentPresenter implements LoginStudentOutputBoundary {
      * The interactor will pass an error message, which the Presenter will throw.
      *
      * @param error message that will be thrown.
-     * @return
+     * @throws LoginUserFailed exception.
      */
-    public LoginStudentResponseModel prepareFailView(String error) {
-        throw new RuntimeException(error);
+    public LoginStudentResponseModel prepareFailView(String error) throws LoginUserFailed {
+        throw new LoginUserFailed(error);
     }
 }

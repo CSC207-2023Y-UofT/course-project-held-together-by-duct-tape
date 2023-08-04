@@ -7,26 +7,26 @@ package usecases.LoginStudentUseCase;
  */
 public class LoginStudentRequestModel {
     private String username;
-    private String repeatUsername;
+    private String password;
 
     public LoginStudentRequestModel(String username, String repeatUsername) {
         this.username = username;
-        this.repeatUsername = repeatUsername;
+        this.password = repeatUsername;
     }
 
     public String getUsername() {
         return this.username;
     }
 
-    public String getRepeatUsername() {
-        return this.repeatUsername;
+    public String getPassword() {
+        return this.password;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setRepeatUsername(String repeatUsername) {
-        this.repeatUsername = repeatUsername;
+    public void setPassword(String repeatUsername) {
+        this.password = repeatUsername;
     }
 }

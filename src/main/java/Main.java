@@ -1,16 +1,18 @@
-import frameworksdrivers.SessionDbGateway;
-import frameworksdrivers.StudentDbGateway;
-import interfaceadapters.CourseEnrollmentScreen;
-import interfaceadapters.CreateStudent.CreateStudentController;
-import interfaceadapters.CreateStudent.CreateStudentPresenter;
-import interfaceadapters.CreateStudent.CreateStudentScreen;
-import interfaceadapters.StudentModeScreen;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
+import frameworksdrivers.DatabaseDriver;
+
+import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
+import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
+import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
+import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentScreen;
-import interfaceadapters.MainScreen;
-import usecases.CreateStudentUsecase.CreateStudentInteractor;
-import usecases.LoginStudentUseCase.LoginStudentInteractor;
+
+import userinterface.CreateStudentUserInterface.CreateStudentScreen;
+import userinterface.GenericProperties;
+import userinterface.LoginStudentUserInterface.LoginStudentScreen;
+import userinterface.RunCourseUserInterface.RunCourseScreen;
+import userinterface.StudentModeScreen;
+import userinterface.UserModeScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,38 +26,35 @@ public class Main {
         application.add(screens);
 
         // Components
+        DatabaseDriver databaseDriver = new DatabaseDriver();
 
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter();
-        StudentDbGateway studentDbGateway = new StudentDbGateway();
-        SessionDbGateway sessionDbGateway = new SessionDbGateway();
-
-        LoginStudentInteractor loginInteractor = new LoginStudentInteractor(studentDbGateway, sessionDbGateway, loginPresenter);
-
-        LoginStudentController loginController = new LoginStudentController(loginInteractor);
-
-        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter();
-        CreateStudentInteractor createStudentInteractor = new CreateStudentInteractor(studentDbGateway,createStudentPresenter);
-        CreateStudentController createStudentController = new CreateStudentController(createStudentInteractor);
-
+        // Presenters
+        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
+        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
+        RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
+        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
 
         // Plug-in screens
-
-        MainScreen mainScreen = new MainScreen(screens, cards);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(screens, cards, loginController);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(screens, cards);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(screens, cards, createStudentController);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(screens, cards);
+        GenericProperties genericProperties = new GenericProperties(screens, cards);
+        UserModeScreen mainScreen = new UserModeScreen(genericProperties);
+        StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");
         screens.add(createStudentScreen, "createStudent");
         screens.add(loginScreen, "login");
         screens.add(enrollmentScreen, "enrollment");
+        screens.add(courseScreen, "course");
 
         cards.show(screens, "main");
 
+        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.pack();
         application.setVisible(true);
-
     }
 }

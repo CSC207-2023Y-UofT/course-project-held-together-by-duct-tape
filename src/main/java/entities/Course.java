@@ -1,4 +1,5 @@
 package entities;
+
 import java.util.List;
 import java.util.Iterator;
 
@@ -8,8 +9,8 @@ import java.util.Iterator;
  */
 public class Course implements Iterable<Question>{
     private final String courseId;
-    private final Prerequisite prerequisite;
-    private final List<Question> questions;
+    private Prerequisite prerequisite;
+    private List<Question> questions;
 
     /**
      * Construct a course with courseId, prerequisite and a list of questions.
@@ -22,6 +23,10 @@ public class Course implements Iterable<Question>{
         this.courseId = courseId;
         this.prerequisite = prerequisite;
         this.questions = questions;
+    }
+
+    public Course(String courseId) {
+        this.courseId = courseId;
     }
 
     public String getCourseId() {
@@ -38,6 +43,21 @@ public class Course implements Iterable<Question>{
 
     public Question getQuestionAt(int i) {
         return this.questions.get(i);
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public void setPrerequisite(Prerequisite prerequisite) {
+        this.prerequisite = prerequisite;
+    }
+
+    public int getAllPoints(){
+        int all_points = 0;
+        for (Question question: questions){
+            all_points += question.getPoints();
+        }return all_points;
     }
 
     @Override

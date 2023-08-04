@@ -1,7 +1,5 @@
 package usecases.RunCourseUseCase;
 import frameworksdriversmock.DatabaseDriverMock;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginUserFailed;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 
 import java.util.ArrayList;
@@ -21,7 +19,6 @@ public class RunCourseInteractorTest {
     public void init() {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
-
         interactor = new RunCourseInteractor(databaseDriver.getSessionDbGateway(), coursePresenter);
     }
 
@@ -63,6 +60,7 @@ public class RunCourseInteractorTest {
         questions.add("Question2");
         answers.add("Answer");
         RunCourseRequestModel requestModel = new RunCourseRequestModel(questions, answers);
+
         Assertions.assertEquals(interactor.runCourse(requestModel), "Course Completed.");
     }
     @Test

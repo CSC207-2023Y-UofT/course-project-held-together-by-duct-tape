@@ -4,7 +4,6 @@ import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
@@ -29,7 +28,7 @@ public class Main {
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
         // Presenters
-        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
+
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
@@ -39,7 +38,7 @@ public class Main {
         GenericProperties genericProperties = new GenericProperties(screens, cards);
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);

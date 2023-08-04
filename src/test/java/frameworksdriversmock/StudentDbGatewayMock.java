@@ -3,6 +3,7 @@ package frameworksdriversmock;
 import frameworksdrivers.Gateways.StudentGateway;
 
 import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
+import usecases.CreateStudentUsecase.CreateStudentDataAccess;
 import usecases.CreateStudentUsecase.CreateStudentDsModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;
@@ -16,7 +17,7 @@ import java.util.Map;
  * Mock Student Gateway that acts as the gateway in the program. Has attributes of what would be in the actual
  * database so that we can run tests on this gateway. It holds studentIDs, passwords, and the course mappings.
  */
-public class StudentDbGatewayMock implements StudentGateway {
+public class StudentDbGatewayMock implements StudentGateway, CreateStudentDataAccess {
     private final List<String> studentIDs = new ArrayList<>();
     private final List<String> passwords = new ArrayList<>();
     private final List<Map<String, Float>> courses = new ArrayList<>();

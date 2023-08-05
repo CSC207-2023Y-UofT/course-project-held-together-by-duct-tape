@@ -36,22 +36,6 @@ public class CourseEnrolmentInteractorTest {
     }
 
     /**
-     * Checks that exception is thrown if the student attempts to enrol in a course which does not exist.
-     */
-    @Test
-    public void testNonexistentCourseID() {
-        EnrolmentRequestModel requestModel = new EnrolmentRequestModel("CSC199");
-
-        // If the student provides a nonexistent course ID, a RuntimeException must be thrown.
-        try {
-            enrolmentInteractor.enrol(requestModel);
-            Assertions.fail("This should not happen.");
-        } catch (RuntimeException e) {
-            Assertions.assertEquals(e.getMessage(), "Course does not exist in Database!");
-        }
-    }
-
-    /**
      * Checks that exception is thrown if the student attempts to enrol in a course for which they do not have
      * the minimum GPA for the required prerequisite.
      */

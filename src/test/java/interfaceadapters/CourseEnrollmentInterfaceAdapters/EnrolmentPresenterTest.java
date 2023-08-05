@@ -30,18 +30,6 @@ public class EnrolmentPresenterTest {
     }
 
     /**
-     * Test fail view message for nonexisent course
-     */
-    @Test
-    public void testFailViewNonexistentCourse() {
-        String message = "Course does not exist in Database!";
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            enrolmentPresenter.prepareFailView(message);
-        });
-        Assertions.assertTrue(exception.getMessage().contains(message));
-    }
-
-    /**
      * Test fail view message for incomplete prerequisites
      */
     @Test

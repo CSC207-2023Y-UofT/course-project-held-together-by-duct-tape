@@ -44,12 +44,6 @@ class EnrolmentControllerTest {
         Assertions.assertEquals("You've successfully enrolled in course CSC108",
                 enrolmentController.enrol("CSC108"));
 
-        // Enrollment is unsuccessful, because courseID does not exist.
-        Exception exception1 = assertThrows(RuntimeException.class, () -> {
-            enrolmentController.enrol("ABC111");
-        });
-        Assertions.assertTrue(exception1.getMessage().contains("Course does not exist in Database!"));
-
         // Enrollment is unsuccessful, because student does not have the prerequisites.
         Exception exception2 = assertThrows(RuntimeException.class, () -> {
             enrolmentController.enrol("CSC207");

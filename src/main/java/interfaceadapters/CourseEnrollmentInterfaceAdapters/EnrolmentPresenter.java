@@ -37,8 +37,7 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     }
 
     /**
-     * Throw error if student attempts to enroll in a nonexistent course, or a course for which they have not completed
-     * the prerequisite.
+     * Throw error if student attempts to enroll in a course for which they have not completed the prerequisite.
      * @param failMessage message informing the student the reason for unsuccessful enrollment.
      * @return message signaling unsuccessful enrollment.
      */

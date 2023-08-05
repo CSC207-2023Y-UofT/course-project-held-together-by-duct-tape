@@ -5,11 +5,20 @@ import usecases.CourseEnrollmentUseCase.*;
 
 import java.util.List;
 
+/**
+ * Presenter for the enrollment use case. This class is responsible for: the enrollment success/fail messages, making
+ * the call to the session gateway to delete the student/course from the session database, as well as making the call
+ * to the course gateway to retrieve the names of the available courses.
+ */
 public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     private final EnrolmentCourseDataAccess courseDbGateway;
     private final EnrolmentSessionDataAccess sessionDbGateway;
     private final EnrolmentController enrolmentController;
 
+    /**
+     * Initializes the presenter for the enrollment use case.
+     * @param databaseDriver driver that connects the presenter to the databases
+     */
     public EnrolmentPresenter(Driver databaseDriver) {
         this.courseDbGateway = databaseDriver.getCourseDbGateway();
         this.sessionDbGateway = databaseDriver.getSessionDbGateway();
@@ -47,14 +56,14 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
     }
 
     /**
-     * Deletes a course from the session database once the student completes it.
+     * Calls the session gateway to delete the current course on the session database.
      */
     public void deleteCourseSession() {
         sessionDbGateway.deleteCourseSession();
     }
 
     /**
-     * Deletes a student from the session database once the student has completed it.
+     * Calls the session gateway to delete the current user on the session database.
      */
     public void deleteStudentSession() {
         sessionDbGateway.deleteStudentSession();

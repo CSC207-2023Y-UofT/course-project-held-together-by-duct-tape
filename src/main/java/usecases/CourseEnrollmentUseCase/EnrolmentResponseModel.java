@@ -6,6 +6,10 @@ package usecases.CourseEnrollmentUseCase;
 public class EnrolmentResponseModel {
     private final String courseId;
 
+    /**
+     * Initializes the response model.
+     * @param courseId the name of the course in which the student has successfully enrolled.
+     */
     public EnrolmentResponseModel(String courseId) {
         this.courseId = courseId;
     }

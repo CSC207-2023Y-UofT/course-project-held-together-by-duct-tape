@@ -1,8 +1,16 @@
 package usecases.CourseEnrollmentUseCase;
 
+/**
+ * Class responsible for checking whether the student has completed the course and grade prerequisites for a particular
+ * course. It has references to the session gateway.
+ */
 public class CheckPrerequisitesInteractor {
     private final EnrolmentSessionDataAccess sessionDbGateway;
 
+    /**
+     * Initializes the CheckPrerequisitesInteractor.
+     * @param sessionDbGateway the session gateway for accessing the session database
+     */
     public CheckPrerequisitesInteractor(EnrolmentSessionDataAccess sessionDbGateway) {
         this.sessionDbGateway = sessionDbGateway;
     }

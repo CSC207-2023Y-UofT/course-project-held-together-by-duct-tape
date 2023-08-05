@@ -1,11 +1,23 @@
 package usecases.CourseEnrollmentUseCase;
 
+/**
+ * This is the course enrollment interactor which enrolls the student in the selected course. It has references
+ * to the check prerequisites interactor, session gateway, course gateway, as well as the enrollment presenter.
+ */
 public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
     private final CheckPrerequisitesInteractor completedPrerequisite;
     private final EnrolmentSessionDataAccess sessionDbGateway;
     private final EnrolmentCourseDataAccess courseDbGateway;
     private final EnrolmentOutputBoundary enrolmentPresenter;
 
+    /**
+     * Initializes the CourseEnrolmentInteractor.
+     * @param courseDbGateway retrieves the course from the database
+     * @param completedPrerequisite checks if student has completed the prerequisites for the course
+     * @param sessionDbGateway the class through which the session database is accessed in order to check
+     *                         prerequisites completion and save the course
+     * @param enrolmentPresenter displays success/fail messages
+     */
     public CourseEnrolmentInteractor(EnrolmentCourseDataAccess courseDbGateway,
                                      CheckPrerequisitesInteractor completedPrerequisite,
                                      EnrolmentSessionDataAccess sessionDbGateway,
@@ -39,5 +51,4 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
         EnrolmentResponseModel enrolmentResponseModel = new EnrolmentResponseModel(requestModel.getCourseId());
         return enrolmentPresenter.prepareSuccessView(enrolmentResponseModel);
     }
-
 }

@@ -46,10 +46,16 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
         throw new RuntimeException(failMessage);
     }
 
+    /**
+     * Deletes a course from the session database once the student completes it.
+     */
     public void deleteCourseSession() {
         sessionDbGateway.deleteCourseSession();
     }
 
+    /**
+     * Deletes a student from the session database once the student has completed it.
+     */
     public void deleteStudentSession() {
         sessionDbGateway.deleteStudentSession();
     }

@@ -18,17 +18,6 @@ class CreateCourseControllerTest {
 
     @BeforeEach
     void setUp() {
-        // Create a mock implementation for CourseDbGateway
-        // CourseDbGatewayMock courseDbGatewayMock = new CourseDbGatewayMock();
-
-        // Create a mock implementation for SessionDbGateway
-        // SessionDbGatewayMock sessionDbGatewayMock = new SessionDbGatewayMock();
-
-        // Create a mock implementation for StudentDbGateway
-        // StudentDbGatewayMock studentDbGatewayMock = new StudentDbGatewayMock();
-
-        // Don't initialize the mocks yourself, let the database driver mock do that
-
         // Create a mock implementation for DatabaseDriver
         DatabaseDriverMock databaseDriverMock = new DatabaseDriverMock();
 

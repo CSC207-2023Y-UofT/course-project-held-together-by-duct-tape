@@ -60,7 +60,8 @@ class CreateCourseInteractorTest {
         try {
             interactor.createCourse(request);
         } catch (FailedtoCreate e) {
-            Assertions.assertEquals(e.getMessage(), "Course with this name already exists.");
+            Assertions.assertEquals(e.getMessage(),
+                    "Course with this name already exists, Or you gave an empty input.");
         }
     }
 

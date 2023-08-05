@@ -59,8 +59,8 @@ public class CreateCourseInteractor implements CreateCourseInputBoundary {
     /** Private helper methods for validation*/
     private void checkCoursesAndPrereqs(String courseId, String prerequisite, Float prerequisite_grade){
         // Check if the course already exists
-        if (courseDataAccess.existsByCourseId(courseId)) {
-            presenter.showError("Course with this name already exists.");
+        if (courseDataAccess.existsByCourseId(courseId) || courseId.isEmpty()) {
+            presenter.showError("Course with this name already exists, Or you gave an empty input.");
         }
 
         // Check if prerequisite exists in the database

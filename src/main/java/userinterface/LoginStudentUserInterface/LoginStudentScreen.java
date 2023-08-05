@@ -1,5 +1,7 @@
 package userinterface.LoginStudentUserInterface;
 
+import frameworksdrivers.DatabaseDriver;
+import frameworksdrivers.Driver;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 import userinterface.GenericProperties;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
@@ -19,8 +21,10 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
     private final GenericProperties genericProperties;
     private final LoginStudentController controller;
 
-    public LoginStudentScreen(GenericProperties genericProperties, LoginStudentPresenter loginPresenter) {
+    public LoginStudentScreen(GenericProperties genericProperties) {
         this.genericProperties = genericProperties;
+        Driver databaseDriver = new DatabaseDriver();
+        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         this.controller = loginPresenter.getLoginController();
 
         JLabel title = new JLabel("Login Screen");

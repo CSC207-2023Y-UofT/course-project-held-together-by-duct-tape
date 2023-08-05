@@ -63,7 +63,8 @@ class CreateCourseControllerTest {
         try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
         } catch (FailedtoCreate e) {
-            Assertions.assertEquals(e.getMessage(), "Course with this name already exists.");
+            Assertions.assertEquals(e.getMessage(),
+                    "Course with this name already exists, Or you gave an empty input.");
         }
     }
 

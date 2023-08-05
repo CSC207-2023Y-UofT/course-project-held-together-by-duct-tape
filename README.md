@@ -119,6 +119,11 @@ This is the diagram illustrating the course evaluator feature:
 
 <img width="293" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/b89f7bcf-9008-4227-a344-e22e9004edf2">
 
+This is the diagram illustrating the run course feature:
+
+<img width="662" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/ed9699b2-e75c-4c2e-beab-cfe9b5866f34">
+
+
 
 
 

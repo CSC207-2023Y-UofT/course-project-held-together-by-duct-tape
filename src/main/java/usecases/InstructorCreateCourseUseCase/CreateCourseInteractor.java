@@ -29,7 +29,7 @@ public class CreateCourseInteractor implements CreateCourseInputBoundary {
      * @param request The request model containing information for creating the course.
      */
     @Override
-    public void createCourse(CreateCourseRequestModel request) {
+    public String createCourse(CreateCourseRequestModel request) {
         // Extract information from the request
         String courseId = request.getCourseId();
         String prerequisite = request.getPrerequisite();
@@ -53,33 +53,46 @@ public class CreateCourseInteractor implements CreateCourseInputBoundary {
 
         // Notify presenter about successful course creation
         CreateCourseResponseModel response = new CreateCourseResponseModel(courseId);
-        presenter.courseCreated(response);}
+        return presenter.courseCreated(response);
+    }
 
     /** Private helper methods for validation*/
     private void checkCoursesAndPrereqs(String courseId, String prerequisite, Float prerequisite_grade){
         // Check if the course already exists
         if (courseDataAccess.existsByCourseId(courseId)) {
-            presenter.showError("Course with this name already exists.");}
+            presenter.showError("Course with this name already exists.");
+        }
 
         // Check if prerequisite exists in the database
         if (!prerequisite.isEmpty() && !courseDataAccess.existsByCourseId(prerequisite)) {
-            presenter.showError("Prerequisite course not found in the database.");}
+            presenter.showError("Prerequisite course not found in the database.");
+        }
 
         // Check prerequisite grade
-        if (prerequisite_grade < 0){
-            presenter.showError("Prerequisite's Grade must be positive numbers.");}
+        if (prerequisite_grade < 0) {
+            presenter.showError("Prerequisite's Grade must be positive numbers.");
+        }
     }
 
     private void checkQuestionsAnswersPoints(List<String> questions, List<String> answers, List<Integer> points){
 
         // Check for empty questions
-        for (String question : questions) {if (question.isEmpty()) {
-            presenter.showError("All questions must be filled.");}}
+        for (String question : questions) {
+            if (question.isEmpty()) {
+                presenter.showError("All questions must be filled.");
+            }
+        }
         // Check for empty answers
-        for (String answer : answers) {if (answer.isEmpty()) {
-            presenter.showError("All answers must be filled.");}}
+        for (String answer : answers) {
+            if (answer.isEmpty()) {
+                presenter.showError("All answers must be filled.");
+            }
+        }
         // Check for non-positive points
-        for (Integer point : points) {if (point == null || point < 0) {
-            presenter.showError("Points must be positive for all questions.");}}}
-
+        for (Integer point : points) {
+            if (point == null || point < 0) {
+                presenter.showError("Points must be positive for all questions.");
+            }
+        }
+    }
 }

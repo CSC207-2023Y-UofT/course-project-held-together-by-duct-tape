@@ -22,6 +22,7 @@ public class CreateCourseController {
     public CreateCourseController(CreateCourseInputBoundary createCourseInteractor) {
         this.createCourseInteractor = createCourseInteractor;
     }
+
     /**
      * Initiates the course creation process by building a request model with the given parameters. The prerequisite
      * grade is processed, defaulting to a passing grade if not provided. The request model is then passed to the
@@ -44,7 +45,7 @@ public class CreateCourseController {
      * @param prerequisite_grade The grade required in the prerequisite course.
      */
 
-    public void createCourse(String courseId, String prerequisite, String prerequisite_grade, List<String> questions,
+    public String createCourse(String courseId, String prerequisite, String prerequisite_grade, List<String> questions,
                              List<String> answers, List<Integer> points) {
         Float prerequisite_gradeValue = noGrade;
         String prereq = prerequisite;
@@ -54,6 +55,6 @@ public class CreateCourseController {
             prerequisite_gradeValue = Float.valueOf(prerequisite_grade);}
         CreateCourseRequestModel request = new CreateCourseRequestModel(courseId, prereq, prerequisite_gradeValue,
                 questions, answers, points);
-        createCourseInteractor.createCourse(request);
+        return createCourseInteractor.createCourse(request);
     }
 }

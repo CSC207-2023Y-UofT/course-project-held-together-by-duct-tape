@@ -1,6 +1,6 @@
 package interfaceadapters.CreateCourseInterfaceAdapters;
 
-import frameworksdrivers.DatabaseDriver;
+import frameworksdrivers.Driver;
 import usecases.InstructorCreateCourseUseCase.CreateCourseInteractor;
 import usecases.InstructorCreateCourseUseCase.CreateCourseOutputBoundary;
 import usecases.InstructorCreateCourseUseCase.CreateCourseResponseModel;
@@ -19,11 +19,9 @@ public class CreateCoursePresenter implements CreateCourseOutputBoundary {
      *
      * @param driver DatabaseDriver object providing access to required gateways.
      */
-    public CreateCoursePresenter(DatabaseDriver driver){
-
+    public CreateCoursePresenter(Driver driver){
         CreateCourseInteractor interactor = new CreateCourseInteractor(driver.getCourseDbGateway(), this);
         controller = new CreateCourseController(interactor);
-
     }
 
     /**
@@ -41,8 +39,8 @@ public class CreateCoursePresenter implements CreateCourseOutputBoundary {
      * @throws SuccessCreate Exception indicating successful course creation.
      */
     @Override
-    public void courseCreated(CreateCourseResponseModel response) {
-        throw new SuccessCreate("You created the course " + response.getCourseId());
+    public String courseCreated(CreateCourseResponseModel response) {
+        return "You created the course " + response.getCourseId();
     }
 
     /**

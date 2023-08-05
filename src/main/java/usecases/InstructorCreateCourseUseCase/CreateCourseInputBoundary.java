@@ -12,6 +12,6 @@ public interface CreateCourseInputBoundary {
     *
     * @param request The request model containing the necessary information to create the course.
     */
-   void createCourse(CreateCourseRequestModel request);
+   String createCourse(CreateCourseRequestModel request);
 }
 

@@ -175,7 +175,8 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
             finally {
                 clearFields();
             }
-        }}
+        }
+    }
 
     /**
      * Clears all input fields.

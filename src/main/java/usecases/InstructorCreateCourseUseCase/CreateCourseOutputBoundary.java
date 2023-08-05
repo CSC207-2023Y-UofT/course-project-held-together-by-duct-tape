@@ -11,7 +11,7 @@ public interface CreateCourseOutputBoundary {
      *
      * @param response The response model containing relevant information about the created course.
      */
-    void courseCreated(CreateCourseResponseModel response);
+    String courseCreated(CreateCourseResponseModel response);
 
     /**
      * Called to display an error message when course creation encounters an error.

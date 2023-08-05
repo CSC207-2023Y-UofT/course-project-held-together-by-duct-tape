@@ -26,10 +26,9 @@ public class RunCourseScreen extends JPanel implements ActionListener {
 
     public RunCourseScreen(GenericProperties genericProperties, EvaluatorPresenter evaluatorPresenter) {
         DatabaseDriver databaseDriver = new DatabaseDriver();
-        RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         this.genericProperties = genericProperties;
-        this.controller = coursePresenter.getCourseController();
-        this.presenter = coursePresenter;
+        this.presenter = new RunCoursePresenter(databaseDriver);
+        this.controller = presenter.getCourseController();
         this.evaluatorController = evaluatorPresenter.getEvaluatorController();
 
         JLabel title = new JLabel("Course Screen");

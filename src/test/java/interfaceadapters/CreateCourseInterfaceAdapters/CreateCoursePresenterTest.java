@@ -13,7 +13,7 @@ class CreateCoursePresenterTest {
     @BeforeEach
     void setUp() {
         DatabaseDriver driver = new DatabaseDriver();
-        presenter = new CreateCoursePresenter(driver);
+        this.presenter = new CreateCoursePresenter(driver);
     }
 
     @Test

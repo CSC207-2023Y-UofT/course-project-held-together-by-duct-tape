@@ -13,12 +13,13 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCourseController;
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
 import userinterface.GenericProperties;
 
 public class CreateCourseScreen extends JPanel implements ActionListener {
-    private CreateCourseController controller;
+    private final CreateCourseController controller;
 
 
     // Text fields for course information
@@ -44,16 +45,16 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
     JButton cancel = new JButton(("Cancel"));
 
     // Reference to generic properties
-    private GenericProperties genericProperties;
+    private final GenericProperties genericProperties;
 
 
     /**
      * Constructs a new CreateCourseScreen.
      *
      * @param genericProperties The generic properties of the user interface.
-     * @param presenter         The CreateCoursePresenter to handle the creation process.
      */
-    public CreateCourseScreen(GenericProperties genericProperties, CreateCoursePresenter presenter) {
+    public CreateCourseScreen(GenericProperties genericProperties) {
+        CreateCoursePresenter presenter = new CreateCoursePresenter(new DatabaseDriver());
         this.genericProperties = genericProperties;
         this.controller = presenter.getCreateCourseController();
 

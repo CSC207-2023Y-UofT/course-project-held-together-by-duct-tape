@@ -36,7 +36,6 @@ public class Main {
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
-        CreateCoursePresenter createCoursePresenter = new CreateCoursePresenter(databaseDriver);
 
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
@@ -46,7 +45,7 @@ public class Main {
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
-        CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties, createCoursePresenter);
+        CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties);
 
         // Add screens to the JPanel
         screens.add(mainScreen, "main");

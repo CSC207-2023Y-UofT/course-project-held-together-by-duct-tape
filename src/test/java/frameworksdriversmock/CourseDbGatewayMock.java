@@ -43,7 +43,13 @@ public class CourseDbGatewayMock implements CourseGateway {
 
     @Override
     public void saveCourse(CourseDbRequestModel course) {
-    }
+       courseIDs.add(course.getCourseId());
+       prerequisiteIDs.add(course.getPrereq());
+       prerequisiteGrades.add(Math.round(course.getPrereqGrade()));
+       allQuestions.add(course.getQuestions());
+       allAnswers.add(course.getAnswers());
+       allPoints.add(course.getPoints());}
+
 
     @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {

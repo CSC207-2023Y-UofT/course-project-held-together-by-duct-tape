@@ -23,51 +23,35 @@ public class CreateCourseInteractor implements CreateCourseInputBoundary {
         List<String> questions = request.getQuestions();
         List<String> answers = request.getAnswers();
         List<Integer> points = request.getPoints();
-
-        // Check if the course name already exists in the database
-        if (courseDataAccess.existsByCourseId(courseId)) {
-            presenter.showError("Course with this name already exists.");
-            return;
-        }
-
-        // Check if prerequisite exists in the database
-        if (!prerequisite.isEmpty() && !courseDataAccess.existsByCourseId(prerequisite)) {
-            presenter.showError("Prerequisite course not found in the database.");
-            return;
-        }
-
-        if (prerequisite_grade < 0){
-            presenter.showError("Prerequisite's Grade must be positive numbers.");
-        }
-
+        checkCoursesAndPrereqs(courseId, prerequisite, prerequisite_grade);
         // Check if all questions, answers, and points are non-empty
-        for (String question : questions) {
-            if (question.isEmpty()) {
-                presenter.showError("All questions must be filled.");
-                return;
-            }
-        }
-
-        for (String answer : answers) {
-            if (answer.isEmpty()) {
-                presenter.showError("All answers must be filled.");
-                return;
-            }
-        }
-
-        for (Integer point : points) {
-            if (point == null || point < 0) {
-                presenter.showError("Points must be positive for all questions.");
-                return;
-            }
-        }
-
+        checkQuestionsAnswersPoints(questions, answers, points);
         CourseDbRequestModel courseDbRequestModel =
                 new CourseDbRequestModel(courseId, prerequisite, prerequisite_grade, questions, answers, points);
         courseDataAccess.saveCourse(courseDbRequestModel);
-
         // Notify presenter about successful course creation
         CreateCourseResponseModel response = new CreateCourseResponseModel(courseId);
-        presenter.courseCreated(response);
+        presenter.courseCreated(response);}
+
+    private void checkCoursesAndPrereqs(String courseId, String prerequisite, Float prerequisite_grade){
+        if (courseDataAccess.existsByCourseId(courseId)) {
+            presenter.showError("Course with this name already exists.");}
+
+        // Check if prerequisite exists in the database
+        if (!prerequisite.isEmpty() && !courseDataAccess.existsByCourseId(prerequisite)) {
+            presenter.showError("Prerequisite course not found in the database.");}
+
+        if (prerequisite_grade < 0){
+            presenter.showError("Prerequisite's Grade must be positive numbers.");}
     }
+
+    private void checkQuestionsAnswersPoints(List<String> questions, List<String> answers, List<Integer> points){
+        for (String question : questions) {if (question.isEmpty()) {
+            presenter.showError("All questions must be filled.");}}
+
+        for (String answer : answers) {if (answer.isEmpty()) {
+            presenter.showError("All answers must be filled.");}}
+
+        for (Integer point : points) {if (point == null || point < 0) {
+            presenter.showError("Points must be positive for all questions.");}}}
 }

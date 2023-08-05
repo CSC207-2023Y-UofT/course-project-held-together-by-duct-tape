@@ -65,5 +65,9 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
         } else if (e.getActionCommand().equals("Cancel")) {
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
         }
+        clearFields();
     }
+    public void clearFields(){ username.setText(null);
+    password.setText(null);
+    repeat.setText(null);}
 }

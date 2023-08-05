@@ -142,9 +142,28 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
                 points.add(Integer.valueOf(Points3.getText()));
                 controller.createCourse(coursename, prereq, prereqgrade, questions, answers, points);}
             catch ( NumberFormatException e){ JOptionPane.showMessageDialog(this,
-                    "Sorry.... something wrong with what you inputted :(");}
+                    "Sorry.... something is wrong with what you inputted :(");
+            }
             catch (Exception b){JOptionPane.showMessageDialog(this, b.getMessage());
                 genericProperties.getCards().show(genericProperties.getScreens(), "main");
-}}}}
+            }
+            finally {
+                clearFields();
+            }
+        }}
+
+    public void clearFields(){CourseName.setText(null);
+    Prerequisite.setText(null);
+    PrerequisiteGrade.setText(null);
+    Question1.setText(null);
+    Question2.setText(null);
+    Question3.setText(null);
+    Points1.setText(null);
+    Points2.setText(null);
+    Points3.setText(null);
+    Answer1.setText(null);
+    Answer2.setText(null);
+    Answer3.setText(null);}
+}
 
 

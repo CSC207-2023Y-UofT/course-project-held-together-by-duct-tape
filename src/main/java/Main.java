@@ -5,7 +5,6 @@ import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import userinterface.GenericProperties;

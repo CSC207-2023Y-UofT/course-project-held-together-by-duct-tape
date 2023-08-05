@@ -1,6 +1,7 @@
 package interfaceadapters.CreateCourseInterfaceAdapters;
 
 import frameworksdrivers.DatabaseDriver;
+import frameworksdriversmock.DatabaseDriverMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class CreateCoursePresenterTest {
 
     @BeforeEach
     void setUp() {
-        DatabaseDriver driver = new DatabaseDriver();
+        DatabaseDriverMock driver = new DatabaseDriverMock();
         this.presenter = new CreateCoursePresenter(driver);
     }
 

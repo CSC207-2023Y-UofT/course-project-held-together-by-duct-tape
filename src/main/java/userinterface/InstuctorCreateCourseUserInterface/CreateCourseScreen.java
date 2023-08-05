@@ -144,6 +144,7 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
         if ("Cancel".equals(a.getActionCommand())){
             // Handle cancel action
             genericProperties.getCards().show(genericProperties.getScreens(), "main");
+            clearFields();
         }
 
         if ("Create".equals(a.getActionCommand())){

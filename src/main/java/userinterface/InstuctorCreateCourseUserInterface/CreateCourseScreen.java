@@ -167,15 +167,13 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
 
                 // Call controller to create the course
                 String message = controller.createCourse(coursename, prereq, prereqgrade, questions, answers, points);
-                JOptionPane.showMessageDialog(this, message);}
+                JOptionPane.showMessageDialog(this, message);
+                genericProperties.getCards().show(genericProperties.getScreens(), "main");
+                clearFields();}
             catch ( NumberFormatException e){ JOptionPane.showMessageDialog(this,
                     "Sorry.... something is wrong with what you inputted :(");
             }
             catch (Exception b){JOptionPane.showMessageDialog(this, b.getMessage());
-                genericProperties.getCards().show(genericProperties.getScreens(), "main");
-            }
-            finally {
-                clearFields();
             }
         }
     }

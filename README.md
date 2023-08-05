@@ -52,7 +52,7 @@ This is a course simulator in which the user can pick between an instructor mode
 <img width="392" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/c7615b93-334d-4bbd-a902-bc55b4c786c1">
 
 
-In instructor mode, the user can create a course. They must give a course code, prerequisites and the grade in them if the prerequisite field is left blank default is fifty and if they don't have prereqs this is reflected in the database, questions, answers and their corresponding number of points. Then that specific course is saved. 
+In instructor mode, the user can create a course. They must give a course code, prerequisites and the grade in them if the prerequisite field is left blank default is fifty and if they don't have prereqs this is reflected in the database, questions, answers and their corresponding number of points. Then that specific course is saved if all inputs are valid and the instructor can no longer modify the course. 
 
 
 <img width="348" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/26581797-4d73-4a4e-9326-6fe127520c46">

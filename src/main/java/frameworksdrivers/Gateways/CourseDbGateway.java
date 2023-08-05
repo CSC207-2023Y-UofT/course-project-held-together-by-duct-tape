@@ -148,7 +148,7 @@ public class CourseDbGateway implements CourseGateway {
 
             for (int j = 0; j < questions.size(); j++) {
                 String SQL = "INSERT INTO " + DATABASE_NAME +
-                        " (CourseID, PrerequisteCourseID, PrerequisiteGrade, " +
+                        " (CourseID, PrerequisiteCourseID, PrerequisiteGrade, " +
                         "Question, Answer, Points) VALUES (?, ?, ?, ?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, requestModel.getCourseId());

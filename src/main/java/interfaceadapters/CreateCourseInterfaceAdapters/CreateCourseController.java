@@ -19,7 +19,7 @@ public class CreateCourseController {
         if (prerequisite_grade.equals("") & !prereq.equals("")) {
             prerequisite_gradeValue = 50f;}
         if ( prerequisite.equals("")){ prereq = ""; prerequisite_gradeValue = 0f;}
-        else{ prerequisite_gradeValue = Float.valueOf(prerequisite_grade);}
+        else { prerequisite_gradeValue = Float.valueOf(prerequisite_grade);}
         CreateCourseRequestModel request = new CreateCourseRequestModel(courseId, prereq, prerequisite_gradeValue,
                 questions, answers, points);
         createCourseInteractor.createCourse(request);

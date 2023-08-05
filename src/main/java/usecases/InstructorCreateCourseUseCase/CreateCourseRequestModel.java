@@ -11,11 +11,10 @@ public class CreateCourseRequestModel {
     private final List<Integer> points;
 
     // Constructor
-    public CreateCourseRequestModel(String courseId, String prerequisite, Float prerequisite_grade, List<String> questions, List<String> answers, List<Integer> points) {
+    public CreateCourseRequestModel(String courseId, String prerequisite, Float grade, List<String> questions, List<String> answers, List<Integer> points) {
         this.courseId = courseId;
         this.prerequisite = prerequisite;
-        prerequisite_grade = null;
-        this.prerequisite_grade = prerequisite_grade;
+        this.prerequisite_grade = grade;
         this.questions = questions;
         this.answers = answers;
         this.points = points;

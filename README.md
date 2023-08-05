@@ -126,6 +126,18 @@ This is the diagram illustrating the run course feature:
 <img width="662" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/ed9699b2-e75c-4c2e-beab-cfe9b5866f34">
 
 
+This is a diagram for the course enrollment feature:
+
+<img width="407" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/725d3036-dc17-4e82-8804-841d5d9a8142">
+
+This is a diagram for the courses creation feature:
+
+<img width="409" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/32dfdd39-a8a6-4beb-b2e8-95f3d3ee51a3">
+
+
+
+
+
 
 
 

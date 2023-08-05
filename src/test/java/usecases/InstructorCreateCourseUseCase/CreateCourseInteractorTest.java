@@ -41,6 +41,30 @@ class CreateCourseInteractorTest {
     }
 
     @Test
+    void testCreateCourseWithEmptyCourseId() {
+        // Define test data
+        String courseId = ""; // Empty course name
+        String prerequisite = "";
+        Float prerequisiteGrade = 0.0f;
+        List<String> questions = new ArrayList<>();
+        List<String> answers = new ArrayList<>();
+        List<Integer> points = new ArrayList<>();
+        questions.add("What is 1 + 1?");
+        answers.add("2");
+        points.add(5);
+
+        // Call the method being tested
+        CreateCourseRequestModel request = new CreateCourseRequestModel(courseId, prerequisite, prerequisiteGrade,
+                questions, answers, points);
+
+        try {
+            interactor.createCourse(request);
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "Course with this name already exists, Or you gave an empty input.");
+        }
+    }
+
+    @Test
     void testCreateCourseAlreadyExsitsCourseName(){
         String existingCourseId = "CSC108";
         String newCourseId = existingCourseId; // Attempting to create a course with an existing ID

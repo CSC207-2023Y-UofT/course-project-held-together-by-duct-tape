@@ -12,14 +12,14 @@ public class CreateCourseController {
         this.createCourseInteractor = createCourseInteractor;
     }
 
-    public void createCourse(String courseId, String prerequisite, Float prerequisite_grade, List<String> questions,
+    public void createCourse(String courseId, String prerequisite, String prerequisite_grade, List<String> questions,
                              List<String> answers, List<Integer> points) {
-        Float prerequisite_gradeValue = prerequisite_grade;
+        Float prerequisite_gradeValue;
         String prereq = prerequisite;
-        if (prerequisite_grade == null & prereq != null) {
+        if (prerequisite_grade.equals("") & !prereq.equals("")) {
             prerequisite_gradeValue = 50f;}
-        if ( prerequisite == null){ prereq = ""; prerequisite_gradeValue = 0f;}
-
+        if ( prerequisite.equals("")){ prereq = ""; prerequisite_gradeValue = 0f;}
+        else{ prerequisite_gradeValue = Float.valueOf(prerequisite_grade);}
         CreateCourseRequestModel request = new CreateCourseRequestModel(courseId, prereq, prerequisite_gradeValue,
                 questions, answers, points);
         createCourseInteractor.createCourse(request);

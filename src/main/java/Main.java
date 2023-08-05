@@ -56,7 +56,11 @@ public class Main {
         screens.add(enrollmentScreen, "enrollment");
         screens.add(courseScreen, "course");
 
+
         cards.show(screens, "main");
+
+
+
 
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.pack();

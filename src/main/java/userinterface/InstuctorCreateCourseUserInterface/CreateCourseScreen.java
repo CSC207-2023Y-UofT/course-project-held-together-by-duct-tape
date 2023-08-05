@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCourseController;
 import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
+import interfaceadapters.CreateCourseInterfaceAdapters.FailedtoCreate;
+import interfaceadapters.CreateCourseInterfaceAdapters.SuccessCreate;
 import userinterface.GenericProperties;
 
 public class CreateCourseScreen extends JPanel implements ActionListener {
@@ -116,29 +118,33 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String coursename = CourseName.getText();
-        String prereq = Prerequisite.getText();
-        Float prereqgrade = Float.valueOf(PrerequisiteGrade.getText());
-        ArrayList<String> questions = new ArrayList<>();
-        questions.add(Question1.getText());
-        questions.add(Question2.getText());
-        questions.add(Question3.getText());
-        ArrayList<String> answers = new ArrayList<>();
-        answers.add(Answer1.getText());
-        answers.add(Answer2.getText());
-        answers.add(Answer3.getText());
-        ArrayList<Integer> points = new ArrayList<>();
-        points.add(Integer.valueOf(Points1.getText()));
-        points.add(Integer.valueOf(Points2.getText()));
-        points.add(Integer.valueOf(Points3.getText()));
-        if ( e.getActionCommand() == "create"){ controller.createCourse(coursename, prereq, prereqgrade, questions,
-                answers, points);}
-        if (e.getActionCommand() == "cancel"){
+    public void actionPerformed(ActionEvent a) {
+        if ("Cancel".equals(a.getActionCommand())){
             genericProperties.getCards().show(genericProperties.getScreens(), "main");
         }
 
-    }
-}
+        if ("Create".equals(a.getActionCommand())){
+            try {
+                String coursename = CourseName.getText();
+                String prereq = Prerequisite.getText();
+                String prereqgrade = PrerequisiteGrade.getText();
+                ArrayList<String> questions = new ArrayList<>();
+                questions.add(Question1.getText());
+                questions.add(Question2.getText());
+                questions.add(Question3.getText());
+                ArrayList<String> answers = new ArrayList<>();
+                answers.add(Answer1.getText());
+                answers.add(Answer2.getText());
+                answers.add(Answer3.getText());
+                ArrayList<Integer> points = new ArrayList<>();
+                points.add(Integer.valueOf(Points1.getText()));
+                points.add(Integer.valueOf(Points2.getText()));
+                points.add(Integer.valueOf(Points3.getText()));
+                controller.createCourse(coursename, prereq, prereqgrade, questions, answers, points);}
+            catch ( NumberFormatException e){ JOptionPane.showMessageDialog(this,
+                    "Sorry.... something wrong with what you inputted :(");}
+            catch (Exception b){JOptionPane.showMessageDialog(this, b.getMessage());
+                genericProperties.getCards().show(genericProperties.getScreens(), "main");
+}}}}
 
 

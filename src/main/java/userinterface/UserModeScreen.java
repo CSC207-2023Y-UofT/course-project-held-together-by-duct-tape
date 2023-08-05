@@ -36,8 +36,7 @@ public class UserModeScreen extends JPanel implements ActionListener {
         if (event.getActionCommand().equals("Student Mode")) {
             genericProperties.getCards().show(genericProperties.getScreens(), "student");
         } else if (event.getActionCommand().equals("Instructor Mode")) {
-            // GO TO INSTRUCTOR SCREEN
-            return ;
+            genericProperties.getCards().show(genericProperties.getScreens(), "Instructor Mode");
         }
     }
 }

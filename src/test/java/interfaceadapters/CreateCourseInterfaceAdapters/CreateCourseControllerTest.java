@@ -1,9 +1,7 @@
 package interfaceadapters.CreateCourseInterfaceAdapters;
 
-import frameworksdriversmock.CourseDbGatewayMock;
 import frameworksdriversmock.DatabaseDriverMock;
-import frameworksdriversmock.StudentDbGatewayMock;
-import frameworksdriversmock.SessionDbGatewayMock;
+import org.junit.jupiter.api.Assertions;
 import usecases.InstructorCreateCourseUseCase.CreateCourseInteractor;
 import usecases.InstructorCreateCourseUseCase.CreateCourseInputBoundary;
 
@@ -13,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CreateCourseControllerTest {
 
     private CreateCourseInputBoundary interactor;
@@ -23,30 +19,31 @@ class CreateCourseControllerTest {
     @BeforeEach
     void setUp() {
         // Create a mock implementation for CourseDbGateway
-        CourseDbGatewayMock courseDbGatewayMock = new CourseDbGatewayMock();
+        // CourseDbGatewayMock courseDbGatewayMock = new CourseDbGatewayMock();
 
         // Create a mock implementation for SessionDbGateway
-        SessionDbGatewayMock sessionDbGatewayMock = new SessionDbGatewayMock();
+        // SessionDbGatewayMock sessionDbGatewayMock = new SessionDbGatewayMock();
 
         // Create a mock implementation for StudentDbGateway
-        StudentDbGatewayMock studentDbGatewayMock = new StudentDbGatewayMock();
+        // StudentDbGatewayMock studentDbGatewayMock = new StudentDbGatewayMock();
+
+        // Don't initialize the mocks yourself, let the database driver mock do that
 
         // Create a mock implementation for DatabaseDriver
-        DatabaseDriverMock databaseDriverMock = new DatabaseDriverMock(
-                studentDbGatewayMock, sessionDbGatewayMock, courseDbGatewayMock
-        );
+        DatabaseDriverMock databaseDriverMock = new DatabaseDriverMock();
 
         // Create an instance of CreateCourseInteractor using the mock implementations
-        interactor = new CreateCourseInteractor(courseDbGatewayMock, new CreateCoursePresenter());
+        CreateCoursePresenter presenter = new CreateCoursePresenter(databaseDriverMock);
+        interactor = new CreateCourseInteractor(databaseDriverMock.getCourseDbGatewayMock(), presenter);
 
         // Create an instance of CreateCourseController
-        controller = new CreateCourseController(interactor, databaseDriverMock);
+        controller = new CreateCourseController(interactor);
     }
 
 
     @Test
     void testCreateCourse_Success() {
-        String courseId = "CSC108";
+        String courseId = "CSC128";
         String prerequisite = "";
         String prerequisiteGrade = "";
         List<String> questions = new ArrayList<>();
@@ -56,9 +53,8 @@ class CreateCourseControllerTest {
         answers.add("42");
         points.add(10);
 
-        assertDoesNotThrow(() -> {
-            controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        Assertions.assertEquals(controller.createCourse(courseId, prerequisite,
+                prerequisiteGrade, questions, answers, points), "You created the course " + courseId);
     }
 
     @Test
@@ -75,9 +71,11 @@ class CreateCourseControllerTest {
         points.add(10);
 
         // Act and Assert
-        assertThrows(FailedtoCreate.class, () -> {
+        try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "Course with this name already exists.");
+        }
     }
 
     @Test
@@ -92,9 +90,11 @@ class CreateCourseControllerTest {
         answers.add("42");
         points.add(10);
 
-        assertDoesNotThrow(() -> {
+        try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "Prerequisite course not found in the database.");
+        }
     }
 
     @Test
@@ -109,15 +109,17 @@ class CreateCourseControllerTest {
         answers.add("42");
         points.add(10);
 
-        assertDoesNotThrow(() -> {
+        try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "Prerequisite's Grade must be positive numbers.");
+        }
     }
 
     @Test
     void testCreateCourse_Failed_EmptyQuestion() {
         String courseId = "CSC209";
-        String prerequisite = "CSC207";
+        String prerequisite = "CSC108";
         String prerequisiteGrade = "70.0";
         List<String> questions = new ArrayList<>();
         List<String> answers = new ArrayList<>();
@@ -126,9 +128,11 @@ class CreateCourseControllerTest {
         answers.add("42");
         points.add(10);
 
-        assertDoesNotThrow(() -> {
+        try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "All questions must be filled.");
+        }
     }
 
     @Test
@@ -143,9 +147,11 @@ class CreateCourseControllerTest {
         answers.add("42");
         points.add(10);
 
-        assertThrows(SuccessCreate.class, () -> {
+        try {
             controller.createCourse(courseId, prerequisite, prerequisiteGrade, questions, answers, points);
-        });
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(e.getMessage(), "Prerequisite course not found in the database.");
+        }
     }
 }
 

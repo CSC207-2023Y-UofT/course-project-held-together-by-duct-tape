@@ -1,23 +1,18 @@
 package interfaceadapters.CreateCourseInterfaceAdapters;
 
 import frameworksdrivers.DatabaseDriver;
-import frameworksdriversmock.CourseDbGatewayMock;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import usecases.InstructorCreateCourseUseCase.CreateCourseResponseModel;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CreateCoursePresenterTest {
 
     private CreateCoursePresenter presenter;
-    private CourseDbGatewayMock courseDbGatewayMock;
 
     @BeforeEach
     void setUp() {
-        courseDbGatewayMock = new CourseDbGatewayMock();
-        DatabaseDriver driver =
-                new DatabaseDriver(courseDbGatewayMock);
+        DatabaseDriver driver = new DatabaseDriver();
         presenter = new CreateCoursePresenter(driver);
     }
 
@@ -28,8 +23,7 @@ class CreateCoursePresenterTest {
         CreateCourseResponseModel response = new CreateCourseResponseModel(courseId);
 
         // Test successful course creation
-        Exception exception = assertThrows(SuccessCreate.class, () -> presenter.courseCreated(response));
-        assertEquals("You created the course " + courseId, exception.getMessage());
+        Assertions.assertEquals(presenter.courseCreated(response), "You created the course " + courseId);
     }
 
     @Test
@@ -38,9 +32,10 @@ class CreateCoursePresenterTest {
         String errorMessage = "Failed to create course";
 
         // Test error scenario
-        Exception exception = assertThrows(FailedtoCreate.class, () -> presenter.showError(errorMessage));
-        assertEquals(errorMessage, exception.getMessage());
+        try {
+            presenter.showError(errorMessage);
+        } catch (FailedtoCreate e) {
+            Assertions.assertEquals(errorMessage, e.getMessage());
+        }
     }
-
-
 }

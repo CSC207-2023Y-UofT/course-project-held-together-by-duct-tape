@@ -48,7 +48,6 @@ public class CourseDbGateway implements CourseGateway {
         return courses;
     }
 
-    // THIS METHOD IS NOT NEEDED ???
     /**
      * Checks if ID exists in Course Database.
      *
@@ -105,8 +104,6 @@ public class CourseDbGateway implements CourseGateway {
 
     /**
      * Retrieves the course from the database.
-     *
-     * THE SAME METHOD AS ABOVE ? JUST A DIFFERENT MODEL?
      *
      * @param requestModel with the courseID to be retrieved.
      */

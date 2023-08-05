@@ -5,7 +5,6 @@ import interfaceadapters.CreateCourseInterfaceAdapters.CreateCoursePresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
@@ -31,8 +30,6 @@ public class Main {
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
         // Presenters
-        CreateStudentPresenter createStudentPresenter = new CreateStudentPresenter(databaseDriver);
-        LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
@@ -42,8 +39,8 @@ public class Main {
         GenericProperties genericProperties = new GenericProperties(screens, cards);
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties, createStudentPresenter);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties, loginPresenter);
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
         CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties, createCoursePresenter);

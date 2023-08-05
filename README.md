@@ -1,5 +1,5 @@
 # Course Simulator
-The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar!
+The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar! Moreover, the program can be used as a way for students to create quizzes that they can test themselves for upcoming assessments with that allows them to monitor how they progress.
 
 #Set up (Windows)
 

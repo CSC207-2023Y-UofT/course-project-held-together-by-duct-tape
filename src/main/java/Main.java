@@ -1,7 +1,6 @@
 import frameworksdrivers.DatabaseDriver;
 
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
-import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 

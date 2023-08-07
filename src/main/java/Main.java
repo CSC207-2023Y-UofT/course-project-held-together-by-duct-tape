@@ -34,7 +34,6 @@ public class Main {
 
         // Presenters
         EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
-        RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
         CreateCoursePresenter createCoursePresenter = new CreateCoursePresenter(databaseDriver);
 
@@ -44,7 +43,7 @@ public class Main {
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
         CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties, createCoursePresenter);
 

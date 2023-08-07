@@ -11,11 +11,7 @@ public class RunCourseRequestModel {
         this.answers = answers;
     }
 
-    public List<String> getQuestions() {
-        return questions;
-    }
+    public List<String> getQuestions() { return questions; }
 
-    public List<String> getAnswers() {
-        return this.answers;
-    }
+    public List<String> getAnswers() { return this.answers; }
 }

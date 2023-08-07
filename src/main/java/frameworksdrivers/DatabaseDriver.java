@@ -9,7 +9,7 @@ import frameworksdrivers.Gateways.*;
  */
 public class DatabaseDriver implements Driver {
     private static final DbConnection dbConnection = new DbConnection();
-    private static final StudentGateway studentDbGateway = new StudentDbGateway(dbConnection);;
+    private static final StudentGateway studentDbGateway = new StudentDbGateway(dbConnection);
     private static final SessionGateway sessionDbGateway = new SessionDbGateway(dbConnection);
     private static final CourseGateway courseDbGateway = new CourseDbGateway(dbConnection);
 

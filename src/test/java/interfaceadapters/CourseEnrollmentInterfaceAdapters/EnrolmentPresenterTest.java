@@ -30,6 +30,18 @@ public class EnrolmentPresenterTest {
     }
 
     /**
+     * Test fail view message for nonexistent course ID
+     */
+    @Test
+    public void testFailViewNonexistentCourse() {
+        String message = "Course ID does not exist in Database!";
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            enrolmentPresenter.prepareFailView(message);
+        });
+        Assertions.assertTrue(exception.getMessage().contains(message));
+    }
+
+    /**
      * Test fail view message for incomplete prerequisites
      */
     @Test

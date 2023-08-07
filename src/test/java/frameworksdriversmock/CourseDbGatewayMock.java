@@ -36,6 +36,11 @@ public class CourseDbGatewayMock implements CourseGateway {
     }
 
     @Override
+    public boolean existsByCourseId(String courseID) {
+        return courseIDs.contains(courseID);
+    }
+
+    @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
         int courseIndex = courseIDs.indexOf(requestModel.getCourseID());
         requestModel.setPrerequisiteID(prerequisiteIDs.get(courseIndex));

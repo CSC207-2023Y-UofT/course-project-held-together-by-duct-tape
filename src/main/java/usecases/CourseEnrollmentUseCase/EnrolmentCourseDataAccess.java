@@ -9,6 +9,14 @@ import java.util.List;
 public interface EnrolmentCourseDataAccess {
 
     /**
+     * Checks if ID exists in Course Database.
+     *
+     * @param courseId the course ID
+     * @return true if the course is in Course Database, false if not.
+     */
+    boolean existsByCourseId(String courseId);
+
+    /**
      * Retrieves course from Course Database.
      *
      * @param requestModel the course ID

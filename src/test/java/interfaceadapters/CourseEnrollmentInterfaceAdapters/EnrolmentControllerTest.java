@@ -51,5 +51,11 @@ class EnrolmentControllerTest {
         Assertions.assertTrue(exception2.getMessage().contains("You have not completed the prerequisites " +
                 "for the course.\nPrerequisite: CSC148 Grade: 50.0"));
 
+        // Enrollment is unsuccessful, because course ID does not exist in database.
+        Exception exception3 = assertThrows(RuntimeException.class, () -> {
+            enrolmentController.enrol("CSC1110");
+        });
+        Assertions.assertTrue(exception3.getMessage().contains("Course ID does not exist in Database!"));
+
     }
 }

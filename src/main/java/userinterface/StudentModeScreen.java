@@ -6,11 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudentModeScreen extends JPanel implements ActionListener{
-    private final GenericProperties genericProperties;
-
-    public StudentModeScreen(GenericProperties genericProperties){
-        this.genericProperties = genericProperties;
-
+    public StudentModeScreen(){
         JLabel title = new JLabel("Student Mode");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -36,11 +32,11 @@ public class StudentModeScreen extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Login User")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "login");
+            Application.cards.show(Application.screens, "login");
         } else if (e.getActionCommand().equals("Create User")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "createStudent");
+            Application.cards.show(Application.screens, "createStudent");
         } else {
-            genericProperties.getCards().show(genericProperties.getScreens(), "main");
+            Application.cards.show(Application.screens, "main");
         }
     }
 }

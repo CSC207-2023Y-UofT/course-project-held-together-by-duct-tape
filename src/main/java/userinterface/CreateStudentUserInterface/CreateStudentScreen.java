@@ -3,6 +3,7 @@ package userinterface.CreateStudentUserInterface;
 import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
+import userinterface.Application;
 import userinterface.GenericProperties;
 
 import java.awt.*;
@@ -17,16 +18,14 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
     JPasswordField repeat = new JPasswordField(10);
     JButton create = new JButton("Create");
     JButton cancel = new JButton(("Cancel"));
-    private final GenericProperties genericProperties;
 
     /**This is the create student screen that is displayed when a user wants to create a new student*/
     private final CreateStudentController controller;
     // for the following code I used this
     // link: https://www.geeksforgeeks.org/java-swing-simple-user-registration-form/ to figure out how to make
     // the visual aspect of the screen as well as how the actionListener should work.
-    public CreateStudentScreen(GenericProperties genericProperties){
+    public CreateStudentScreen(){
         CreateStudentPresenter presenter =  new CreateStudentPresenter(new DatabaseDriver());
-        this.genericProperties = genericProperties;
 
         this.controller = presenter.getCreateStudentController();
         JLabel title = new JLabel("Create Student");
@@ -61,9 +60,9 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
             String repeated = new String(repeat.getPassword());
 
             JOptionPane.showMessageDialog(this, controller.create(student,repeated, pass));
-            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            Application.cards.show(Application.screens, "student");
         } else if (e.getActionCommand().equals("Cancel")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            Application.cards.show(Application.screens, "student");
         }
     }
 }

@@ -1,8 +1,9 @@
 package userinterface.CourseEnrollmentUserInterface;
 
+import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import userinterface.GenericProperties;
+import userinterface.Application;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
 
 import java.util.List;
@@ -13,16 +14,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CourseEnrollmentScreen extends JPanel implements ActionListener {
-    private final GenericProperties genericProperties;
     private final EnrolmentPresenter enrollmentPresenter;
     private final EnrolmentController enrollmentController;
     private final RunCourseScreen courseScreen;
     private String courseSelected;
 
-    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, RunCourseScreen courseScreen) {
-        this.genericProperties = genericProperties;
-        this.enrollmentPresenter = presenter;
-        this.enrollmentController = presenter.getEnrolmentController();
+    public CourseEnrollmentScreen(RunCourseScreen courseScreen) {
+        DatabaseDriver driver = new DatabaseDriver();
+        this.enrollmentPresenter = new EnrolmentPresenter(driver);
+        this.enrollmentController = enrollmentPresenter.getEnrolmentController();
         this.courseScreen = courseScreen;
 
         JLabel title = new JLabel("Course Enrollment Screen");
@@ -65,7 +65,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
 
         if (event.getActionCommand().equals("Logout")) {
             enrollmentPresenter.deleteStudentSession();
-            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            Application.cards.show(Application.screens, "student");
             return ;
         }
 
@@ -73,7 +73,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
              enrollmentController.enrol(courseSelected);
              JOptionPane.showMessageDialog(this, "Successful enroll in " + courseSelected);
              courseScreen.renderQuestions();
-             genericProperties.getCards().show(genericProperties.getScreens(), "course");
+             Application.cards.show(Application.screens, "course");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
             enrollmentPresenter.deleteCourseSession();

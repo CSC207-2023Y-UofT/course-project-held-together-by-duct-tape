@@ -5,13 +5,12 @@ import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorController;
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCourseController;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
-import userinterface.GenericProperties;
+import userinterface.Application;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,16 +18,15 @@ import java.awt.event.ActionListener;
 public class RunCourseScreen extends JPanel implements ActionListener {
     private List<String> questions = new ArrayList<>();
     private List<JTextField> answers = new ArrayList<>();
-    private final GenericProperties genericProperties;
     private final RunCourseController controller;
     private final RunCoursePresenter presenter;
     private final EvaluatorController evaluatorController;
 
-    public RunCourseScreen(GenericProperties genericProperties, EvaluatorPresenter evaluatorPresenter) {
+    public RunCourseScreen() {
         DatabaseDriver databaseDriver = new DatabaseDriver();
-        this.genericProperties = genericProperties;
         this.presenter = new RunCoursePresenter(databaseDriver);
         this.controller = presenter.getCourseController();
+        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
         this.evaluatorController = evaluatorPresenter.getEvaluatorController();
 
         JLabel title = new JLabel("Course Screen");
@@ -87,7 +85,7 @@ public class RunCourseScreen extends JPanel implements ActionListener {
         }
 
         presenter.deleteCourseSession();
-        genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
+        Application.cards.show(Application.screens, "enrollment");
         clearFields();
     }
 

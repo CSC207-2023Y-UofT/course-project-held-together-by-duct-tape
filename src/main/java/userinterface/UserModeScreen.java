@@ -6,11 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class UserModeScreen extends JPanel implements ActionListener {
-    private final GenericProperties genericProperties;
 
-    public UserModeScreen(GenericProperties genericProperties) {
-        this.genericProperties = genericProperties;
-
+    public UserModeScreen() {
         JLabel title = new JLabel("User Mode Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -34,7 +31,7 @@ public class UserModeScreen extends JPanel implements ActionListener {
         System.out.println("Event: " + event.getActionCommand());
 
         if (event.getActionCommand().equals("Student Mode")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            Application.cards.show(Application.screens, "student");
         } else if (event.getActionCommand().equals("Instructor Mode")) {
             // GO TO INSTRUCTOR SCREEN
             return ;

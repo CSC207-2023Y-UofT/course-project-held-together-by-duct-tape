@@ -1,54 +1,32 @@
-import frameworksdrivers.DatabaseDriver;
-
-import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+import userinterface.Application;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
-import userinterface.GenericProperties;
 import userinterface.LoginStudentUserInterface.LoginStudentScreen;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
 import userinterface.StudentModeScreen;
 import userinterface.UserModeScreen;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Main {
     public static void main(String[] args) {
         // Application set-up
-        JFrame application = new JFrame();
-        CardLayout cards = new CardLayout();
-        JPanel screens = new JPanel(cards);
-        application.add(screens);
-
-        // Components
-        DatabaseDriver databaseDriver = new DatabaseDriver();
-
-        // Presenters
-        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
-        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
+        Application application = new Application();
 
         // Plug-in screens
-        GenericProperties genericProperties = new GenericProperties(screens, cards);
-        UserModeScreen mainScreen = new UserModeScreen(genericProperties);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, evaluatorPresenter);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
+        UserModeScreen mainScreen = new UserModeScreen();
+        StudentModeScreen studentModeScreen = new StudentModeScreen();
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen();
+        LoginStudentScreen loginScreen = new LoginStudentScreen();
+        RunCourseScreen courseScreen = new RunCourseScreen();
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(courseScreen);
 
-        screens.add(mainScreen, "main");
-        screens.add(studentModeScreen, "student");
-        screens.add(createStudentScreen, "createStudent");
-        screens.add(loginScreen, "login");
-        screens.add(enrollmentScreen, "enrollment");
-        screens.add(courseScreen, "course");
+        application.addScreen(mainScreen, "main");
+        application.addScreen(studentModeScreen, "student");
+        application.addScreen(createStudentScreen, "createStudent");
+        application.addScreen(loginScreen, "login");
+        application.addScreen(enrollmentScreen, "enrollment");
+        application.addScreen(courseScreen, "course");
 
-        cards.show(screens, "main");
-
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.pack();
-        application.setVisible(true);
+        application.render();
     }
 }

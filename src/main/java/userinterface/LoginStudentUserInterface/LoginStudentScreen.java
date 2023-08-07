@@ -3,6 +3,7 @@ package userinterface.LoginStudentUserInterface;
 import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.Driver;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
+import userinterface.Application;
 import userinterface.GenericProperties;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 
@@ -18,11 +19,9 @@ import java.awt.event.ActionEvent;
 public class LoginStudentScreen extends JPanel implements ActionListener {
     private final JTextField username = new JTextField(10);
     private final JPasswordField password = new JPasswordField(10);
-    private final GenericProperties genericProperties;
     private final LoginStudentController controller;
 
-    public LoginStudentScreen(GenericProperties genericProperties) {
-        this.genericProperties = genericProperties;
+    public LoginStudentScreen() {
         Driver databaseDriver = new DatabaseDriver();
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         this.controller = loginPresenter.getLoginController();
@@ -59,7 +58,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         String command = event.getActionCommand();
 
         if (command.equals("Cancel")) {
-            genericProperties.getCards().show(genericProperties.getScreens(), "student");
+            Application.cards.show(Application.screens, "student");
             return ;
         }
 
@@ -67,7 +66,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
             String passcode = new String(password.getPassword());
             controller.login(username.getText(), passcode);
             JOptionPane.showMessageDialog(this, username.getText() + " successful login");
-            genericProperties.getCards().show(genericProperties.getScreens(), "enrollment");
+            Application.cards.show(Application.screens, "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } finally {

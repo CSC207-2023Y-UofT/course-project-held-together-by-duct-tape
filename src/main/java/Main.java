@@ -28,16 +28,15 @@ public class Main {
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
         // Presenters
-        RunCoursePresenter coursePresenter = new RunCoursePresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
-
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, coursePresenter, evaluatorPresenter);
+
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, evaluatorPresenter);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseScreen);
 
         screens.add(mainScreen, "main");

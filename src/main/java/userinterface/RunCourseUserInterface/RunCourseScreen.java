@@ -1,5 +1,6 @@
 package userinterface.RunCourseUserInterface;
 
+import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorController;
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCourseController;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +24,11 @@ public class RunCourseScreen extends JPanel implements ActionListener {
     private final RunCoursePresenter presenter;
     private final EvaluatorController evaluatorController;
 
-    public RunCourseScreen(GenericProperties genericProperties, RunCoursePresenter presenter, EvaluatorPresenter evaluatorPresenter) {
+    public RunCourseScreen(GenericProperties genericProperties, EvaluatorPresenter evaluatorPresenter) {
+        DatabaseDriver databaseDriver = new DatabaseDriver();
         this.genericProperties = genericProperties;
+        this.presenter = new RunCoursePresenter(databaseDriver);
         this.controller = presenter.getCourseController();
-        this.presenter = presenter;
         this.evaluatorController = evaluatorPresenter.getEvaluatorController();
 
         JLabel title = new JLabel("Course Screen");

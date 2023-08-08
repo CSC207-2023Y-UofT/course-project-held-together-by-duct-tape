@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class LoginStudentDbRequestModel {
     private String username;
+    private String password;
     private Map<String, Float> courses;
 
     public LoginStudentDbRequestModel(String username) {
@@ -20,12 +21,20 @@ public class LoginStudentDbRequestModel {
         return this.username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public Map<String, Float> getCourses() {
         return this.courses;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setCourses(Map<String, Float> courses) {

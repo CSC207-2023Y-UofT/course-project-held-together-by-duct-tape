@@ -61,10 +61,13 @@ public class StudentDbGateway implements StudentGateway {
             ResultSet resultSet = statement.executeQuery();
 
             Map<String, Float> courses = new HashMap<String, Float>();
-            while (resultSet.next()) {
+
+            resultSet.next();
+            dbRequestModel.setPassword(resultSet.getString(2));
+            do {
                 // CourseID, CourseGrade
                 courses.put(resultSet.getString(3), resultSet.getFloat(4));
-            }
+            } while (resultSet.next());
 
             dbRequestModel.setCourses(courses);
         } catch (SQLException e) {
@@ -97,46 +100,19 @@ public class StudentDbGateway implements StudentGateway {
     }
 
     /**
-     * Method saves the user info stored in "student" to the database.
-     *
-     * @param student model that stores what will be saved onto the database.
-     */
-    @Override
-    public void saveUser(CreateStudentDsModel student) {
-        try{
-            Map<String, Float> courses = student.getCourseList();
-            if (courses.isEmpty()){
-               saveUserNoCourses(student);
-            } else {
-                for (Map.Entry<String, Float> course : courses.entrySet()) {
-                    String SQL = "INSERT INTO " + DATABASE_NAME +
-                            " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
-                    PreparedStatement statement = connection.prepareStatement(SQL);
-                    statement.setString(1, student.getUsername());
-                    statement.setString(2, student.getPassword());
-                    statement.setString(3, course.getKey());
-                    statement.setFloat(4, 0.0f);
-                    statement.executeUpdate();}
-            }
-        } catch (SQLException e) {
-            System.out.println("Error with database!");
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * This method saves a user when they first open a program, and they have no courses created
      *
      * @param student this is the request model containing the student password and username
      */
-    private void saveUserNoCourses(CreateStudentDsModel student){
+    @Override
+    public void saveUser(CreateStudentDsModel student){
         try {
             String SQL = "INSERT INTO " + DATABASE_NAME +
                 " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, student.getUsername());
             statement.setString(2, student.getPassword());
-            statement.setString(3, "");
+            statement.setString(3, "DEFAULT");
             statement.setFloat(4, 0.0f);
             statement.executeUpdate();
         } catch(SQLException e) {
@@ -155,11 +131,13 @@ public class StudentDbGateway implements StudentGateway {
     @Override
     public void saveGPA(EvaluatorDbRequestModel requestModel) {
         try {
-            String SQL = "UPDATE " + DATABASE_NAME + " SET CourseGrade = ? WHERE StudentID = ? AND CourseID = ?";
+            String SQL = "INSERT INTO " + DATABASE_NAME + " (StudentID, Password, CourseID, CourseGrade) " +
+                    "VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setFloat(1, requestModel.getGrade());
-            statement.setString(2, requestModel.getStudentID());
+            statement.setString(1, requestModel.getStudentID());
+            statement.setString(2, requestModel.getPassword());
             statement.setString(3, requestModel.getCourseID());
+            statement.setFloat(4, requestModel.getGrade());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error with database!");

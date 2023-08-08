@@ -1,18 +1,17 @@
 package usecases.CourseEvaluatorUseCase;
 
 public class EvaluatorDbRequestModel {
-    private final String studentID;
-    private final String courseID;
-    private final float grade;
-
-    public EvaluatorDbRequestModel(String studentID, String courseID, float grade) {
-        this.studentID = studentID;
-        this.courseID = courseID;
-        this.grade = grade;
-    }
+    private String studentID;
+    private String password;
+    private String courseID;
+    private float grade;
 
     public String getStudentID() {
         return studentID;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getCourseID() {
@@ -21,5 +20,21 @@ public class EvaluatorDbRequestModel {
 
     public float getGrade() {
         return grade;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public void setGrade(float grade) {
+        this.grade = grade;
     }
 }

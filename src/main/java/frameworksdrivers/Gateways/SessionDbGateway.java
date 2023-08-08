@@ -2,6 +2,7 @@ package frameworksdrivers.Gateways;
 
 import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.RunCourseUseCase.RunCourseDbRequestModel;
@@ -94,11 +95,12 @@ public class SessionDbGateway implements SessionGateway {
 
             for (Map.Entry<String, Float> course : courses.entrySet()) {
                 String SQL = "INSERT INTO " + DATABASE_NAME_STUDENT +
-                        " (StudentID, CourseID, CourseGrade) VALUES (?, ?, ?)";
+                        " (StudentID, Password, CourseID, CourseGrade) VALUES (?, ?, ?, ?)";
                 PreparedStatement statement = connection.prepareStatement(SQL);
                 statement.setString(1, requestModel.getUsername());
-                statement.setString(2, course.getKey());
-                statement.setFloat(3, course.getValue());
+                statement.setString(2, requestModel.getPassword());
+                statement.setString(3, course.getKey());
+                statement.setFloat(4, course.getValue());
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -232,22 +234,20 @@ public class SessionDbGateway implements SessionGateway {
     /**
      * Retrieves the courseID of the current user logged in. There can only be one user in the session database thus
      * it returns the only username on the database.
-     *
-     * @return String being the username of the current student.
      */
     @Override
-    public String retrieveStudentId() {
+    public void retrieveUser(EvaluatorDbRequestModel requestModel) {
         try {
-            String SQL = "SELECT DISTINCT StudentID FROM " + DATABASE_NAME_STUDENT;
+            String SQL = "SELECT DISTINCT StudentID, Password FROM " + DATABASE_NAME_STUDENT;
             PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
 
             resultSet.next();
-            return resultSet.getString(1);
+            requestModel.setStudentID(resultSet.getString(1));
+            requestModel.setPassword(resultSet.getString(2));
         } catch (SQLException e) {
             System.out.println("Error with the database!");
             e.printStackTrace();
         }
-        return "";
     }
 }

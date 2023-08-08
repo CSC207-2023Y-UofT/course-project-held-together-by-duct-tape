@@ -1,6 +1,5 @@
 import userinterface.Window;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
-
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import userinterface.LoginStudentUserInterface.LoginStudentScreen;
 import userinterface.RunCourseUserInterface.RunCourseScreen;

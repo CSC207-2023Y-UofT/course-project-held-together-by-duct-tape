@@ -21,20 +21,13 @@ public class Main {
         JPanel screens = new JPanel(cards);
         application.add(screens);
 
-        // Components
-        DatabaseDriver databaseDriver = new DatabaseDriver();
-
-        // Presenters
-        EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
-
         // Plug-in screens
         GenericProperties genericProperties = new GenericProperties(screens, cards);
         UserModeScreen mainScreen = new UserModeScreen(genericProperties);
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
-
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, evaluatorPresenter);
+        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties);
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseScreen);
 
         screens.add(mainScreen, "main");

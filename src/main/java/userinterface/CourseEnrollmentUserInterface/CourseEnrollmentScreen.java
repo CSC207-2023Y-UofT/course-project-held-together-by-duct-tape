@@ -1,5 +1,7 @@
 package userinterface.CourseEnrollmentUserInterface;
 
+import frameworksdrivers.DatabaseDriver;
+import frameworksdrivers.Driver;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 import userinterface.GenericProperties;
@@ -19,10 +21,11 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
     private final RunCourseScreen courseScreen;
     private String courseSelected;
 
-    public CourseEnrollmentScreen(GenericProperties genericProperties, EnrolmentPresenter presenter, RunCourseScreen courseScreen) {
+    public CourseEnrollmentScreen(GenericProperties genericProperties, RunCourseScreen courseScreen) {
         this.genericProperties = genericProperties;
-        this.enrollmentPresenter = presenter;
-        this.enrollmentController = presenter.getEnrolmentController();
+        Driver databaseDriver = new DatabaseDriver();
+        this.enrollmentPresenter = new EnrolmentPresenter(databaseDriver);
+        this.enrollmentController = enrollmentPresenter.getEnrolmentController();
         this.courseScreen = courseScreen;
 
         JLabel title = new JLabel("Course Enrollment Screen");

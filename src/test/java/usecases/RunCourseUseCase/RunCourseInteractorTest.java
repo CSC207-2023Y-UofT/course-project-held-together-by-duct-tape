@@ -13,8 +13,6 @@ import java.sql.Driver;
 public class RunCourseInteractorTest {
     private RunCourseInteractor interactor;
 
-
-
     @BeforeEach
     public void init() {
         DatabaseDriverMock databaseDriver = new DatabaseDriverMock();

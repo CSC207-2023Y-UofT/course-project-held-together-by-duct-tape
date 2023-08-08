@@ -26,7 +26,6 @@ public class Main {
         DatabaseDriver databaseDriver = new DatabaseDriver();
 
         // Presenters
-        EnrolmentPresenter enrolmentPresenter = new EnrolmentPresenter(databaseDriver);
         EvaluatorPresenter evaluatorPresenter = new EvaluatorPresenter(databaseDriver);
 
         // Plug-in screens
@@ -35,8 +34,9 @@ public class Main {
         StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
         CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
         LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
+
         RunCourseScreen courseScreen = new RunCourseScreen(genericProperties, evaluatorPresenter);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, enrolmentPresenter, courseScreen);
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseScreen);
 
         screens.add(mainScreen, "main");
         screens.add(studentModeScreen, "student");

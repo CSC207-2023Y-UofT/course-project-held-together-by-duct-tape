@@ -8,10 +8,10 @@ import frameworksdrivers.Gateways.*;
  * ensure that the database driver only ever connects once to the database.
  */
 public class DatabaseDriver implements Driver {
-    public static final DbConnection dbConnection = new DbConnection();
-    public final StudentGateway studentDbGateway;
-    public final SessionGateway sessionDbGateway;
-    public final CourseGateway courseDbGateway;
+    private static final DbConnection dbConnection = new DbConnection();
+    private final StudentGateway studentDbGateway;
+    private final SessionGateway sessionDbGateway;
+    private final CourseGateway courseDbGateway;
 
     /**
      * Creates a new DbConnection (Database Connection) and creates the various gateways needed.

@@ -1,10 +1,10 @@
 import userinterface.Window;
-import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
+import userinterface.UserModeScreen;
+import userinterface.StudentModeScreen;
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import userinterface.LoginStudentUserInterface.LoginStudentScreen;
+import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
-import userinterface.StudentModeScreen;
-import userinterface.UserModeScreen;
 
 public class Main {
     public static void main(String[] args) {

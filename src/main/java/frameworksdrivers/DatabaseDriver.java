@@ -8,10 +8,10 @@ import frameworksdrivers.Gateways.*;
  * ensure that the database driver only ever connects once to the database.
  */
 public class DatabaseDriver implements Driver {
-    private static final DbConnection dbConnection = new DbConnection();
-    private final StudentGateway studentDbGateway;
-    private final SessionGateway sessionDbGateway;
-    private final CourseGateway courseDbGateway;
+    public static final DbConnection dbConnection = new DbConnection();
+    public final StudentGateway studentDbGateway;
+    public final SessionGateway sessionDbGateway;
+    public final CourseGateway courseDbGateway;
 
     /**
      * Creates a new DbConnection (Database Connection) and creates the various gateways needed.
@@ -20,10 +20,6 @@ public class DatabaseDriver implements Driver {
         studentDbGateway = new StudentDbGateway(dbConnection);
         sessionDbGateway = new SessionDbGateway(dbConnection);
         courseDbGateway = new CourseDbGateway(dbConnection);
-
-        // Deletes previous sessions that might've not deleted if exited the program wrong.
-        sessionDbGateway.deleteStudentSession();
-        sessionDbGateway.deleteCourseSession();
     }
 
     public StudentGateway getStudentDbGateway() {

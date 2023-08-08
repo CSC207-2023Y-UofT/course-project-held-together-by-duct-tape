@@ -3,8 +3,7 @@ package userinterface.LoginStudentUserInterface;
 import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.Driver;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentPresenter;
-import userinterface.Application;
-import userinterface.GenericProperties;
+import userinterface.Window;
 import interfaceadapters.LoginStudentInterfaceAdapters.LoginStudentController;
 
 import javax.swing.*;
@@ -58,7 +57,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
         String command = event.getActionCommand();
 
         if (command.equals("Cancel")) {
-            Application.cards.show(Application.screens, "student");
+            Window.cards.show(Window.screens, "student");
             return ;
         }
 
@@ -66,7 +65,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
             String passcode = new String(password.getPassword());
             controller.login(username.getText(), passcode);
             JOptionPane.showMessageDialog(this, username.getText() + " successful login");
-            Application.cards.show(Application.screens, "enrollment");
+            Window.cards.show(Window.screens, "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } finally {

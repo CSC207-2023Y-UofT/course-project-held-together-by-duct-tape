@@ -5,7 +5,7 @@ import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorController;
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCourseController;
 import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
-import userinterface.Application;
+import userinterface.Window;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,7 @@ public class RunCourseScreen extends JPanel implements ActionListener {
         }
 
         presenter.deleteCourseSession();
-        Application.cards.show(Application.screens, "enrollment");
+        Window.cards.show(Window.screens, "enrollment");
         clearFields();
     }
 

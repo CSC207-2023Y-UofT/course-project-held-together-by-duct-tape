@@ -3,8 +3,7 @@ package userinterface.CreateStudentUserInterface;
 import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentController;
 import interfaceadapters.CreateStudentInterfaceAdapters.CreateStudentPresenter;
-import userinterface.Application;
-import userinterface.GenericProperties;
+import userinterface.Window;
 
 import java.awt.*;
 import javax.swing.*;
@@ -60,9 +59,9 @@ public class CreateStudentScreen extends JPanel implements ActionListener{
             String repeated = new String(repeat.getPassword());
 
             JOptionPane.showMessageDialog(this, controller.create(student,repeated, pass));
-            Application.cards.show(Application.screens, "student");
+            Window.cards.show(Window.screens, "student");
         } else if (e.getActionCommand().equals("Cancel")) {
-            Application.cards.show(Application.screens, "student");
+            Window.cards.show(Window.screens, "student");
         }
     }
 }

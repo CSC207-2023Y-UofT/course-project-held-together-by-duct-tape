@@ -1,4 +1,4 @@
-import userinterface.Application;
+import userinterface.Window;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
@@ -10,7 +10,7 @@ import userinterface.UserModeScreen;
 public class Main {
     public static void main(String[] args) {
         // Application set-up
-        Application application = new Application();
+        Window window = new Window();
 
         // Plug-in screens
         UserModeScreen mainScreen = new UserModeScreen();
@@ -20,13 +20,13 @@ public class Main {
         RunCourseScreen courseScreen = new RunCourseScreen();
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(courseScreen);
 
-        application.addScreen(mainScreen, "main");
-        application.addScreen(studentModeScreen, "student");
-        application.addScreen(createStudentScreen, "createStudent");
-        application.addScreen(loginScreen, "login");
-        application.addScreen(enrollmentScreen, "enrollment");
-        application.addScreen(courseScreen, "course");
+        window.addScreen(mainScreen, "main");
+        window.addScreen(studentModeScreen, "student");
+        window.addScreen(createStudentScreen, "createStudent");
+        window.addScreen(loginScreen, "login");
+        window.addScreen(enrollmentScreen, "enrollment");
+        window.addScreen(courseScreen, "course");
 
-        application.render();
+        window.render();
     }
 }

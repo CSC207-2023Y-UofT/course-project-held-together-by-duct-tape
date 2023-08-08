@@ -32,11 +32,11 @@ public class StudentModeScreen extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Login User")) {
-            Application.cards.show(Application.screens, "login");
+            Window.cards.show(Window.screens, "login");
         } else if (e.getActionCommand().equals("Create User")) {
-            Application.cards.show(Application.screens, "createStudent");
+            Window.cards.show(Window.screens, "createStudent");
         } else {
-            Application.cards.show(Application.screens, "main");
+            Window.cards.show(Window.screens, "main");
         }
     }
 }

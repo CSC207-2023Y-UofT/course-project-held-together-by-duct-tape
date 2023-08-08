@@ -3,12 +3,12 @@ package userinterface;
 import javax.swing.*;
 import java.awt.*;
 
-public class Application {
+public class Window {
     public final JFrame application = new JFrame();
     public static final CardLayout cards = new CardLayout();
     public static final JPanel screens = new JPanel(cards);
 
-    public Application() {
+    public Window() {
         application.add(screens);
         application.setSize(400, 500);
     }

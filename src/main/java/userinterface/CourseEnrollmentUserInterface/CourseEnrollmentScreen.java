@@ -3,7 +3,7 @@ package userinterface.CourseEnrollmentUserInterface;
 import frameworksdrivers.DatabaseDriver;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentController;
 import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
-import userinterface.Application;
+import userinterface.Window;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
 
 import java.util.List;
@@ -65,7 +65,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
 
         if (event.getActionCommand().equals("Logout")) {
             enrollmentPresenter.deleteStudentSession();
-            Application.cards.show(Application.screens, "student");
+            Window.cards.show(Window.screens, "student");
             return ;
         }
 
@@ -73,7 +73,7 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
              enrollmentController.enrol(courseSelected);
              JOptionPane.showMessageDialog(this, "Successful enroll in " + courseSelected);
              courseScreen.renderQuestions();
-             Application.cards.show(Application.screens, "course");
+             Window.cards.show(Window.screens, "course");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
             enrollmentPresenter.deleteCourseSession();

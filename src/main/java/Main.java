@@ -2,7 +2,6 @@ import frameworksdrivers.DatabaseDriver;
 
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
 import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
-import interfaceadapters.CourseEnrollmentInterfaceAdapters.EnrolmentPresenter;
 
 import userinterface.CreateStudentUserInterface.CreateStudentScreen;
 import userinterface.GenericProperties;

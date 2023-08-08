@@ -9,17 +9,17 @@ import frameworksdrivers.Gateways.*;
  */
 public class DatabaseDriver implements Driver {
     private static final DbConnection dbConnection = new DbConnection();
-    private static final StudentGateway studentDbGateway = new StudentDbGateway(dbConnection);
-    private static final SessionGateway sessionDbGateway = new SessionDbGateway(dbConnection);
-    private static final CourseGateway courseDbGateway = new CourseDbGateway(dbConnection);
+    private final StudentGateway studentDbGateway;
+    private final SessionGateway sessionDbGateway;
+    private final CourseGateway courseDbGateway;
 
     /**
      * Creates a new DbConnection (Database Connection) and creates the various gateways needed.
      */
     public DatabaseDriver() {
-        // studentDbGateway = new StudentDbGateway(dbConnection);
-        // sessionDbGateway = new SessionDbGateway(dbConnection);
-        // courseDbGateway = new CourseDbGateway(dbConnection);
+        studentDbGateway = new StudentDbGateway(dbConnection);
+        sessionDbGateway = new SessionDbGateway(dbConnection);
+        courseDbGateway = new CourseDbGateway(dbConnection);
 
         // Deletes previous sessions that might've not deleted if exited the program wrong.
         sessionDbGateway.deleteStudentSession();

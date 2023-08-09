@@ -7,7 +7,7 @@ import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDbGatewayMock implements CourseGateway {
+    public class CourseDbGatewayMock implements CourseGateway {
     private final List<String> courseIDs = new ArrayList<>();
     private final List<String> prerequisiteIDs = new ArrayList<>();
     private final List<Integer> prerequisiteGrades = new ArrayList<>();

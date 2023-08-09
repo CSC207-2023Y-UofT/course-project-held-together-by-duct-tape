@@ -1,4 +1,4 @@
-package entities.builderCourse;
+package entities.courseBuilder;
 
 import entities.Course;
 

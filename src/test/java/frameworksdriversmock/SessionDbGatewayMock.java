@@ -1,6 +1,6 @@
 package frameworksdriversmock;
 
-import frameworksdrivers.Gateways.SessionGateway;
+import frameworksdrivers.gateways.SessionGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;

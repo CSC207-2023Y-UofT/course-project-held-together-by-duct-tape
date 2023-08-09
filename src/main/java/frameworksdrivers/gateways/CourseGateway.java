@@ -1,4 +1,4 @@
-package frameworksdrivers.dbGateways;
+package frameworksdrivers.gateways;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentCourseDataAccess;
 import usecases.CourseEvaluatorUseCase.EvaluatorCourseDataAccess;

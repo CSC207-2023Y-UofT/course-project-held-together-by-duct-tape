@@ -1,8 +1,8 @@
 package frameworksdrivers;
 
-import frameworksdrivers.Gateways.CourseGateway;
-import frameworksdrivers.Gateways.SessionGateway;
-import frameworksdrivers.Gateways.StudentGateway;
+import frameworksdrivers.gateways.CourseGateway;
+import frameworksdrivers.gateways.SessionGateway;
+import frameworksdrivers.gateways.StudentGateway;
 
 /**
  * Driver that connects to the databases and creates the gateways. Each gateway has a reference to the connection so

@@ -1,9 +1,9 @@
 package frameworksdriversmock;
 
 import frameworksdrivers.Driver;
-import frameworksdrivers.Gateways.CourseDbGateway;
-import frameworksdrivers.Gateways.SessionDbGateway;
-import frameworksdrivers.Gateways.StudentDbGateway;
+import frameworksdrivers.gateways.CourseDbGateway;
+import frameworksdrivers.gateways.SessionDbGateway;
+import frameworksdrivers.gateways.StudentDbGateway;
 
 /**
  * Mock driver created to ensure the tests run with mock methods and do not connect to the database.

@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 import frameworksdrivers.DbConnection;
-import usecases.CourseEvaluatorUseCase.*;
-import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
-import usecases.CreateStudentUsecase.CreateStudentDsModel;
-import usecases.LoginStudentUseCase.LoginStudentRequestModel;
+import usecases.courseEvaluatorUseCase.*;
+import usecases.loginStudentUseCase.LoginStudentDbRequestModel;
+import usecases.createStudentUsecase.CreateStudentDsModel;
+import usecases.loginStudentUseCase.LoginStudentRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Student Database. It has a reference to the connection obtained from

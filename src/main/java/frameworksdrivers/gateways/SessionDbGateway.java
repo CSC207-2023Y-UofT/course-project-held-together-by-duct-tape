@@ -1,11 +1,11 @@
 package frameworksdrivers.gateways;
 
 import frameworksdrivers.DbConnection;
-import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
-import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
-import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
-import usecases.RunCourseUseCase.RunCourseDbRequestModel;
+import usecases.courseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.courseEvaluatorUseCase.EvaluatorDbRequestModel;
+import usecases.courseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.loginStudentUseCase.LoginStudentDbRequestModel;
+import usecases.runCourseUseCase.RunCourseDbRequestModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

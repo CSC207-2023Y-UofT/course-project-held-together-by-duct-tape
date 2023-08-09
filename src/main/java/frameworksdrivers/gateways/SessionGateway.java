@@ -1,9 +1,9 @@
 package frameworksdrivers.gateways;
 
-import usecases.CourseEnrollmentUseCase.EnrolmentSessionDataAccess;
-import usecases.CourseEvaluatorUseCase.EvaluatorSessionDataAccess;
-import usecases.LoginStudentUseCase.LoginSessionDataAccess;
-import usecases.RunCourseUseCase.RunCourseSessionDataAccess;
+import usecases.courseEnrollmentUseCase.EnrolmentSessionDataAccess;
+import usecases.courseEvaluatorUseCase.EvaluatorSessionDataAccess;
+import usecases.loginStudentUseCase.LoginSessionDataAccess;
+import usecases.runCourseUseCase.RunCourseSessionDataAccess;
 
 /**
  * Gateway that accesses and interacts with the Course Database. Extends the interfaces: LoginSessionDataAccess,

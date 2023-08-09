@@ -1,8 +1,8 @@
 package usecases.CourseEvaluatorUseCase;
 
 import entities.Course;
-import entities.CourseBuilder.CourseBuilder;
-import entities.CourseBuilder.CourseNoPrerequisiteBuilder;
+import entities.builderCourse.CourseBuilder;
+import entities.builderCourse.CourseNoPrerequisiteBuilder;
 import entities.CourseFactory;
 
 import java.text.DecimalFormat;

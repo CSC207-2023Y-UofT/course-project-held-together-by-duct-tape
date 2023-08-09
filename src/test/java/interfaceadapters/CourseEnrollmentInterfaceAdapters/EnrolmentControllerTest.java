@@ -1,4 +1,4 @@
-package interfaceadapters.CourseEnrollmentInterfaceAdapters;
+package interfaceadapters.enrollmentInterfaceAdapters;
 
 import frameworksdriversmock.DatabaseDriverMock;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package frameworksdrivers.Gateways;
+package frameworksdrivers.dbGateways;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

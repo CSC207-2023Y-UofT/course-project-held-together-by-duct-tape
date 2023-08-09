@@ -1,4 +1,4 @@
-package entities.CourseBuilder;
+package entities.builderCourse;
 
 import entities.Course;
 import entities.Prerequisite;
@@ -10,34 +10,35 @@ import java.util.List;
 
 /**
  * This builder implements the CourseBuilder and sets attributes as the input parameters of creation. Whenever this
- * builder is created, it must have the courseID, the questions, the answers, and the points. The prerequisite is
- * set to empty with a default of zero grade.
+ * builder is created, it must have the courseID, the questions, the answers, the points, and the prerequisite. The
+ * prerequisite grade has a default of zero.
  */
-public class CourseNoPrerequisiteBuilder implements CourseBuilder {
+public class CourseNoPrerequisiteGradeBuilder implements CourseBuilder {
     private final Course course;
     private final List<String> questions;
     private final List<String> answers;
     private final List<Integer> points;
+    private final String prerequisite;
 
-    public CourseNoPrerequisiteBuilder(String courseID, List<String> questions, List<String> answers, List<Integer> points) {
+    public CourseNoPrerequisiteGradeBuilder(String courseID, List<String> questions, List<String> answers, List<Integer> points, String prerequisite) {
         course = new Course(courseID);
         this.questions = questions;
         this.answers = answers;
         this.points = points;
+        this.prerequisite = prerequisite;
     }
 
     @Override
     public void buildQuestions() {
         List<Question> courseQuestions = new ArrayList<Question>();
-        for (int j = 0; j < questions.size(); j++){
-            courseQuestions.add(QuestionFactory.create(questions.get(j), answers.get(j), points.get(j)));
+        for (int i = 0; i < questions.size(); i++){
+            courseQuestions.add(QuestionFactory.create(questions.get(i), answers.get(i), points.get(i)));
         }
         course.setQuestions(courseQuestions);
     }
 
-    @Override
     public void buildPrerequisite() {
-        Prerequisite prerequisite = new Prerequisite("", 0);
+        Prerequisite prerequisite = new Prerequisite(this.prerequisite, 0);
         course.setPrerequisite(prerequisite);
     }
 

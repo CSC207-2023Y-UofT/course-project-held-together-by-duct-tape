@@ -1,4 +1,4 @@
-package frameworksdrivers.Gateways;
+package frameworksdrivers.dbGateways;
 
 import frameworksdrivers.DbConnection;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;

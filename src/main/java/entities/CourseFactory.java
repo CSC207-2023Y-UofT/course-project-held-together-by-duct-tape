@@ -1,6 +1,6 @@
 package entities;
 
-import entities.CourseBuilder.CourseBuilder;
+import entities.builderCourse.CourseBuilder;
 
 /**
  * CourseFactory that acts as a Director in the Builder Design Pattern. This director has a method called create which

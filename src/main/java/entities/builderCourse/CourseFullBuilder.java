@@ -1,4 +1,4 @@
-package entities.CourseBuilder;
+package entities.builderCourse;
 
 import entities.Course;
 import entities.Prerequisite;

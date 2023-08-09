@@ -1,6 +1,6 @@
 package frameworksdrivers;
 
-import frameworksdrivers.gateways.*;
+import frameworksdrivers.Gateways.*;
 
 /**
  * Driver that connects to the databases and creates the gateways. Each gateway has a reference to the connection so

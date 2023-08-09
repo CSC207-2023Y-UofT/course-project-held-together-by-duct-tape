@@ -1,12 +1,12 @@
 package frameworksdriversmock;
 
-import frameworksdrivers.gateways.StudentGateway;
+import frameworksdrivers.Gateways.StudentGateway;
 
-import usecases.courseEvaluatorUseCase.EvaluatorDbRequestModel;
-import usecases.createStudentUsecase.CreateStudentDataAccess;
-import usecases.createStudentUsecase.CreateStudentDsModel;
-import usecases.loginStudentUseCase.LoginStudentDbRequestModel;
-import usecases.loginStudentUseCase.LoginStudentRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
+import usecases.CreateStudentUsecase.CreateStudentDataAccess;
+import usecases.CreateStudentUsecase.CreateStudentDsModel;
+import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
+import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

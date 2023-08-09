@@ -1,11 +1,11 @@
 package frameworksdriversmock;
 
-import frameworksdrivers.gateways.SessionGateway;
-import usecases.courseEnrollmentUseCase.EnrolmentDbRequestModel;
-import usecases.courseEvaluatorUseCase.EvaluatorDbRequestModel;
-import usecases.courseEvaluatorUseCase.EvaluatorDbResponseModel;
-import usecases.loginStudentUseCase.LoginStudentDbRequestModel;
-import usecases.runCourseUseCase.RunCourseDbRequestModel;
+import frameworksdrivers.Gateways.SessionGateway;
+import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
+import usecases.RunCourseUseCase.RunCourseDbRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;

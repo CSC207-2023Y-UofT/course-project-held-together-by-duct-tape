@@ -75,26 +75,5 @@ public class CourseDbGatewayMock implements CourseGateway {
         responseModel.setAnswers(allAnswers.get(courseIndex));
         responseModel.setPoints(allPoints.get(courseIndex));
 
-
-    }
-
-    public Integer getPrerequisiteGrade(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? prerequisiteGrades.get(index) : null;
-    }
-
-    public List<String> getQuestions(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allQuestions.get(index) : null;
-    }
-
-    public List<String> getAnswers(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allAnswers.get(index) : null;
-    }
-
-    public List<Integer> getPoints(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allPoints.get(index) : null;
     }
 }

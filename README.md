@@ -28,6 +28,7 @@ Tip, you can use terminal to operate MySQL, or you can choose to download MySQL 
 <img width="290" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/62a0ffd5-a552-4727-a456-ca0101e7c13a">
 
 ## Commands (In Order):
+Note: only perform these commands in MySQL if the files do not work.
 
 - Create database course_simulator;
 
@@ -39,7 +40,7 @@ Tip, you can use terminal to operate MySQL, or you can choose to download MySQL 
 
 - create table sessioncourse (CourseID Varchar(25), Question Varchar(250), Answer Varchar(250), Points int);
 
-- create table sessionstudent (StudentID Varchar(25), CourseID Varchar(25), CourseGrade float);
+- create table sessionstudent (StudentID Varchar(25), Password Varchar(25), CourseID Varchar(25), CourseGrade float);
 
 - Show tables;  (use this command to confirm that the above tables were made successfully!)
 

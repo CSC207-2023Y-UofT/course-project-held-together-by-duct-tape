@@ -1,6 +1,4 @@
 package usecases.CreateStudentUsecase;
-
-import frameworksdrivers.DatabaseDriver;
 import frameworksdriversmock.CourseDbGatewayMock;
 import frameworksdriversmock.DatabaseDriverMock;
 import frameworksdriversmock.StudentDbGatewayMock;

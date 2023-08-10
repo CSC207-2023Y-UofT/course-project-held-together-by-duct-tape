@@ -53,6 +53,7 @@ public class Course implements Iterable<Question>{
         this.prerequisite = prerequisite;
     }
 
+
     public int getAllPoints(){
         int all_points = 0;
         for (Question question: questions){

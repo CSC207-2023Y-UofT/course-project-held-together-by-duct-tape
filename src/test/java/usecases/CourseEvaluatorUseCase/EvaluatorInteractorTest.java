@@ -20,7 +20,7 @@ public class EvaluatorInteractorTest {
     }
     @Test
     public void retrievedCourse() {
-        Assertions.assertEquals(interactor.evaluate(), "You got " + 100 + "% in CSC108");
+        Assertions.assertEquals(interactor.evaluate(), "You got " + 100.0f + "% in CSC108");
     }
 
 }

@@ -1,6 +1,5 @@
 package interfaceadapters.CreateCourseInterfaceAdapters;
 
-import frameworksdrivers.DatabaseDriver;
 import frameworksdriversmock.DatabaseDriverMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

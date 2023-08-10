@@ -25,6 +25,7 @@ public class SessionDbGatewayMock implements SessionGateway {
         courseIDs.add("CSC108");
         courseIDs.add("CSC148");
         courseIDs.add("CSC207");
+
         courseGrades.add(60.0f);
         courseGrades.add(40.0f);
         courseGrades.add(0.0f);

@@ -21,8 +21,11 @@ public class CourseDbGatewayMock implements CourseGateway {
         List<String> answers = new ArrayList<>();
         List<Integer> points = new ArrayList<>();
         questions.add("What is 2 + 2");
+        questions.add("What is 14 + 14");
         answers.add("4");
+        answers.add("14");
         points.add(5);
+        points.add(4);
         addCourse("CSC108", "", 0, questions, answers, points);
     }
 

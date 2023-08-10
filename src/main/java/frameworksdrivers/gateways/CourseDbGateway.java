@@ -10,6 +10,7 @@ import java.util.List;
 import frameworksdrivers.DbConnection;
 import usecases.courseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.courseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.createCourseUseCase.CourseDbRequestModel;
 
 /**
  * Gateway that accesses and interacts with the Course Database. It has a reference to the connection obtained from
@@ -107,6 +108,37 @@ public class CourseDbGateway implements CourseGateway {
             requestModel.setQuestions(questions);
             requestModel.setAnswers(answers);
             requestModel.setPoints(points);
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Save a newly created course into the course database.
+     *
+     * @param requestModel The data model representing the course to be saved.
+     */
+    @Override
+    public void saveCourse(CourseDbRequestModel requestModel) {
+        try {
+            List<String> questions = requestModel.getQuestions();
+            List<String> answers = requestModel.getAnswers();
+            List<Integer> points = requestModel.getPoints();
+
+            for (int j = 0; j < questions.size(); j++) {
+                String SQL = "INSERT INTO " + DATABASE_NAME +
+                        " (CourseID, PrerequisiteCourseID, PrerequisiteGrade, " +
+                        "Question, Answer, Points) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(SQL);
+                statement.setString(1, requestModel.getCourseId());
+                statement.setString(2, requestModel.getPrereq());
+                statement.setFloat(3, requestModel.getPrereqGrade());
+                statement.setString(4, questions.get(j));
+                statement.setString(5, answers.get(j));
+                statement.setInt(6, points.get(j));
+                statement.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println("Error with the database!");
             e.printStackTrace();

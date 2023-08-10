@@ -6,6 +6,10 @@ import userinterface.loginStudentUserInterface.LoginStudentScreen;
 import userinterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
 import userinterface.runCourseUserInterface.RunCourseScreen;
 
+/**
+ * The `Main` class serves as the entry point for the application and orchestrates the setup and presentation
+ * of various user interface screens.
+ */
 public class Main {
     public static void main(String[] args) {
         // Application set-up

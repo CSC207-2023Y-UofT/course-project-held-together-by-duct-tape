@@ -3,6 +3,7 @@ package frameworksdriversmock;
 import frameworksdrivers.gateways.CourseGateway;
 import usecases.courseEnrollmentUseCase.EnrolmentDbRequestModel;
 import usecases.courseEvaluatorUseCase.EvaluatorDbResponseModel;
+import usecases.createCourseUseCase.CourseDbRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,16 @@ import java.util.List;
     }
 
     @Override
+    public void saveCourse(CourseDbRequestModel course) {
+       courseIDs.add(course.getCourseId());
+       prerequisiteIDs.add(course.getPrereq());
+       prerequisiteGrades.add(Math.round(course.getPrereqGrade()));
+       allQuestions.add(course.getQuestions());
+       allAnswers.add(course.getAnswers());
+       allPoints.add(course.getPoints());}
+
+
+    @Override
     public void retrieveCourse(EnrolmentDbRequestModel requestModel) {
         int courseIndex = courseIDs.indexOf(requestModel.getCourseID());
         requestModel.setPrerequisiteID(prerequisiteIDs.get(courseIndex));
@@ -60,5 +71,27 @@ import java.util.List;
         responseModel.setQuestions(allQuestions.get(courseIndex));
         responseModel.setAnswers(allAnswers.get(courseIndex));
         responseModel.setPoints(allPoints.get(courseIndex));
+
+
+    }
+
+    public Integer getPrerequisiteGrade(String courseID) {
+        int index = courseIDs.indexOf(courseID);
+        return index != -1 ? prerequisiteGrades.get(index) : null;
+    }
+
+    public List<String> getQuestions(String courseID) {
+        int index = courseIDs.indexOf(courseID);
+        return index != -1 ? allQuestions.get(index) : null;
+    }
+
+    public List<String> getAnswers(String courseID) {
+        int index = courseIDs.indexOf(courseID);
+        return index != -1 ? allAnswers.get(index) : null;
+    }
+
+    public List<Integer> getPoints(String courseID) {
+        int index = courseIDs.indexOf(courseID);
+        return index != -1 ? allPoints.get(index) : null;
     }
 }

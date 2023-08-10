@@ -5,7 +5,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The `StudentModeScreen` class represents the user interface screen for the student mode options.
+ * It allows users to choose between logging in, creating a user, or returning to the main menu.
+ */
 public class StudentModeScreen extends JPanel implements ActionListener{
+
     public StudentModeScreen(){
         JLabel title = new JLabel("Student Mode");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -29,6 +34,12 @@ public class StudentModeScreen extends JPanel implements ActionListener{
         this.add(buttons);
         this.add(buttonMain);
     }
+
+    /**
+     * Handles action events from buttons on the screen.
+     *
+     * @param e The action event triggered by a button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Login User")) {

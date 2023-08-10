@@ -1,10 +1,6 @@
 package usecases.CourseEvaluatorUseCase;
 import frameworksdriversmock.DatabaseDriverMock;
 import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
-import interfaceadapters.RunCourseInterfaceAdapters.RunCoursePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +19,7 @@ public class EvaluatorInteractorTest {
 
     }
     @Test
-    public void testEmptyAnswer() {
+    public void retrievedCourse() {
         Assertions.assertEquals(interactor.evaluate(), "You got " + 100 + "% in CSC108");
     }
 

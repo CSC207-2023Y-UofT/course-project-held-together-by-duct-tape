@@ -1,6 +1,7 @@
 package userinterface;
 
 import frameworksdrivers.DatabaseDriver;
+import frameworksdrivers.DbConnection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,11 @@ public class Window extends WindowAdapter {
         application.add(screens);
         application.setSize(400, 500);
         application.addWindowListener(this);
+
+        if (!DbConnection.testConnection()) {
+            application.setVisible(false);
+            application.dispose();
+        }
     }
 
     public void addScreen(JPanel screen, String name) {

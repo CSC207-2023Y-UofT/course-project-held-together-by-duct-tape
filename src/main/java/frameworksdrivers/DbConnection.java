@@ -55,4 +55,19 @@ public class DbConnection {
         }
         return connection;
     }
+
+    /**
+     * Tests whether the JDBC driver can connect to the mySQL database.
+     *
+     * @return boolean representing whether driver can connect.
+     */
+    public static boolean testConnection() {
+        try {
+            DriverManager.getConnection(DATABASE_URL);
+            return true;
+        } catch (SQLException e) {
+            System.out.println("No Driver connected.");
+            return false;
+        }
+    }
 }

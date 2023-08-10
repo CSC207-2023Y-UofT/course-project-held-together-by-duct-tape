@@ -28,7 +28,7 @@ public class CourseNoPrerequisiteBuilder implements CourseBuilder {
 
     @Override
     public void buildQuestions() {
-        List<Question> courseQuestions = new ArrayList<Question>();
+        List<Question> courseQuestions = new ArrayList<>();
         for (int j = 0; j < questions.size(); j++){
             courseQuestions.add(QuestionFactory.create(questions.get(j), answers.get(j), points.get(j)));
         }

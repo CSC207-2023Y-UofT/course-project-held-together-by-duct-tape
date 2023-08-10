@@ -1,8 +1,8 @@
 # Course Simulator
 The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar! Moreover, the program can be used as a way for students to create quizzes that they can test themselves for upcoming assessments with that allows them to monitor how they progress.
-The Tests cover 64% of all components but this includes portions that we would not be testing below is a picture showing the coverage of our tests:
+The Tests cover 73% of all components but this includes portions that we would not be testing below is a picture showing the coverage of our tests:
 
-<img width="308" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/0e065f3a-935d-4993-a23c-642db9ce60da">
+<img width="226" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/2b4abb07-6d07-469b-b760-9443787d85e1">
 
 
 #Set up (Windows)

@@ -22,15 +22,6 @@ public class DatabaseDriverMock implements Driver {
         courseDbGateway = new CourseDbGatewayMock();
     }
 
-    public DatabaseDriverMock(StudentDbGatewayMock studentDbGateway,
-                              SessionDbGatewayMock sessionDbGateway,
-                              CourseDbGatewayMock courseDbGateway) {
-        this.studentDbGateway = studentDbGateway;
-        this.sessionDbGateway = sessionDbGateway;
-        this.courseDbGateway = courseDbGateway;
-    }
-
-
     public StudentDbGatewayMock getStudentDbGatewayMock() {
         return studentDbGateway;
     }

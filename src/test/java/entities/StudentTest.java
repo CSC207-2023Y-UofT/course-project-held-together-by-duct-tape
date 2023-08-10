@@ -12,7 +12,7 @@ class StudentTest {
     Map<String, Float> courses;
     @BeforeEach
     public void init() {
-        courses = new HashMap<String, Float>();
+        courses = new HashMap<>();
         student = new Student("JP", courses);}
 
     @Test

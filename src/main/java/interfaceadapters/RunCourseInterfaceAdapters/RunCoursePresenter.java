@@ -1,8 +1,6 @@
 package interfaceadapters.RunCourseInterfaceAdapters;
 
 import frameworksdrivers.Driver;
-import frameworksdrivers.Gateways.SessionDbGateway;
-import frameworksdrivers.Gateways.SessionGateway;
 import usecases.RunCourseUseCase.RunCourseInputBoundary;
 import usecases.RunCourseUseCase.RunCourseInteractor;
 import usecases.RunCourseUseCase.RunCourseOutputBoundary;

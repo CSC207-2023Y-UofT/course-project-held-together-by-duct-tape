@@ -1,8 +1,9 @@
 # Course Simulator
 The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar! Moreover, the program can be used as a way for students to create quizzes that they can test themselves for upcoming assessments with that allows them to monitor how they progress.
-The Tests cover 64% of all components but this includes portions that we would not be testing below is a picture showing the coverage of our tests:
+The Tests cover 75% of all components but this includes portions that we would not be testing below is a picture showing the coverage of our tests:
 
-<img width="308" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/0e065f3a-935d-4993-a23c-642db9ce60da">
+
+<img width="326" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/9ed685a5-66f9-4491-9c8a-33b3e41e4bbe">
 
 
 #Set up (Windows)
@@ -137,7 +138,7 @@ This is the diagram illustrating the run course feature:
 
 This is a diagram for the course enrollment feature:
 
-<img width="407" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/725d3036-dc17-4e82-8804-841d5d9a8142">
+<img width="311" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/8025c2ce-5118-416f-b448-8bca30650e13">
 
 This is a diagram for the courses creation feature:
 

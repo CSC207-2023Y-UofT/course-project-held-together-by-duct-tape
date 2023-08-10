@@ -49,27 +49,6 @@ public class CourseDbGateway implements CourseGateway {
     }
 
     /**
-     * Checks if ID exists in Course Database.
-     *
-     * @param courseId the course ID
-     * @return true if the course is in Course Database, false if not.
-     */
-    @Override
-    public boolean existsByCourseId(String courseId) {
-        try {
-            String SQL = "SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?";
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setString(1, courseId);
-            ResultSet resultSet = statement.executeQuery();
-            return resultSet.next();
-        } catch (SQLException e) {
-            System.out.println("Error with the database!");
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    /**
      * Retrieves course from Course Database.
      *
      * @param requestModel the course ID
@@ -136,6 +115,11 @@ public class CourseDbGateway implements CourseGateway {
         }
     }
 
+    /**
+     * Save a newly created course into the course database.
+     *
+     * @param requestModel The data model representing the course to be saved.
+     */
     @Override
     public void saveCourse(CourseDbRequestModel requestModel) {
         try {
@@ -160,5 +144,26 @@ public class CourseDbGateway implements CourseGateway {
             System.out.println("Error with the database!");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Checks if ID exists in Course Database.
+     *
+     * @param courseId the course ID
+     * @return true if the course is in Course Database, false if not.
+     */
+    @Override
+    public boolean existsByCourseId(String courseId) {
+        try {
+            String SQL = "SELECT * FROM " + DATABASE_NAME + " WHERE CourseID = ?";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setString(1, courseId);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.out.println("Error with the database!");
+            e.printStackTrace();
+        }
+        return false;
     }
 }

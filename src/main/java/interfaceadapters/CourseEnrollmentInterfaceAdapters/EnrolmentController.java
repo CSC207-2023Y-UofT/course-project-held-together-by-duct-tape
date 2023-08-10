@@ -2,10 +2,18 @@ package interfaceadapters.CourseEnrollmentInterfaceAdapters;
 
 import usecases.CourseEnrollmentUseCase.EnrolmentInputBoundary;
 import usecases.CourseEnrollmentUseCase.EnrolmentRequestModel;
-import usecases.CourseEnrollmentUseCase.EnrolmentResponseModel;
 
+/**
+ * Controller for the enrolment use case. The controller creates a request model containing the course ID, and calls
+ * the interactor to enrol the student in the course corresponding to this ID.
+ */
 public class EnrolmentController {
     private final EnrolmentInputBoundary enrolmentInteractor;
+
+    /**
+     * Initializes the controller for the enrollment use case.
+     * @param enrolmentInteractor the interactor which enrolls the student in the selected course
+     */
     public EnrolmentController(EnrolmentInputBoundary enrolmentInteractor) {
         this.enrolmentInteractor = enrolmentInteractor;
     }

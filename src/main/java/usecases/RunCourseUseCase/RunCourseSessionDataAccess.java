@@ -1,5 +1,9 @@
 package usecases.RunCourseUseCase;
 
+import java.util.List;
+
 public interface RunCourseSessionDataAccess {
-    void save(RunCourseDbRequestModel requestModel);
+    void saveAnswers(RunCourseDbRequestModel requestModel);
+    void deleteCourseSession();
+    List<String> getCourseQuestions();
 }

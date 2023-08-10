@@ -7,13 +7,13 @@ import java.util.List;
 
 class StudentFactoryTest {
     String[] courses;
-    Integer[] grades;
+    Float[] grades;
 
     StudentFactory factory;
     @BeforeEach
     public void init() {
         courses = new String[]{"Csc207", "Csc148", "Csc108"};
-        grades = new Integer[]{80, 89, 90};
+        grades = new Float[]{80f, 89f, 90f};
         factory = new StudentFactory();}
     @Test
     public void TestStudentFactoryGeneric(){

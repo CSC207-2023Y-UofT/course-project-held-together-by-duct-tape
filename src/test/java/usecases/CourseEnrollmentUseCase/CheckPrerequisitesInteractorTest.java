@@ -1,23 +1,70 @@
 package usecases.CourseEnrollmentUseCase;
 
-import entities.Prerequisite;
-import entities.Question;
+import frameworksdriversmock.SessionDbGatewayMock;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
-
+/**
+ * Test class for the CheckPrerequisitesInteractor
+ */
 class CheckPrerequisitesInteractorTest {
-    @Test
-    public void testCheckPrerequisites() {
-        // ArrayList<Question> questions = new ArrayList<Question>();
-        // Prerequisite prereq1 = new Prerequisite("", 1);
-        // EnrolmentRequestModel requestModel = new EnrolmentRequestModel("ade", "CSC207");
-        // EnrolmentDataAccess sessionGateway = new SessionDbGateway();
-        // EnrolmentDbResponseModel dbResponseModel = new EnrolmentDbResponseModel("CSC207", questions, prereq1);
-        // CheckPrerequisitesInteractor interactor = new CheckPrerequisitesInteractor(sessionGateway);
+    private CheckPrerequisitesInteractor prerequisitesInteractor;
 
-        // assertEquals(interactor.checkPrerequisite(requestModel.getStudentId(), dbResponseModel), true);
+    /**
+     * Initializes the checkPrerequisites interactor before each test.
+     */
+    @BeforeEach
+    public void init() {
+        SessionDbGatewayMock sessionDbGateway = new SessionDbGatewayMock();
+        this.prerequisitesInteractor = new CheckPrerequisitesInteractor(sessionDbGateway);
+    }
+
+    /**
+     * Checks whether prerequisitesInteractor.checkPrerequisite returns true if the course does not have prerequisites.
+     */
+    @Test
+    public void testEmptyPrerequisites() {
+        EnrolmentDbRequestModel requestModel = new EnrolmentDbRequestModel("CSC207");
+        requestModel.setPrerequisiteID("");
+
+        Assertions.assertTrue(prerequisitesInteractor.checkPrerequisite(requestModel));
+    }
+
+    /**
+     * Checks whether the interactor returns false if the student does not have the required minimum grade for the
+     * prerequisite course.
+     */
+    @Test
+    public void testInsufficientGradePrerequisites() {
+        EnrolmentDbRequestModel requestModel = new EnrolmentDbRequestModel("CSC207");
+        requestModel.setPrerequisiteID("CSC148");
+        requestModel.setPrerequisiteGrade(50f);
+
+        Assertions.assertFalse(prerequisitesInteractor.checkPrerequisite(requestModel));
+    }
+
+    /**
+     * Checks whether the interactor returns false if the student has not taken the prerequisite course.
+     */
+    @Test
+    public void testUncompletedPrerequisiteCourse() {
+        EnrolmentDbRequestModel requestModel = new EnrolmentDbRequestModel("CSC263");
+        requestModel.setPrerequisiteID("STA257");
+        requestModel.setPrerequisiteGrade(50f);
+
+        Assertions.assertFalse(prerequisitesInteractor.checkPrerequisite(requestModel));
+    }
+
+    /**
+     * Checks whether the interactor returns true if the student has completed the prerequisites for a course.
+     */
+    @Test
+    public void testCompletedPrerequisites() {
+        EnrolmentDbRequestModel requestModel = new EnrolmentDbRequestModel("CSC148");
+        requestModel.setPrerequisiteID("CSC108");
+        requestModel.setPrerequisiteGrade(50f);
+
+        Assertions.assertTrue(prerequisitesInteractor.checkPrerequisite(requestModel));
     }
 }

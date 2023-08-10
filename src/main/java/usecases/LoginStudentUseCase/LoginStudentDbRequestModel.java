@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class LoginStudentDbRequestModel {
     private String username;
-    private Map<String, Integer> courses;
+    private Map<String, Float> courses;
 
     public LoginStudentDbRequestModel(String username) {
         this.username = username;
@@ -20,7 +20,7 @@ public class LoginStudentDbRequestModel {
         return this.username;
     }
 
-    public Map<String, Integer> getCourses() {
+    public Map<String, Float> getCourses() {
         return this.courses;
     }
 
@@ -28,7 +28,7 @@ public class LoginStudentDbRequestModel {
         this.username = username;
     }
 
-    public void setCourses(Map<String, Integer> courses) {
+    public void setCourses(Map<String, Float> courses) {
         this.courses = courses;
     }
 }

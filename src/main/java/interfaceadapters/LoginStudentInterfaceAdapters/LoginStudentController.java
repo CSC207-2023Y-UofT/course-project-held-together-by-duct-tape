@@ -1,7 +1,6 @@
 package interfaceadapters.LoginStudentInterfaceAdapters;
 
 import usecases.LoginStudentUseCase.LoginStudentInputBoundary;
-import usecases.LoginStudentUseCase.LoginStudentInteractor;
 import usecases.LoginStudentUseCase.LoginStudentRequestModel;
 import usecases.LoginStudentUseCase.LoginStudentResponseModel;
 
@@ -22,11 +21,11 @@ public class LoginStudentController {
      * calls the interactor to run the login use case with the request model.
      *
      * @param username inputted by the user.
-     * @param repeatUsername inputted by the user.
+     * @param password inputted by the user.
      * @return ResponseModel with the username.
      */
-    public LoginStudentResponseModel login(String username, String repeatUsername) {
-        LoginStudentRequestModel requestModel = new LoginStudentRequestModel(username, repeatUsername);
+    public LoginStudentResponseModel login(String username, String password) {
+        LoginStudentRequestModel requestModel = new LoginStudentRequestModel(username, password);
         return interactor.login(requestModel);
     }
 }

@@ -1,5 +1,7 @@
 package usecases.LoginStudentUseCase;
 
+import interfaceadapters.LoginStudentInterfaceAdapters.LoginUserFailed;
+
 /**
  * Interface that the loginPresenter must implement so the interactor can interact with the
  * presenter.
@@ -20,7 +22,7 @@ public interface LoginStudentOutputBoundary {
      * The interactor will pass an error message, which the Presenter will throw.
      *
      * @param error message that will be thrown.
-     * @return
+     * @throws LoginUserFailed exception.
      */
-    LoginStudentResponseModel prepareFailView(String error);
+    LoginStudentResponseModel prepareFailView(String error) throws LoginUserFailed;
 }

@@ -8,10 +8,8 @@ import userinterface.LoginStudentUserInterface.LoginStudentScreen;
 import userinterface.RunCourseUserInterface.RunCourseScreen;
 import userinterface.StudentModeScreen;
 import userinterface.UserModeScreen;
-
 import javax.swing.*;
 import java.awt.*;
-
 /**
  * The `Main` class serves as the entry point for the application and orchestrates the setup and presentation
  * of various user interface screens.
@@ -52,7 +50,6 @@ public class Main {
 
         // Show the main screen by default
         cards.show(screens, "main");
-
 
         // Configure application window
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

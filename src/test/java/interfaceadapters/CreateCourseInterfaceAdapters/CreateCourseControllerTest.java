@@ -3,7 +3,7 @@ package interfaceadapters.CreateCourseInterfaceAdapters;
 import frameworksdriversmock.DatabaseDriverMock;
 import org.junit.jupiter.api.Assertions;
 import usecases.InstructorCreateCourseUseCase.CreateCourseInteractor;
-import usecases.InstructorCreateCourseUseCase.CreateCourseInputBoundary;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import java.util.List;
 
 class CreateCourseControllerTest {
 
-    private CreateCourseInputBoundary interactor;
     private CreateCourseController controller;
 
     @BeforeEach
@@ -23,7 +22,7 @@ class CreateCourseControllerTest {
 
         // Create an instance of CreateCourseInteractor using the mock implementations
         CreateCoursePresenter presenter = new CreateCoursePresenter(databaseDriverMock);
-        interactor = new CreateCourseInteractor(databaseDriverMock.getCourseDbGatewayMock(), presenter);
+        CreateCourseInteractor interactor = new CreateCourseInteractor(databaseDriverMock.getCourseDbGatewayMock(), presenter);
 
         // Create an instance of CreateCourseController
         controller = new CreateCourseController(interactor);

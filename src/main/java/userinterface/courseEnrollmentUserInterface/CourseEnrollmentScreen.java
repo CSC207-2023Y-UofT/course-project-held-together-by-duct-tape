@@ -28,7 +28,10 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Course Enrollment Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.add(title);
+    }
 
+    public void renderCourses() {
+        clearFields();
         ButtonGroup radioGroup = new ButtonGroup();
 
         List<String> courses = enrollmentPresenter.getCourseIDs();
@@ -77,6 +80,16 @@ public class CourseEnrollmentScreen extends JPanel implements ActionListener {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
             enrollmentPresenter.deleteCourseSession();
+        }
+    }
+
+    public void clearFields() {
+        Component[] components = this.getComponents();
+
+        for (Component component : components) {
+            if (!(component instanceof JLabel)) {
+                this.remove(component);
+            }
         }
     }
 }

@@ -1,10 +1,12 @@
 package userinterface.loginStudentUserInterface;
 
+import entities.Course;
 import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.Driver;
 import interfaceadapters.loginStudentInterfaceAdapters.LoginStudentPresenter;
 import userinterface.Window;
 import interfaceadapters.loginStudentInterfaceAdapters.LoginStudentController;
+import userinterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,11 +21,13 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
     private final JTextField username = new JTextField(10);
     private final JPasswordField password = new JPasswordField(10);
     private final LoginStudentController controller;
+    private final CourseEnrollmentScreen courseEnrollmentScreen;
 
-    public LoginStudentScreen() {
+    public LoginStudentScreen(CourseEnrollmentScreen courseEnrollmentScreen) {
         Driver databaseDriver = new DatabaseDriver();
         LoginStudentPresenter loginPresenter = new LoginStudentPresenter(databaseDriver);
         this.controller = loginPresenter.getLoginController();
+        this.courseEnrollmentScreen = courseEnrollmentScreen;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -65,6 +69,7 @@ public class LoginStudentScreen extends JPanel implements ActionListener {
             String passcode = new String(password.getPassword());
             controller.login(username.getText(), passcode);
             JOptionPane.showMessageDialog(this, username.getText() + " successful login");
+            courseEnrollmentScreen.renderCourses();
             Window.cards.show(Window.screens, "enrollment");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

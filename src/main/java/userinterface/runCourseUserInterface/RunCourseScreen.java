@@ -78,8 +78,11 @@ public class RunCourseScreen extends JPanel implements ActionListener {
 
         if (event.getActionCommand().equals("Evaluate Course")) {
             List<String> answersCourse = formatAnswers();
-            JOptionPane.showMessageDialog(this, controller.runCourse(questions, answersCourse));
-            JOptionPane.showMessageDialog(this, evaluatorController.evaluateCourse());
+            String message = controller.runCourse(questions, answersCourse);
+            JOptionPane.showMessageDialog(this, message);
+            if (!message.equals("Answers can not be empty.")) {
+                JOptionPane.showMessageDialog(this, evaluatorController.evaluateCourse());
+            }
         } else if (event.getActionCommand().equals("Unenroll")) {
             presenter.deleteCourseSession();
         }

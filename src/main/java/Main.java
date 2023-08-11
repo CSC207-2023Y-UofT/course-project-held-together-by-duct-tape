@@ -20,10 +20,10 @@ public class Main {
         UserModeScreen mainScreen = new UserModeScreen();
         StudentModeScreen studentModeScreen = new StudentModeScreen();
         CreateStudentScreen createStudentScreen = new CreateStudentScreen();
-        LoginStudentScreen loginScreen = new LoginStudentScreen();
         CreateCourseScreen createCourseScreen = new CreateCourseScreen();
         RunCourseScreen courseScreen = new RunCourseScreen();
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(courseScreen);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(enrollmentScreen);
 
         window.addScreen(mainScreen, "main");
         window.addScreen(studentModeScreen, "student");

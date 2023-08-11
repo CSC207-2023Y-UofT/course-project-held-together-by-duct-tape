@@ -2,6 +2,7 @@ package frameworksdriversmock;
 
 import frameworksdrivers.Gateways.SessionGateway;
 import usecases.CourseEnrollmentUseCase.EnrolmentDbRequestModel;
+import usecases.CourseEvaluatorUseCase.EvaluatorDbRequestModel;
 import usecases.CourseEvaluatorUseCase.EvaluatorDbResponseModel;
 import usecases.LoginStudentUseCase.LoginStudentDbRequestModel;
 import usecases.RunCourseUseCase.RunCourseDbRequestModel;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class SessionDbGatewayMock implements SessionGateway {
     private final String username;
+    private final String password;
     private final List<String> courseIDs;
     private final List<Float> courseGrades;
     private final String courseID;
@@ -20,6 +22,7 @@ public class SessionDbGatewayMock implements SessionGateway {
 
     public SessionDbGatewayMock() {
         username = "jpmedina";
+        password = "gmpj";
         courseIDs = new ArrayList<>();
         courseGrades = new ArrayList<>();
         courseIDs.add("CSC108");
@@ -67,8 +70,9 @@ public class SessionDbGatewayMock implements SessionGateway {
     }
 
     @Override
-    public String retrieveStudentId() {
-        return username;
+    public void retrieveUser(EvaluatorDbRequestModel requestModel) {
+        requestModel.setStudentID(username);
+        requestModel.setPassword(password);
     }
 
     @Override

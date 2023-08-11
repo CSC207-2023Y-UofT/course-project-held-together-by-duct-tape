@@ -8,33 +8,32 @@ import java.util.List;
 /**
  * Controller for the course creation use case. The controller prepares a request model with the provided information
  * and delegates the course creation task to the interactor.
- */
+ * /** Initiates the course creation process by building a request model with the given parameters. The prerequisite
+ *      * grade is processed, defaulting to a passing grade if not provided. The request model is then passed to the
+ *      * interactor to create the course.
+ *      * courseId         The unique identifier for the new course.
+ *      * prerequisite     The identifier of the prerequisite course, if any.
+ *      * prerequisite_grade The grade required in the prerequisite course.
+ *      * questions        A list of questions associated with the course.
+ *      * answers          A list of answers corresponding to the questions.
+ *      * points           A list of points or scores assigned to each question.
+ *      */
 
 public class CreateCourseController {
     private final CreateCourseInputBoundary createCourseInteractor;
+
+    Float passgrade = 50.0f;
+    Float noGrade = 0.0f;
     /**
      * Constructor to initialize the CreateCourseController with the provided CreateCourseInputBoundary interactor.
      *
      * @param createCourseInteractor The interactor responsible for handling course creation.
      */
-    Float passgrade = 50.0f;
-    Float noGrade = 0.0f;
     public CreateCourseController(CreateCourseInputBoundary createCourseInteractor) {
         this.createCourseInteractor = createCourseInteractor;
     }
 
-    /**
-     * Initiates the course creation process by building a request model with the given parameters. The prerequisite
-     * grade is processed, defaulting to a passing grade if not provided. The request model is then passed to the
-     * interactor to create the course.
-     *
-     * @param courseId         The unique identifier for the new course.
-     * @param prerequisite     The identifier of the prerequisite course, if any.
-     * @param prerequisite_grade The grade required in the prerequisite course.
-     * @param questions        A list of questions associated with the course.
-     * @param answers          A list of answers corresponding to the questions.
-     * @param points           A list of points or scores assigned to each question.
-     */
+
 
 
 

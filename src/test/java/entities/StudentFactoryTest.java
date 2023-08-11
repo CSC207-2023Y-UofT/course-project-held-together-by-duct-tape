@@ -9,13 +9,11 @@ class StudentFactoryTest {
     String[] courses;
     Float[] grades;
 
-    StudentFactory factory;
     @BeforeEach
     public void init() {
         courses = new String[]{"Csc207", "Csc148", "Csc108"};
-        grades = new Float[]{80f, 89f, 90f};
-        factory = new StudentFactory();}
+        grades = new Float[]{80f, 89f, 90f};}
     @Test
     public void TestStudentFactoryGeneric(){
-        Student student = factory.create("Nour", List.of(courses), List.of(grades));
+        Student student = StudentFactory.create("Nour", List.of(courses), List.of(grades));
         assertEquals("Nour", student.getStudentId());}}

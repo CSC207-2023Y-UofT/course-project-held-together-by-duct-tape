@@ -1,8 +1,3 @@
-/**
- * Represents a user interface screen for creating a new course in instructor mode.
- * This class extends JPanel and implements ActionListener to handle user interactions.
- */
-
 package userinterface.createCourseUserInterface;
 
 import javax.swing.*;
@@ -18,6 +13,10 @@ import interfaceadapters.createCourseInterfaceAdapters.CreateCourseController;
 import interfaceadapters.createCourseInterfaceAdapters.CreateCoursePresenter;
 import userinterface.Window;
 
+/**
+ * Represents a user interface screen for creating a new course in instructor mode.
+ * This class extends JPanel and implements ActionListener to handle user interactions.
+ */
 public class CreateCourseScreen extends JPanel implements ActionListener {
     private final CreateCourseController controller;
 

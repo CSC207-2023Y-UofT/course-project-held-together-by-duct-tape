@@ -11,9 +11,8 @@ import usecases.createStudentUsecase.CreateStudentResponseModel;
  * here so all that is necessary to render the screen is here*/
 public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
-    private static Driver databaseDriver;
-    public CreateStudentPresenter( Driver databaseDriver) {
-        databaseDriver = databaseDriver;
+
+    public CreateStudentPresenter(Driver databaseDriver) {
         CreateStudentInputBoundary createStudentInteractor = new CreateStudentInteractor(
                 databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);

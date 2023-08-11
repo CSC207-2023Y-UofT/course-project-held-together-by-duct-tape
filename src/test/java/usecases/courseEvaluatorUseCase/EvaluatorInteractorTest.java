@@ -1,11 +1,11 @@
-package usecases.CourseEvaluatorUseCase;
+package usecases.courseEvaluatorUseCase;
+
 import frameworksdriversmock.DatabaseDriverMock;
-import interfaceadapters.CourseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+import interfaceadapters.courseEvaluatorInterfaceAdapters.EvaluatorPresenter;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 
 public class EvaluatorInteractorTest {
     private EvaluatorInteractor interactor;

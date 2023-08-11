@@ -1,4 +1,4 @@
-package usecases.CourseEvaluatorUseCase;
+package usecases.courseEvaluatorUseCase;
 
 import java.util.ArrayList;
 import java.util.List;

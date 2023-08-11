@@ -1,6 +1,5 @@
 package interfaceadapters.CreateStudentInterfaceAdapters;
 
-import frameworksdrivers.DatabaseDriver;
 import frameworksdrivers.Driver;
 import usecases.CreateStudentUsecase.CreateStudentInputBoundary;
 import usecases.CreateStudentUsecase.CreateStudentInteractor;
@@ -12,9 +11,7 @@ import usecases.CreateStudentUsecase.CreateStudentResponseModel;
  * here so all that is necessary to render the screen is here*/
 public class CreateStudentPresenter implements CreateStudentOutputBoundary {
     private final CreateStudentController createStudentController;
-    private static Driver databaseDriver;
     public CreateStudentPresenter( Driver databaseDriver) {
-        databaseDriver = databaseDriver;
         CreateStudentInputBoundary createStudentInteractor = new CreateStudentInteractor(
                 databaseDriver.getStudentDbGateway(), this, databaseDriver.getCourseDbGateway());
         createStudentController = new CreateStudentController(createStudentInteractor);

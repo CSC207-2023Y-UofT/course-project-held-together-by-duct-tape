@@ -21,8 +21,11 @@ public class CourseDbGatewayMock implements CourseGateway {
         List<String> answers = new ArrayList<>();
         List<Integer> points = new ArrayList<>();
         questions.add("What is 2 + 2");
+        questions.add("What is 14 + 14");
         answers.add("4");
+        answers.add("14");
         points.add(5);
+        points.add(4);
         addCourse("CSC108", "", 0, questions, answers, points);
     }
 
@@ -72,26 +75,5 @@ public class CourseDbGatewayMock implements CourseGateway {
         responseModel.setAnswers(allAnswers.get(courseIndex));
         responseModel.setPoints(allPoints.get(courseIndex));
 
-
-    }
-
-    public Integer getPrerequisiteGrade(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? prerequisiteGrades.get(index) : null;
-    }
-
-    public List<String> getQuestions(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allQuestions.get(index) : null;
-    }
-
-    public List<String> getAnswers(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allAnswers.get(index) : null;
-    }
-
-    public List<Integer> getPoints(String courseID) {
-        int index = courseIDs.indexOf(courseID);
-        return index != -1 ? allPoints.get(index) : null;
     }
 }

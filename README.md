@@ -1,5 +1,10 @@
 # Course Simulator
 The program is a course simulator where users can create and take different courses and get evaluated for them. We chose to create this program as it felt relevant as we are all students and the subject matter felt familiar! Moreover, the program can be used as a way for students to create quizzes that they can test themselves for upcoming assessments with that allows them to monitor how they progress.
+The Tests cover 75% of all components but this includes portions that we would not be testing below is a picture showing the coverage of our tests:
+
+
+<img width="326" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/9ed685a5-66f9-4491-9c8a-33b3e41e4bbe">
+
 
 #Set up (Windows)
 
@@ -28,6 +33,7 @@ Tip, you can use terminal to operate MySQL, or you can choose to download MySQL 
 <img width="290" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/62a0ffd5-a552-4727-a456-ca0101e7c13a">
 
 ## Commands (In Order):
+Note: only perform these commands in MySQL if the files do not work.
 
 - Create database course_simulator;
 
@@ -39,7 +45,7 @@ Tip, you can use terminal to operate MySQL, or you can choose to download MySQL 
 
 - create table sessioncourse (CourseID Varchar(25), Question Varchar(250), Answer Varchar(250), Points int);
 
-- create table sessionstudent (StudentID Varchar(25), CourseID Varchar(25), CourseGrade float);
+- create table sessionstudent (StudentID Varchar(25), Password Varchar(25), CourseID Varchar(25), CourseGrade float);
 
 - Show tables;  (use this command to confirm that the above tables were made successfully!)
 
@@ -132,7 +138,7 @@ This is the diagram illustrating the run course feature:
 
 This is a diagram for the course enrollment feature:
 
-<img width="407" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/725d3036-dc17-4e82-8804-841d5d9a8142">
+<img width="311" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-held-together-by-duct-tape/assets/133050886/8025c2ce-5118-416f-b448-8bca30650e13">
 
 This is a diagram for the courses creation feature:
 

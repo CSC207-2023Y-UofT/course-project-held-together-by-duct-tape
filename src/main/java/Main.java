@@ -1,6 +1,7 @@
 import userinterface.Window;
 import userinterface.UserModeScreen;
 import userinterface.StudentModeScreen;
+import userinterface.createCourseUserInterface.CreateCourseScreen;
 import userinterface.createStudentUserInterface.CreateStudentScreen;
 import userinterface.loginStudentUserInterface.LoginStudentScreen;
 import userinterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
@@ -20,6 +21,7 @@ public class Main {
         StudentModeScreen studentModeScreen = new StudentModeScreen();
         CreateStudentScreen createStudentScreen = new CreateStudentScreen();
         LoginStudentScreen loginScreen = new LoginStudentScreen();
+        CreateCourseScreen createCourseScreen = new CreateCourseScreen();
         RunCourseScreen courseScreen = new RunCourseScreen();
         CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(courseScreen);
 
@@ -29,6 +31,7 @@ public class Main {
         window.addScreen(loginScreen, "login");
         window.addScreen(enrollmentScreen, "enrollment");
         window.addScreen(courseScreen, "course");
+        window.addScreen(createCourseScreen, "instructor");
 
         window.render();
     }

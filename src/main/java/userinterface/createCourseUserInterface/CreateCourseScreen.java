@@ -164,7 +164,7 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, message);
                 Window.cards.show(Window.screens, "main");
                 clearFields();}
-            catch ( NumberFormatException e){ JOptionPane.showMessageDialog(this,
+            catch (NumberFormatException e){ JOptionPane.showMessageDialog(this,
                     "Sorry.... something is wrong with what you inputted :(");
             }
             catch (Exception b){JOptionPane.showMessageDialog(this, b.getMessage());
@@ -175,18 +175,20 @@ public class CreateCourseScreen extends JPanel implements ActionListener {
     /**
      * Clears all input fields.
      */
-    public void clearFields(){CourseName.setText(null);
-    Prerequisite.setText(null);
-    PrerequisiteGrade.setText(null);
-    Question1.setText(null);
-    Question2.setText(null);
-    Question3.setText(null);
-    Points1.setText(null);
-    Points2.setText(null);
-    Points3.setText(null);
-    Answer1.setText(null);
-    Answer2.setText(null);
-    Answer3.setText(null);}
+    public void clearFields(){
+        CourseName.setText(null);
+        Prerequisite.setText(null);
+        PrerequisiteGrade.setText(null);
+        Question1.setText(null);
+        Question2.setText(null);
+        Question3.setText(null);
+        Points1.setText(null);
+        Points2.setText(null);
+        Points3.setText(null);
+        Answer1.setText(null);
+        Answer2.setText(null);
+        Answer3.setText(null);
+    }
 }
 
 

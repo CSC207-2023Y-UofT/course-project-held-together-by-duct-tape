@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * This is the main window screen for the application. A user may initialize this class to begin adding screens.
+ * This application window will check if there is an available connection to the database. This class hides the
+ * implementation details of the GUI.
+ */
 public class Window extends WindowAdapter {
     public final JFrame application = new JFrame();
     public static final CardLayout cards = new CardLayout();
@@ -35,6 +40,11 @@ public class Window extends WindowAdapter {
         application.setVisible(true);
     }
 
+    /**
+     * This method makes sure that upon closing the application window, the session database information is deleted.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         System.out.println("Deleting session information.");

@@ -1,14 +1,11 @@
-import userinterface.CreateStudentUserInterface.CreateStudentScreen;
-import userinterface.GenericProperties;
-import userinterface.InstuctorCreateCourseUserInterface.CreateCourseScreen;
-import userinterface.LoginStudentUserInterface.LoginStudentScreen;
-import userinterface.CourseEnrollmentUserInterface.CourseEnrollmentScreen;
-import userinterface.RunCourseUserInterface.RunCourseScreen;
-import userinterface.StudentModeScreen;
-import userinterface.UserModeScreen;
-
-import javax.swing.*;
-import java.awt.*;
+import userInterface.Window;
+import userInterface.UserModeScreen;
+import userInterface.StudentModeScreen;
+import userInterface.createCourseUserInterface.CreateCourseScreen;
+import userInterface.createStudentUserInterface.CreateStudentScreen;
+import userInterface.loginStudentUserInterface.LoginStudentScreen;
+import userInterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
+import userInterface.runCourseUserInterface.RunCourseScreen;
 
 /**
  * The `Main` class serves as the entry point for the application and orchestrates the setup and presentation
@@ -17,37 +14,25 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         // Application set-up
-        JFrame application = new JFrame();
-        CardLayout cards = new CardLayout();
-        JPanel screens = new JPanel(cards);
-        application.add(screens);
+        Window window = new Window();
 
         // Plug-in screens
-        GenericProperties genericProperties = new GenericProperties(screens, cards);
-        UserModeScreen mainScreen = new UserModeScreen(genericProperties);
-        StudentModeScreen studentModeScreen = new StudentModeScreen(genericProperties);
-        CreateStudentScreen createStudentScreen = new CreateStudentScreen(genericProperties);
-        LoginStudentScreen loginScreen = new LoginStudentScreen(genericProperties);
-        CreateCourseScreen createCourseScreen = new CreateCourseScreen(genericProperties);
-        RunCourseScreen courseScreen = new RunCourseScreen(genericProperties);
-        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(genericProperties, courseScreen);
+        UserModeScreen mainScreen = new UserModeScreen();
+        StudentModeScreen studentModeScreen = new StudentModeScreen();
+        CreateStudentScreen createStudentScreen = new CreateStudentScreen();
+        CreateCourseScreen createCourseScreen = new CreateCourseScreen();
+        RunCourseScreen courseScreen = new RunCourseScreen();
+        CourseEnrollmentScreen enrollmentScreen = new CourseEnrollmentScreen(courseScreen);
+        LoginStudentScreen loginScreen = new LoginStudentScreen(enrollmentScreen);
 
-        // Add screens to the JPanel
-        screens.add(mainScreen, "main");
-        screens.add(studentModeScreen, "student");
-        screens.add(createCourseScreen, "Instructor Mode");
-        screens.add(createStudentScreen, "createStudent");
-        screens.add(loginScreen, "login");
-        screens.add(enrollmentScreen, "enrollment");
-        screens.add(courseScreen, "course");
+        window.addScreen(mainScreen, "main");
+        window.addScreen(studentModeScreen, "student");
+        window.addScreen(createStudentScreen, "createStudent");
+        window.addScreen(loginScreen, "login");
+        window.addScreen(enrollmentScreen, "enrollment");
+        window.addScreen(courseScreen, "course");
+        window.addScreen(createCourseScreen, "instructor");
 
-        // Show the main screen by default
-        cards.show(screens, "main");
-
-
-        // Configure application window
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        application.pack();
-        application.setVisible(true);
+        window.render();
     }
 }

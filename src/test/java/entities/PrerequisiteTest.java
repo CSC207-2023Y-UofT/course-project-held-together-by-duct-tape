@@ -11,4 +11,6 @@ class PrerequisiteTest {
         Prerequisite emptyPrequisite = new Prerequisite("", 0);
         assertEquals(90, prerequisite.getGpa());
         assertEquals("Csc148", prerequisite.getCourse());
-        assertTrue(emptyPrequisite.isEmpty());}}
+        assertTrue(emptyPrequisite.isEmpty());
+    }
+}

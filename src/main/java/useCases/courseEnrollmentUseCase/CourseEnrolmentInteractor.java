@@ -37,6 +37,10 @@ public class CourseEnrolmentInteractor implements EnrolmentInputBoundary {
      * @return the requested course or a fail message
      */
     public String enrol(EnrolmentRequestModel requestModel) {
+        if (!courseDbGateway.existsByCourseId(requestModel.getCourseId())) {
+            return enrolmentPresenter.prepareFailView("Course ID does not exist in Database!");
+        }
+
         EnrolmentDbRequestModel dbRequestModel = new EnrolmentDbRequestModel(requestModel.getCourseId());
         courseDbGateway.retrieveCourse(dbRequestModel);
 

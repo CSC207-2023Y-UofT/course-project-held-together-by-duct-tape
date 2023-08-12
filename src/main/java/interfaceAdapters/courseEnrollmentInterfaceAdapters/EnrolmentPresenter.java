@@ -52,7 +52,7 @@ public class EnrolmentPresenter implements EnrolmentOutputBoundary {
      */
     @Override
     public String prepareFailView(String failMessage) {
-        throw new RuntimeException(failMessage);
+        throw new EnrolmentFailure(failMessage);
     }
 
     /**

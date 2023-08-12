@@ -8,7 +8,6 @@ import useCases.courseEnrollmentUseCase.CheckPrerequisitesInteractor;
 import useCases.courseEnrollmentUseCase.CourseEnrolmentInteractor;
 import useCases.courseEnrollmentUseCase.EnrolmentInputBoundary;
 import java.util.ArrayList;
-import static org.junit.Assert.assertThrows;
 
 /**
  * Test class for the course enrollment controller. This tests the creation of a request model and the call made
@@ -38,24 +37,30 @@ class EnrolmentControllerTest {
      * Tests whether the request model was created correctly, in order for it to be used by the interactor.
      */
     @Test
-    public void testRequestModelCreation() {
-
+    public void testSuccessEnroll() {
         // Enrollment is successful
         Assertions.assertEquals("You've successfully enrolled in course CSC108",
                 enrolmentController.enrol("CSC108"));
+    }
 
+    @Test
+    public void testFailureNotMetPrerequisites() {
         // Enrollment is unsuccessful, because student does not have the prerequisites.
-        Exception exception2 = assertThrows(RuntimeException.class, () -> {
+        try {
             enrolmentController.enrol("CSC207");
-        });
-        Assertions.assertTrue(exception2.getMessage().contains("You have not completed the prerequisites " +
-                "for the course.\nPrerequisite: CSC148 Grade: 50.0"));
+        } catch (EnrolmentFailure e) {
+            Assertions.assertEquals(e.getMessage(), "You have not completed the prerequisites " +
+                    "for the course.\nPrerequisite: CSC148 Grade: 50.0");
+        }
+    }
 
+    @Test
+    public void testFailureCourseNotExist() {
         // Enrollment is unsuccessful, because course ID does not exist in database.
-        Exception exception3 = assertThrows(RuntimeException.class, () -> {
+        try {
             enrolmentController.enrol("CSC1110");
-        });
-        Assertions.assertTrue(exception3.getMessage().contains("Course ID does not exist in Database!"));
-
+        } catch (EnrolmentFailure e) {
+            Assertions.assertEquals(e.getMessage(), "Course ID does not exist in Database!");
+        }
     }
 }

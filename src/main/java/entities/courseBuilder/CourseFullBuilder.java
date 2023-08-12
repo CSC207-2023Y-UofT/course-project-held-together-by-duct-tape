@@ -40,6 +40,7 @@ public class CourseFullBuilder implements CourseBuilder {
         course.setQuestions(courseQuestions);
     }
 
+    @Override
     public void buildPrerequisite() {
         Prerequisite prerequisite = new Prerequisite(this.prerequisite, prerequisiteGrade);
         course.setPrerequisite(prerequisite);

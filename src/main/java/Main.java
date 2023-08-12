@@ -1,11 +1,11 @@
-import userinterface.Window;
-import userinterface.UserModeScreen;
-import userinterface.StudentModeScreen;
-import userinterface.createCourseUserInterface.CreateCourseScreen;
-import userinterface.createStudentUserInterface.CreateStudentScreen;
-import userinterface.loginStudentUserInterface.LoginStudentScreen;
-import userinterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
-import userinterface.runCourseUserInterface.RunCourseScreen;
+import userInterface.Window;
+import userInterface.UserModeScreen;
+import userInterface.StudentModeScreen;
+import userInterface.createCourseUserInterface.CreateCourseScreen;
+import userInterface.createStudentUserInterface.CreateStudentScreen;
+import userInterface.loginStudentUserInterface.LoginStudentScreen;
+import userInterface.courseEnrollmentUserInterface.CourseEnrollmentScreen;
+import userInterface.runCourseUserInterface.RunCourseScreen;
 
 /**
  * The `Main` class serves as the entry point for the application and orchestrates the setup and presentation

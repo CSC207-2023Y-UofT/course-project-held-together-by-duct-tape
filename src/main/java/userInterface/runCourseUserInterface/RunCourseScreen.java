@@ -88,7 +88,7 @@ public class RunCourseScreen extends JPanel implements ActionListener {
         }
 
         presenter.deleteCourseSession();
-        Window.cards.show(Window.screens, "enrollment");
+        Window.cards.show(Window.screens, "login");
         clearFields();
     }
 
